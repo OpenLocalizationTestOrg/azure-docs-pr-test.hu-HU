@@ -1,8 +1,8 @@
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot. Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat. 
+Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#az_group_create) paranccsal. Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat. 
 
-hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helyét.
+A következő példában létrehozunk egy *myResourceGroup* nevű erőforráscsoportot az *eastus* helyen.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
@@ -10,9 +10,9 @@ az group create --name myResourceGroup --location eastus
 
 ## <a name="create-a-virtual-machine"></a>Virtuális gép létrehozása
 
-Hozzon létre egy virtuális gép hello [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot. 
+Hozzon létre egy virtuális gépet az [az vm create](/cli/azure/vm#az_vm_create) paranccsal. 
 
-hello alábbi példakód létrehozza a virtuális gépek nevű *myVM* és SSH-kulcsok létrehozása, ha még nem léteznek a kulcs alapértelmezett helye. toouse egy adott kulcsok beállításához használja a hello `--ssh-key-value` lehetőséget.  
+Az alábbi példa egy *myVM* nevű virtuális gépet és SSH-kulcsokat hoz létre, ha azok még nem léteznek a kulcsok alapméretezett helyén. Ha konkrét kulcsokat szeretné használni, használja az `--ssh-key-value` beállítást. A parancs is beállítja *azureuser* egy rendszergazda felhasználó névvel. Ez a név később való csatlakozásra használja a virtuális géphez. 
 
 ```azurecli-interactive 
 az vm create \
@@ -23,7 +23,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-Hello virtuális gép létrehozásakor a hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg. Jegyezze fel a hello `publicIpAddress`. Ez a cím használt tooaccess hello virtuális gép.
+A virtuális gép létrehozása után az Azure CLI az alábbi példához hasonló információkat jelenít meg. Jegyezze fel a `publicIpAddress` értékét. Ez a cím a virtuális Gépet, a későbbi lépésekben eléréséhez használt.
 
 ```azurecli-interactive 
 {
@@ -42,7 +42,7 @@ Hello virtuális gép létrehozásakor a hello Azure CLI információkat a köve
 
 ## <a name="open-port-80-for-web-traffic"></a>A 80-as port megnyitása a webes adatforgalom számára 
 
-Alapértelmezés szerint csak az SSH-kapcsolatok engedélyezettek az Azure szolgáltatásba telepített Linux virtuális gépek. Ez a virtuális gép toobe webkiszolgáló állapotra vált, mert tooopen hello a 80-as portot kell internet. Használjon hello [az vm-port megnyitása](/cli/azure/vm#open-port) parancs tooopen hello port szükséges.  
+Alapértelmezés szerint csak az SSH-kapcsolatok engedélyezettek az Azure szolgáltatásba telepített Linux virtuális gépek. Ez a virtuális gép lesz a webkiszolgálón, mert szükség nyissa meg a 80-as porton az internetről. A kívánt port megnyitásához használja az [az vm open-port](/cli/azure/vm#az_vm_open_port) parancsot.  
  
 ```azurecli-interactive 
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
@@ -50,14 +50,14 @@ az vm open-port --port 80 --resource-group myResourceGroup --name myVM
 ## <a name="ssh-into-your-vm"></a>Bejelentkezés a virtuális gépre SSH-val
 
 
-Ha nem biztos a virtuális gép nyilvános IP-cím hello, futtassa a hello [az nyilvános ip-lista](/cli/azure/network/public-ip#list) parancs:
+Ha a nyilvános IP-címet a virtuális gép már nem tudja, futtassa a [az nyilvános ip-lista](/cli/azure/network/public-ip#list) parancsot. Az IP-cím több a későbbi lépésekben szükség van.
 
 
 ```azurecli-interactive
 az network public-ip list --resource-group myResourceGroup --query [].ipAddress
 ```
 
-Használjon hello következő parancsot a toocreate egy hello virtuális gép SSH-munkamenetet. Helyettesítse be hello megfelelő nyilvános IP-címet a virtuális gép. Ebben a példában hello IP-cím van *40.68.254.142*.
+Használja az alábbi parancsot egy SSH-munkamenet létrehozásához a virtuális géphez. Helyettesítse be a megfelelő nyilvános IP-címet a virtuális gép. Ebben a példában az IP-cím van *40.68.254.142*. *azureuser* a rendszergazdai felhasználónevet értéke a virtuális gép létrehozása után.
 
 ```bash
 ssh azureuser@40.68.254.142

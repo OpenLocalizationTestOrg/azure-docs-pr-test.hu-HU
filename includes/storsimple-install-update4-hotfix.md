@@ -1,45 +1,45 @@
-<!--author=alkohli last changed: 02/10/17-->
+<!--author=alkohli last changed: 01/23/18-->
 
-#### <a name="toodownload-hotfixes"></a>toodownload gyorsjavítások
+#### <a name="to-download-hotfixes"></a>Gyorsjavítások letöltése
 
-Hajtsa végre a következő lépéseket toodownload hello szoftverfrissítést a Microsoft Update katalógus hello hello.
+Hajtsa végre a következő lépéseket a szoftverfrissítés a Microsoft Update katalógusból történő letöltéséhez.
 
-1. Indítsa el az Internet Explorert, és keresse meg a túl[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
-2. Ha az első alkalommal használja a Microsoft Update katalógus hello ezen a számítógépen, kattintson a **telepítése** amikor felszólító tooinstall hello bővítmény a Microsoft Update katalógusból.
+1. Indítsa el az Internet Explorert, és keresse fel a [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com) címet.
+2. Ha most használja először a Microsoft Update katalógust ezen a számítógépen, kattintson a **Telepítés** gombra, amikor a rendszer a Microsoft Update katalógus beépülő moduljának telepítésére kéri.
 
     ![Katalógus telepítése](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
 
-3. A Microsoft Update katalógus hello hello a keresési mezőbe, írja be a hello Tudásbázis (KB) száma hello gyorsjavítás kívánt toodownload, például **4011839**, és kattintson a **keresési**.
+3. A Microsoft Update katalógus keresőmezőjében adja meg a letölteni kívánt gyorsjavítás tudásbázis- (KB-) számát (például: **4011839**), majd kattintson a **Keresés** gombra.
    
-    hello gyorsjavítás lista megjelenik, például **összegző szoftverfrissítési csomagot frissítés 4.0 a StorSimple 8000 Series**.
+    Megjelenik a tételszerű gyorsjavítás, például. **A StorSimple 8000 sorozat összegző szoftvercsomag-frissítésének 4.0-s verziója**.
    
     ![Keresés a katalógusban](./media/storsimple-install-update2-hotfix/HCS_SearchCatalog1-include.png)
 
-4. Kattintson a **Letöltés** gombra. Adja meg vagy **Tallózás** tooa helyi helyének hello tooappear tölti le. Kattintson a hello fájlok toodownload toohello megadott helyre és mappára. hello mappába másolt tooa hálózati megosztásra, amely elérhető hello eszköz is lehet.
-5. Keressen további gyorsjavítások a fenti hello táblázatban felsorolt (**4011841**), és a letöltési hello megfelelő fájlok toohello meghatározott mappákról, a tábla megelőző hello.
+4. Kattintson a **Letöltés** gombra. Adja meg vagy **tallózással** válassza ki a helyet, ahová a fájlokat le szeretné tölteni. Kattintson a fájlok letöltéséhez megadott helyre és mappára. A mappa átmásolható egy, az eszközről elérhető hálózati megosztásra is.
+5. A fenti táblázatban szereplő további gyorsjavítások keresése (**4011841**), és töltse le a megfelelő fájlokat a bizonyos mappákra irányuló, az előző táblázatban felsorolt.
 
 > [!NOTE]
-> hello gyorsjavítások mindkét hello társ vezérlő érkező üzenetek ezt a hibát a tartományvezérlők toodetect elérhetőknek kell lenniük.
+> A gyorsjavítások mindkét vezérlők annak a partner tartományvezérlőről esetleges hibaüzeneteket észlelésére elérhetőknek kell lenniük.
 >
-> hello gyorsjavítások 3 külön mappákban kell másolni. Például hello eszköz szoftver/Cis/MDS ügynök frissítése a másolhatók _FirstOrderUpdate_ mappa összes hello más nem zavaró frissítések sikerült átmásolni a hello _SecondOrderUpdate_ mappa, és karbantartási mód frissítések átmásolja a _ThirdOrderUpdate_ mappa.
+> A gyorsjavításokat 3 különböző mappába kell másolni. Például az eszköz szoftver/Cis/MDS ügynök frissítése a másolhatók _FirstOrderUpdate_ mappa, a többi nem zavaró frissítések sikerült másolni a _SecondOrderUpdate_ mappa, és karbantartási mód frissítések átmásolja a _ThirdOrderUpdate_ mappa.
 
-#### <a name="tooinstall-and-verify-regular-mode-hotfixes"></a>tooinstall és normál mód gyorsjavítások ellenőrzése
+#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>Normál módú gyorsjavítások telepítése és ellenőrzése
 
-Hajtsa végre a következő lépéseket tooinstall hello, és ellenőrizze a normál módú gyorsjavítások. Ha már telepítette hello segítségével a klasszikus Azure portálon, hagyja ki azokat, amelyek túl[telepítse, és ellenőrizze a karbantartási mód gyorsjavítások](#to-install-and-verify-maintenance-mode-hotfixes).
+A normál módú gyorsjavítások telepítéséhez és ellenőrzéséhez hajtsa végre az alábbi lépéseket. Ha már telepítette ezeket a klasszikus Azure portál segítségével, folytassa a [karbantartási módú gyorsjavítások telepítésének és ellenőrzésének](#to-install-and-verify-maintenance-mode-hotfixes) lépésével.
 
-1. tooinstall hello gyorsjavítások, hozzáférési hello Windows PowerShell felületet a StorSimple eszköz soros konzoljához a. Hajtsa végre a hello részletes utasításait [PuTTy használata tooconnect toohello soros konzol](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console). Hello parancssorban nyomja le az **Enter**.
-2. Válassza ki **1. lehetőség** toolog teljes hozzáféréssel rendelkező toohello eszközön. Azt javasoljuk, hogy hello gyorsjavítás hello passzív tartományvezérlőre telepíti először.
-3. tooinstall hello gyorsjavítás, parancssorba hello típusa:
+1. A gyorsjavítások telepítéséhez nyissa meg a Windows PowerShell felületét a StorSimple-eszköz soros konzoljában. Kövesse [a PuTTY a soros konzolhoz való csatlakozáshoz történő használatát](../articles/storsimple/storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console) ismertető részletes útmutatásokat. A parancssorban nyomja le az **Enter** billentyűt.
+2. Válassza az **1. lehetőséget** a teljes körű hozzáféréssel való bejelentkezéshez az eszközbe. Javasoljuk, hogy előbb a passzív vezérlőre telepítse a gyorsjavítást.
+3. A gyorsjavítás telepítéséhez írja be a következőt a parancssorba:
    
-    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    DNS helyett IP használata a megosztás elérési útja, a fenti parancs hello. hello credential paraméter csak akkor, ha egy hitelesített megosztás elérésére szolgál.
+    A fenti parancsban a megosztás elérési útjában DNS-cím helyett inkább IP-címet adjon meg. A hitelesítési paramétert csak akkor kell használni, ha egy hitelesített megosztáshoz kíván hozzáférni.
    
-    Azt javasoljuk, hogy használja-e hello credential paraméter tooaccess megosztások. Még akkor is, megosztások, megnyitott túl "mindenki" jellemzően a toounauthenticated felhasználók nem nyitható meg.
+    Javasoljuk, hogy a megosztások elérése során használja a hitelesítési paramétert. Még a „mindenki” számára elérhető megosztások sem elérhetőek a nem hitelesített felhasználók számára.
    
-    Adja meg a hello jelszót.
+    Amikor a rendszer kéri, adja meg a jelszót.
    
-    Az alábbiakban látható egy minta kimenet hello első rendelés frissítések telepítése. Hello első rendelés frissítés toopoint toohello adott fájl szükséges.
+    Alább látható egy példa az elsőrendű frissítések telepítésének kimenetére. Az első rendelés frissítés kell az adott fájlt.
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -47,16 +47,16 @@ Hajtsa végre a következő lépéseket tooinstall hello, és ellenőrizze a nor
    
         Confirm
    
-        This operation starts hello hotfix installation and could reboot one or
-        both of hello controllers. If hello device is serving I/Os, these will not
-        be disrupted. Are you sure you want toocontinue?
+        This operation starts the hotfix installation and could reboot one or
+        both of the controllers. If the device is serving I/Os, these will not
+        be disrupted. Are you sure you want to continue?
         [Y] Yes [N] No [?] Help (default is "Y"): Y
    
         ````
-4. Típus **Y** amikor felszólító tooconfirm hello gyorsjavítás telepítése.
-5. Figyelje az hello frissítés hello `Get-HcsUpdateStatus` parancsmag. hello frissítés először befejezi az hello passzív történik. Miután hello passzív vezérlő frissül, a feladatátvétel, és hello frissítés majd lesznek érvényben lévő hello más vezérlő. hello frissítés befejeződött, mindkét hello tartományvezérlők frissítésekor.
+4. Írja be az **Y** karaktert, amikor a rendszer kéri, hogy erősítse meg a gyorsjavítás telepítését.
+5. A frissítést a `Get-HcsUpdateStatus` parancsmag használatával figyelheti. A frissítés előbb a passzív vezérlőn lesz végrehajtva. Miután a passzív vezérlő frissítve lett, az azt követő feladatátvétel során a frissítés a másik vezérlőre is alkalmazva lesz. A frissítés akkor fejeződött be, ha mindkét vezérlő frissítve lett.
    
-    hello következő minta kimenet látható hello frissítés folyamatban van. Hello `RunInprogress` lesz `True` amikor hello frissítése folyamatban van.
+    Az alábbi kimeneti példa azt mutatja, hogy a frissítés még folyamatban van. A `RunInprogress` értéke `True`, ha a frissítés folyamatban van.
 
     ```
     Controller0>Get-HcsUpdateStatus
@@ -67,7 +67,7 @@ Hajtsa végre a következő lépéseket tooinstall hello, és ellenőrizze a nor
     Controller1Events   :
     ```
    
-     a következő minta kimenet hello azt jelzi, hogy adott hello frissítése befejeződött. Hello `RunInProgress` lesz `False` amikor hello frissítése befejeződött.
+     Az alábbi kimeneti példa azt mutatja, hogy a frissítés befejeződött. A `RunInProgress` értéke `False`, ha a frissítés befejeződött.
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -79,40 +79,40 @@ Hajtsa végre a következő lépéseket tooinstall hello, és ellenőrizze a nor
     ```
 
     > [!NOTE]
-    > Alkalmanként hello parancsmag jelentések `False` amikor hello frissítése még folyamatban van. amely gyorsjavítás hello tooensure befejeződött, várjon néhány percet, futtassa újra a parancsot, és győződjön meg arról, hogy hello `RunInProgress` van `False`. Ha igen, hello gyorsjavítás befejeződött.
+    > Alkalmanként a parancsmag `False` értéket jelenít meg, amikor a frissítés még folyamatban van. A gyorsjavítás befejezéséhez várjon néhány percet, majd futtassa újra a parancsot, és ellenőrizze, hogy a `RunInProgress` értéke `False`. Ha így van, a gyorsjavítás befejeződött.
 
-6. Hello szoftverfrissítés befejeződése után ellenőrizze a hello rendszer szoftververziók. Típus:
+6. A szoftverfrissítés befejeztét követően ellenőrizze a rendszerszoftverek verzióját. Típus:
    
     `Get-HcsSystem`
    
-    A következő verziók hello kell megjelennie:
+    A következő verziónak kell megjelennie:
    
    * `FriendlySoftwareVersion: StorSimple 8000 Series Update 4.0`
    *  `HcsSoftwareVersion: 6.3.9600.17820`
    
-    Hello verziószáma nem változik hello frissítés telepítését követően, azt jelzi, hello gyorsjavítás tooapply sikertelen volt. Ha ezt látja, további segítségért forduljon a [Microsoft támogatási szolgálatához](../articles/storsimple/storsimple-contact-microsoft-support.md).
+    Ha a verziószám nem változik a frissítés telepítését követően, ez azt jelzi, hogy a gyorsjavítás nem lett telepítve. Ha ezt látja, további segítségért forduljon a [Microsoft támogatási szolgálatához](../articles/storsimple/storsimple-contact-microsoft-support.md).
      
     > [!IMPORTANT]
-    > Újra kell indítania a hello aktív vezérlő keresztül hello `Restart-HcsController` parancsmag alkalmazása előtt a következő frissítés hello.
+    > Az aktív vezérlővel keresztül újra kell indítania a `Restart-HcsController` parancsmag a következő frissítés alkalmazása előtt.
      
-7. Ismételje meg a 3-5 tooinstall hello Cis/MDS letöltött ügynök tooyour _FirstOrderUpdate_ mappa. 
-8. Ismételje meg a 3-5. lépéseket tooinstall hello második rendelés frissítések. **Második rendelés frissítések több frissítést is telepíthető hello csak futtatásával `Start-HcsHotfix cmdlet` és mutató toohello tartalmazó mappát második rendelés frissítések. hello parancsmag végrehajtja a rendelkezésre álló hello frissítések hello mappában.** Ha egy frissítés már telepítve van, hello frissítés logika, amely észleli, és, hogy a frissítés nem alkalmazható. 
+7. Ismételje meg a 3-5 letöltött Cis/MDS-ügynök telepítéséhez a _FirstOrderUpdate_ mappa. 
+8. A másodrendű frissítések telepítéséhez hajtsa ismét végre a 3–5. lépést. **Második rendelés frissítések több frissítést is telepíthető csak futtatásával a `Start-HcsHotfix cmdlet` , és válassza a második rendelés frissítéseket tartalmazó mappát. A parancsmag a mappában található összes rendelkezésre álló frissítések hajtható végre.** Ha valamely frissítés már telepítve lett, a frissítési logika észleli ezt, és nem alkalmazza újra az adott frissítést. 
 
-Miután minden hello gyorsjavítás telepítve van, a hello `Get-HcsSystem` parancsmag. hello verziók le kell:
+Miután az összes gyorsjavítás telepítve lett, használja a `Get-HcsSystem` parancsmagot. A verziónak a következőknek kell lennie:
 
    * `CisAgentVersion:  1.0.9441.0`
    * `MdsAgentVersion: 35.2.2.0`
    * `Lsisas2Version: 2.0.78.00`
 
 
-#### <a name="tooinstall-and-verify-maintenance-mode-hotfixes"></a>tooinstall és karbantartási mód gyorsjavítások ellenőrzése
-Használja a KB4011837 tooinstall lemez belső vezérlőprogram-frissítésekre. Ezek zavaró frissítések, és körülbelül 30 percet toocomplete igénybe vehet. Szerint is választhat tooinstall ezeket a tervezett karbantartások az összekötő toohello eszköz soros konzoljához.
+#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>Karbantartási módú gyorsjavítások telepítése és ellenőrzése
+A lemezfirmware-frissítések telepítéséhez használja a KB4011837 jelű csomagot. Ezek működési zavart okozó frissítések, amelyeknek a végrehajtása körülbelül 30 percet vesz igénybe. Ha úgy dönt, ezeket egy karbantartási időszakban is telepítheti, ha csatlakozik az eszköz soros konzoljához.
 
-Vegye figyelembe, ha a lemez belső vezérlőprogram már naprakész, akkor nem kell tooinstall ezeket a frissítéseket. Futtassa a hello `Get-HcsUpdateAvailability` hello eszköz soros konzoljához toocheck, ha frissítések érhetők el, és hogy hello parancsmag frissíti biztosan zavaró (karbantartás mód) vagy nem zavaró (normál mód) frissítéseket.
+Vegye figyelembe, hogy amennyiben a lemezfirmware már naprakész, nem szükséges telepítenie ezeket a frissítéseket. Futtassa a `Get-HcsUpdateAvailability` parancsmagot az eszköz soros konzoljáról, és ellenőrizze, hogy vannak-e elérhető frissítések, és azok zavart okozó (karbantartási módú) vagy zavart nem okozó (normál módú) frissítések-e.
 
-tooinstall hello lemez belső vezérlőprogram-frissítésekre, kövesse az alábbi hello utasításokat.
+A lemezfirmware-frissítések telepítéséhez kövesse az alábbi utasításokat.
 
-1. Állítsa hello eszköz hello karbantartási módba. **Vegye figyelembe, hogy ne használjon Windows PowerShell távoli eljáráshívás tooa eszköz karbantartási módba kapcsolódáskor. Ehelyett futtassa ezt a parancsmagot hello eszköz tartományvezérlőn hello eszköz soros konzolon keresztül csatlakozáskor.** Típus:
+1. Helyezze az eszközt karbantartási módba. **Ügyeljen arra, hogy ne a Windows PowerShell távoli eljáráshívás segítségével csatlakozzon az eszközhöz a karbantartási módban. Ehelyett futtassa az alábbi parancsmagot az eszközvezérlőn, miközben az eszköz soros konzolján keresztül csatlakozik az eszközhöz.** Típus:
    
     `Enter-HcsMaintenanceMode`
    
@@ -121,14 +121,14 @@ tooinstall hello lemez belső vezérlőprogram-frissítésekre, kövesse az alá
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
    
-        In maintenance mode, your device will not service IOs and will be disconnected from hello Microsoft Azure StorSimple Manager service. Entering maintenance mode will end hello current session and reboot both controllers, which takes a few minutes toocomplete. Are you sure you want tooenter maintenance mode?
+        In maintenance mode, your device will not service IOs and will be disconnected from the Microsoft Azure StorSimple Manager service. Entering maintenance mode will end the current session and reboot both controllers, which takes a few minutes to complete. Are you sure you want to enter maintenance mode?
         [Y] Yes [N] No (Default is "Y"): Y
    
         -----------------------MAINTENANCE MODE------------------------
         Microsoft Azure StorSimple Appliance Model 8600
         Name: Update4-8600-mystorsimple
         Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-        You are connected tooController0 - Passive
+        You are connected to Controller0 - Passive
         ---------------------------------------------------------------
    
         Serial Console Menu
@@ -138,26 +138,26 @@ tooinstall hello lemez belső vezérlőprogram-frissítésekre, kövesse az alá
         [4] Change language
         Please enter your choice>
    
-    Mindkét hello tartományvezérlők majd indítsa újra a számítógépet karbantartási módba.
-2. tooinstall hello lemez belső vezérlőprogram frissítése, típus:
+    Ekkor mindkét vezérlő újraindul karbantartási módban.
+2. A lemezfirmware-frissítés telepítéséhez írja be a következőt:
    
-    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
     Az alábbiakban egy példa látható a kimenetre.
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\ThirdOrderUpdates\ -Credential contoso\john
         Enter Password:
-        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After hello hotfix is installed on this controller, install it on hello peer controller.
+        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After the hotfix is installed on this controller, install it on the peer controller.
         Confirm
-        This operation starts a hotfix installation and could reboot one or both of hello controllers. By installing new updates you agree to, and accept any additional terms associated with, hello new functionality listed in hello release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want toocontinue?
+        This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
         [Y] Yes [N] No (Default is "Y"): Y
-        WARNING: Installation is currently in progress. This operation can take several minutes toocomplete.
-3. A figyelő hello telepítési folyamat használatával `Get-HcsUpdateStatus` parancsot. hello frissítés befejeződött amikor hello `RunInProgress` túl változik`False`.
-4. Hello telepítés befejezése után újraindítja a hello vezérlő melyik hello karbantartási mód gyorsjavítás telepítve lett. Jelentkezzen be 1. lehetőség teljes hozzáféréssel, és hello lemez belső vezérlőprogram verziójának ellenőrzése. Típus:
+        WARNING: Installation is currently in progress. This operation can take several minutes to complete.
+3. A telepítési folyamatot a `Get-HcsUpdateStatus` parancs használatával figyelheti. A frissítés akkor fejeződött be, ha a `RunInProgress` `False` értékre vált.
+4. Miután befejeződött a telepítés, a vezérlő, amelyre a karbantartási módú gyorsjavítás telepítve lett, újraindul. Jelentkezzen be az 1. lehetőséggel teljes hozzáféréssel, és ellenőrizze a lemezfirmware verzióját. Típus:
    
    `Get-HcsFirmwareVersion`
    
-   hello várt, belsővezérlőprogram-verziók a következők:
+   A várt lemezfirmware-verzió a következő:
    
    `XMGJ, XGEG, KZ50, F6C2, VR08, N002, 0106`
    
@@ -168,7 +168,7 @@ tooinstall hello lemez belső vezérlőprogram-frissítésekre, kövesse az alá
        Name: Update4-8600-mystorsimple
        Software Version: 6.3.9600.17820
        Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-       You are connected tooController1
+       You are connected to Controller1
        ---------------------------------------------------------------
    
        Controller1>Get-HcsFirmwareVersion
@@ -244,9 +244,9 @@ tooinstall hello lemez belső vezérlőprogram-frissítésekre, kövesse az alá
               WD:WD4001FYYG-01SL3:VR08
               WD:WD4001FYYG-01SL3:VR08
    
-    Futtassa a hello `Get-HcsFirmwareVersion` hello második vezérlő tooverify hello szoftverének verziójával, a parancs frissítve lett. Lépjen ki a karbantartási mód hello majd. toodo úgy, írja be a következő parancsot minden eszköz vezérlő hello:
+    Futtassa a `Get-HcsFirmwareVersion` parancsot a második vezérlőn annak ellenőrzéséhez, hogy a szoftververzió frissítve lett-e. Ezután kiléphet a karbantartási módból. Ehhez írja be a következő parancsot mindkét eszközvezérlő esetében:
    
    `Exit-HcsMaintenanceMode`
 
-5. Hello, tartományvezérlői újraindítása a kilép karbantartási módból. Után hello lemez belső vezérlőprogram frissítése sikeresen telepítve van, és hello eszköz már kilépett a karbantartási mód visszatérési toohello a klasszikus Azure portálon. Vegye figyelembe, hogy hello portal előfordulhat, hogy ne jelenjen meg, hogy telepítette-e hello karbantartási mód frissítéseit 24 óra.
+5. A vezérlők újraindulnak, miután kilépett a karbantartási módból. A lemezfirmware-frissítések sikeres alkalmazását követően, miután az eszköz kilépett a karbantartási módból, térjen vissza a klasszikus Azure portálhoz. Vegye figyelembe, hogy a portálon esetleg még 24 órán keresztül nem jelenik meg, hogy a karbantartási módú frissítések telepítve lettek.
 

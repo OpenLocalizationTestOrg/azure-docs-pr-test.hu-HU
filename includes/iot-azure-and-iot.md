@@ -1,63 +1,70 @@
 
-# <a name="azure-and-internet-of-things"></a>Az Azure és az eszközök internetes hálózata
+# <a name="azure-and-the-internet-of-things"></a>Azure és az eszközök internetes hálózata
 
-Üdvözli az tooMicrosoft Azure, és az eszközök internetes hálózatát (IoT) hello. Ez a cikk egy IoT-megoldásarchitektúra Azure-szolgáltatások használatával telepíthet egy IoT-megoldás gyakori jellemzőit hello írja le, be. Az IoT-megoldások szükséges biztonságos, kétirányú kommunikáció eszközök, amelyek száma akár a több millió hello és a megoldás háttérrendszeréhez között. A megoldás háttérrendszeréhez például az eszköz-felhő eseménystreambe fogja használni automatizált, prediktív elemzések toouncover insights.
-
-Az Azure IoT Hub kulcsfontosságú építőelem a jelen IoT-megoldásarchitektúra Azure-szolgáltatásokkal történő megvalósítása során, az IoT Suite programcsomag pedig biztosítja a jelen architektúra teljes körű megvalósítását bizonyos IoT-forgatókönyvek esetén. Példa:
-
-* Hello *távoli megfigyelési* a megoldás lehetővé teszi az eszközök, például eladóautomaták toomonitor hello állapotát.
-* Hello *prediktív karbantartási* megoldással tooanticipate karbantartási igényeire eszközök például távoli szivattyútelepek és tooavoid nem tervezett leállás szivattyúk.
-* Hello *csatlakoztatott gyári* megoldás tooconnect nyújt segítséget, és az ipari eszközök figyelésére.
+Üdvözöljük a Microsoft Azure-ban és az eszközök internetes hálózatában (Internet of Things, IoT). Ez a cikk a felhőalapú IoT-megoldások gyakori jellemzőit ismerteti. Az IoT-megoldásokhoz biztonságos, kétirányú kommunikációra van szükség olyan eszközök között, amelyek száma akár a több milliót is elérheti, valamint egy olyan háttérrendszerre, amely például automatizált, prediktív elemzések elvégzésével nyújt betekintést az eszköz-felhő eseménystreambe.
 
 ## <a name="iot-solution-architecture"></a>Az IoT-megoldásarchitektúra
 
-hello a következő ábrán egy tipikus IoT-megoldásarchitektúra látható. hello diagram nem tartalmaz egyetlen konkrét Azure-szolgáltatás hello nevét, de hello egy általános IoT-megoldásarchitektúra kulcselemeit ismerteti. Ebben az architektúrában az IoT-eszközök adatgyűjtést, hogy az általuk küldött tooa felhőátjáróhoz. hello felhőátjáróhoz elérhetővé hello adatok más háttér-szolgáltatásaihoz, ahol kerülnek az adatok tooother-üzleti alkalmazások vagy toohuman operátorok egy irányítópultot, vagy más bemutató eszközön keresztül a általi feldolgozás alatt.
+Az alábbi ábrán egy tipikus IoT-megoldásarchitektúra fő elemei láthatók. Az ábra nem tartalmaz olyan megvalósítási részleteket, mint a használt Azure-szolgáltatások vagy az eszközök operációs rendszerei. Ebben az architektúrában az IoT-eszközök begyűjtik az adatokat, majd továbbítják azokat egy felhőátjáróhoz. A felhőátjáró elérhetővé teszi az adatokat más háttérszolgáltatások számára a feldolgozáshoz. Ezek a háttérszolgáltatások a következőknek továbbíthatnak adatokat:
+
+* Más üzletági alkalmazásoknak.
+* Felhasználóknak, egy irányítópulton vagy más megjelenítő eszközön keresztül.
 
 ![Az IoT-megoldásarchitektúra][img-solution-architecture]
 
 > [!NOTE]
-> Egy IoT-architektúra részletes ismertetéséhez lásd: hello [Microsoft Azure IoT-Referenciaarchitektúra][lnk-refarch].
+> Az IoT-architektúra részletes ismertetéséhez tekintse át a következő dokumentumot: [Microsoft Azure IoT Reference Architecture][lnk-refarch] (Microsoft Azure IoT-referenciaarchitektúra).
 
 ### <a name="device-connectivity"></a>Eszközkapcsolatok
 
-Az IoT-megoldásarchitektúra, az eszközök telemetriát, például az érzékelő szivattyútelepek érzékelőinek adatai egy szivattyútelep, tooa felhővégpontnak tárolás és feldolgozás. A prediktív karbantartási forgatókönyvben hello megoldás háttérrendszerének előfordulhat, hogy használja az érzékelő adatokat toodetermine hello adatfolyam, ha egy adott szivattyú igényel karbantartást. Eszközök is kap, és válaszolhat toocloud-eszközre küldött üzenetek üzenetek olvasásakor a felhővégpontnak. Például hello prediktív karbantartási forgatókönyvben hello megoldásban háttér előfordulhat, hogy üzenetek küldése tooother szivattyúk állomás toobegin adatfolyamok átirányításához csak előtt, az adatok kiolvasása hello toostart. Ez az eljárás akkor ellenőrizze, hogy hello karbantartó mérnök sikerült első lépései, amint megérkeznek ő.
+Az IoT-megoldásarchitektúrákban az eszközök általában telemetriát küldenek a felhőbe tárolás és feldolgozás céljából. Egy prediktív karbantartási forgatókönyvben például a megoldás háttérrendszere az érzékelők adatstreamének felhasználásával megállapíthatja, hogy egy adott szivattyú mikor igényel karbantartást. Az eszközök emellett a felhővégpontokból érkező üzenetek olvasásával fogadhatnak a felhőből az eszközre érkező üzeneteket, és válaszolhatnak is azokra. Ugyanebben a példában a megoldás háttérrendszere üzeneteket küldhet a szivattyútelep többi szivattyújának, hogy azok elkezdjék az áramlás átirányítását a karbantartás megkezdése előtt. Ez az eljárás biztosítja, hogy a karbantartó mérnök megérkezésekor azonnal munkához láthasson.
 
-Hello legnagyobb kihívást az IoT-projektek egyik hogyan tooreliably és biztonságosan csatlakozzon az eszközök toohello megoldás háttérrendszerének. Az IoT-eszközök más jellemzőkkel rendelkeznek, például böngészők vagy mobilalkalmazások összehasonlított tooother ügyfélként. IoT-eszközök:
+Az IoT-megoldások esetében gyakran az eszközök biztonságos és megbízható csatlakoztatása jelenti a legnagyobb kihívást. Ez azért van, mert az IoT-eszközök más jellemzőkkel rendelkeznek, mint a korábban megszokott ügyfelek, például a böngészők vagy a mobilalkalmazások. Pontosabban, az IoT-eszközök:
 
-* Általában beágyazott, emberi beavatkozást nem igénylő rendszerek.
+* Általában beágyazott, emberi beavatkozást nem igénylő rendszerek (a telefonokkal ellentétben).
 * Távoli helyeken is üzembe helyezhetők, ahol a fizikai hozzáférés drága lenne.
-* Csak akkor hello megoldás háttérrendszerének keresztül érhető el. Nincs semmilyen más módon toointeract hello eszközzel.
+* Előfordulhat, hogy csak a megoldás háttérrendszerén keresztül érhetők el. Az eszközzel más módon nem lehet kapcsolatba lépni.
 * Áramellátásuk és feldolgozási erőforrásaik korlátozottak lehetnek.
 * A hálózati kapcsolat időszakos, lassú vagy drága lehet.
-* Esetleg toouse saját fejlesztésű, egyedi vagy iparág-specifikus alkalmazás-protokollokra.
+* Saját fejlesztésű, egyedi vagy iparág-specifikus alkalmazás-protokollokra lehet szükség.
 * Számos népszerű hardver- és szoftverplatform használatával létrehozhatók.
 
-Ezenkívül toohello a fenti követelmények minden IoT-megoldás kell is biztosítanak méretezési, biztonságot és megbízhatóságot. hello eredő hálózati kapcsolati követelményeinek nehéz és időigényes tooimplement a hagyományos technológiái, például a webes tárolók vagy üzenetkezelő közvetítők. Azure IoT Hub és hello Azure IoT eszközoldali SDK-k révén könnyebben tooimplement megoldásokat, amely megfelel a fenti követelményeknek.
+Az előző korlátozások mellett minden egyes IoT-megoldásnak méretezhetőnek, biztonságosnak és megbízhatónak kell lennie.
 
-Eszközök közvetlenül kommunikálhatnak egy végpontjaival, vagy hello eszközt sem hello hello felhő átjáró által támogatott kommunikációs protokollok használható, ha azt kapcsolódhatnak egy köztes átjáróhoz. Például hello [Azure IoT protokoll-átjáró] [ lnk-protocol-gateway] protokollfordításhoz hajthat végre, ha az eszközök nem használható, amely támogatja az IoT-központ hello protokollokat.
+A kommunikációs protokolltól és a hálózati rendelkezésre állástól függően egy eszköz közvetlenül vagy egy köztes átjárón keresztül kommunikálhat a felhővel. Az IoT-architektúrák gyakran mindkét kommunikációs mintát használják.
 
 ### <a name="data-processing-and-analytics"></a>Adatfeldolgozás és -elemzés
 
-Hello felhőben az IoT-megoldás háttérrendszerének, ahol hello adatok feldolgozása a legtöbb következik be, például a szűrést és telemetriák és összegzésére, valamint tooother szolgáltatások. az IoT-megoldás háttérrendszerének hello:
+A modern IoT-megoldásokban az adatfeldolgozás a felhőben vagy az eszközoldalon is történhet. Az eszközoldali feldolgozást *peremhálózati számítástechnikának* nevezik. Az adatfeldolgozás helye például a következő tényezőktől függ:
 
-* Telemetria léptékű kap az eszközök, és meghatározza, hogy hogyan tooprocess és tárolja ezeket az adatokat. 
-* Lehetővé teheti a toosend parancsok hello felhő toospecific eszközről.
-* Eszközregisztrációs képességeket, amelyek lehetővé teszik biztosít tooprovision eszközök és mely eszközök engedélyezett tooconnect tooyour infrastruktúra toocontrol.
-* Lehetővé teszi, hogy tootrack hello az eszközök állapotának és tevékenységeik megfigyelését.
+* Hálózati korlátozások. Ha az eszközök és a felhő közötti sávszélesség korlátozott, érdemes megnövelni a peremhálózati feldolgozás mennyiségét.
+* Válaszidő. Ha egy eszközön közel valós időben kell műveleteket végezni, érdemes lehet magán az eszközön feldolgozni a választ. Például, ha vészhelyzet esetén le kell állítani egy robotkart.
+* Szabályozási környezet. Bizonyos adatokat nem lehet elküldeni a felhőbe.
 
-Hello prediktív karbantartási forgatókönyvben hello megoldás háttérrendszerének tárolja a korábbi telemetriai adatokat. hello megoldás háttérrendszerének használható az adatok toouse tooidentify jelző minták karbantartási az egy adott szivattyú.
+Az adatfeldolgozás általában a peremhálózaton és a felhőben is az alábbi képességek kombinációjából áll:
 
-Az IoT-megoldások tartalmazhatnak automatikus visszajelzési hurkokat is. Például egy hello megoldás háttérrendszerének analytics moduljának azonosíthatja a telemetriai adatokból, amely hello egy adott eszköz hőmérséklete a normális üzemi szint fölött van. hello megoldás is elküldheti parancs toohello eszköz, elemzőmodulja tootake kiigazító intézkedéseket.
+* Az eszközöktől érkező telemetriák fogadása nagy mennyiségben, valamint az adatfeldolgozás és -tárolás módjának meghatározása.
+* A telemetria elemzése annak megállapításához, hogy az adatok valós idejűek-e vagy utólagosak.
+* Parancsok küldése egy adott eszköznek a felhőből vagy egy átjáróeszközről.
+
+Egy IoT-felhő háttérrendszerének emellett a következőket kell biztosítania:
+
+* Eszközregisztrációs képességeket, amelyek a következőket teszik lehetővé:
+    * Eszközök üzembe helyezése.
+    * Annak szabályozása, hogy melyik eszköz csatlakozhat az infrastruktúrához.
+* Eszközfelügyeletet az eszközök állapotának szabályozásához és a tevékenységeik megfigyeléséhez.
+
+Egy prediktív karbantartási forgatókönyvben például a felhő háttérrendszere eltárolja a korábbi telemetriai adatokat. A megoldás ezeket az adatokat használja a lehetséges rendellenes viselkedés azonosításához az adott szivattyúknál, mielőtt az komoly problémát okozna. Az adatelemzés segítségével azonosítani tudja, hogy megelőző megoldásként vissza kell küldeni egy parancsot az eszköznek, hogy az hajtson végre egy korrekciós műveletet. A folyamat létrehoz egy automatizált visszajelzési hurkot az eszköz és a felhő között, amely jelentősen növeli a megoldás hatékonyságát.
 
 ### <a name="presentation-and-business-connectivity"></a>Megjelenítés és üzleti kapcsolatok
 
-hello megjelenítési és üzleti kapcsolati réteg lehetővé teszi, hogy a végfelhasználók az IoT-megoldás hello toointeract és hello eszközök. Lehetővé teszi, hogy a felhasználók tooview, és az eszközeikről összegyűjtött hello elemzéséhez. Ezek a nézetek hello űrlap irányítópultokon vagy BI-jelentéseket, amellyel megjeleníthetők mindkét előzményadatok vagy közel valós idejű adatokat is igénybe vehet. Például az operátor ellenőrizhesse hello adott szivattyútelep állapotát és lásd: hello rendszer által kiadott riasztásokat. Ez a réteg emellett lehetővé teszi hello IoT megoldás háttérrendszerének integrációját meglévő-üzleti alkalmazások tootie a vállalat üzleti vagy munkafolyamatokba. Például hello prediktív karbantartási megoldás integrálható egy ütemezési rendszerbe, hogy könyvek egy visszafejtés toovisit egy szivattyútelep amikor hello megoldás megállapítja, hogy valamelyik szivattyú karbantartásra szorul.
-
-![Az IoT-megoldás irányítópultja][img-dashboard]
+A megjelenítési és üzleti kapcsolati réteg lehetővé teszi a végfelhasználók számára, hogy kapcsolatba lépjenek az IoT-megoldással és az eszközökkel. Segítségével a felhasználók megtekinthetik és elemezhetik az eszközeikről összegyűjtött adatokat. Ezek irányítópultokon vagy BI-jelentések formájában is megtekinthetők, amelyek az előzmény- és a közel valós idejű adatokat egyaránt megjelenítik. A kezelő például ellenőrizheti egy adott szivattyútelep állapotát, és megtekintheti a rendszer által kiadott riasztásokat. Ez a réteg emellett lehetővé teszi az IoT-megoldás háttérrendszerének integrációját egy létező üzleti alkalmazással, hogy be lehessen vonni az üzleti vagy munkafolyamatokba. A prediktív karbantartási megoldás például integrálható egy ütemezési rendszerbe, amely kihív egy mérnököt a szivattyútelephez, ha megállapítja, hogy valamelyik szivattyú karbantartásra szorul.
 
 [img-solution-architecture]: ./media/iot-azure-and-iot/iot-reference-architecture.png
 [img-dashboard]: ./media/iot-azure-and-iot/iot-suite.png
 
+[lnk-iot-hub]: ../articles/iot-hub/iot-hub-what-is-iot-hub.md
+[lnk-iot-suite]: ../articles/iot-suite/iot-suite-overview.md
 [lnk-machinelearning]: http://azure.microsoft.com/documentation/services/machine-learning/
 [Azure IoT Suite]: http://azure.microsoft.com/solutions/iot
 [lnk-protocol-gateway]:  ../articles/iot-hub/iot-hub-protocol-gateway.md

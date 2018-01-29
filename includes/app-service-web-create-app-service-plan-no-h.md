@@ -1,14 +1,14 @@
-Hozzon létre egy App Service-csomag hello [az App Service-csomagot hozzon létre](/cli/azure/appservice/plan#create) parancsot.
+A Cloud Shellben hozzon létre egy App Service-csomagot az [az appservice plan create](/cli/azure/appservice/plan?view=azure-cli-latest#az_appservice_plan_create) paranccsal.
 
 [!INCLUDE [app-service-plan](app-service-plan.md)]
 
-hello alábbi példakód létrehozza az App Service-csomag nevű `myAppServicePlan` a hello **szabad** IP-címek:
+Az alábbi példa egy `myAppServicePlan` nevű App Service-csomag létrehozását mutatja be az **INGYENES** tarifacsomagban:
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE
 ```
 
-Hello App Service-csomag létrehozásakor a hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg:
+Az App Service-csomag létrehozása után az Azure CLI az alábbi példához hasonló információkat jelenít meg:
 
 ```json
 { 

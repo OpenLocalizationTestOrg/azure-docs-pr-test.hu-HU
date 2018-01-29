@@ -1,38 +1,57 @@
-## <a name="create-hello-webapi-project"></a>Hello WebAPI projekt létrehozása
-Egy új ASP.NET WebAPI háttérrendszerből hello szakaszokban szereplő jön létre, és hogy fog rendelkezni a három fő célja:
+## <a name="create-the-webapi-project"></a>A WebAPI projekt létrehozása
+A következő szakaszok tárgyalják egy új ASP.NET WebAPI háttér létrehozását. Ez a folyamat három fő célja van:
 
-1. **Ügyfelek hitelesítése**: egy üzenetkezelő hozzáadódik a későbbi tooauthenticate ügyfélkérelmek és társítása hello felhasználói hello kérelemmel.
-2. **Ügyfél-értesítési regisztrációk**: később adhat egy tartományvezérlő toohandle új regisztrációk egy ügyfél eszköz tooreceive értesítéseket. hello hitelesített felhasználó nevét a rendszer automatikusan hozzáadja toohello eszközregisztrációs szerint egy [címke](https://msdn.microsoft.com/library/azure/dn530749.aspx).
-3. **Értesítések tooClients küldése**: később is hozzáadhat egy vezérlő így az a felhasználó tootrigger egy biztonságos leküldéses toodevices tooprovide és hello címke társított ügyfelek. 
+* **Ügyfelek hitelesítése**: hozzáadhat egy üzenetkezelő később az ügyfélkérelmek és a felhasználót társítja ahhoz a kérelmet.
 
-hello lépések bemutatják, hogyan toocreate hello új ASP.NET WebAPI háttérrendszerből: 
+* **Értesítések a WebAPI használatával háttér regisztrálható**: kezelni egy ügyféleszközön, ha értesítést szeretne kapni az új regisztrációk vezérlő hozzáadása. A hitelesített felhasználónév automatikusan hozzáadódik a regisztrációt, mint egy [címke](https://msdn.microsoft.com/library/azure/dn530749.aspx).
+
+* **Értesítések küldése ügyfelek**: is lehetővé teszik a felhasználók, eszközök és-ügyfelek a címke társított egy biztonságos leküldéses indításához vezérlő hozzáadása. 
+
+Az új ASP.NET WebAPI háttér létrehozása a következő módon: 
 
 > [!IMPORTANT]
-> Visual Studio 2015 használata vagy a korábban, az oktatóanyag elindítása előtt győződjön meg arról, hogy telepítette a NuGet-Csomagkezelő hello hello legújabb verzióját. toocheck, kezdő Visual Studio. A hello **eszközök** menüben kattintson a **bővítmények és frissítések**. Keresse meg **NuGet-Csomagkezelő** Visual Studio, és győződjön meg arról, hogy verziójának hello legújabb verziójával rendelkezik. Ha nem, távolítsa el, majd telepítse újra a NuGet-Csomagkezelő hello.
-> 
-> ![][B4]
-> 
+> Visual Studio 2015-öt használ, vagy a korábban, az oktatóanyag elindítása előtt győződjön meg arról, hogy telepítette a legújabb verzióra a NuGet-Csomagkezelőt a Visual Studio. 
+>
+>Az ellenőrzéshez indítsa el a Visual Studiót. Az a **eszközök** menü **bővítmények és frissítések**. Keresse meg **NuGet-Csomagkezelő** az Ön verziójában a Visual Studio, és győződjön meg arról, hogy rendelkezik a legújabb verzióra. Ha a verzió nem a legújabb, távolítsa el azt, és a NuGet Package Manager, majd telepítse újra.
+ 
+![][B4]
+
 > [!NOTE]
-> Győződjön meg arról, hogy telepítette a Visual Studio hello [Azure SDK](https://azure.microsoft.com/downloads/) webhely központi telepítéshez.
+> Ellenőrizze, hogy telepítette-e a Visual Studio webhely-üzembehelyezési [Azure SDK-ját](https://azure.microsoft.com/downloads/).
 > 
 > 
 
-1. Indítsa el a Visual Studiót vagy a Visual Studio Expresst. Kattintson a **Server Explorer** , jelentkezzen be Azure-fiók tooyour. A Visual Studio kell toocreate hello webhely erőforrások fiókját a bejelentkezés.
-2. A Visual Studióban kattintson **fájl**, majd kattintson a **új**, majd **projekt**, bontsa ki a **sablonok**, **Visual C#**, majd kattintson a **webes** és **ASP.NET Web Application**, hello típusnév **AppBackend**, és kattintson a **OK**. 
-   
-    ![][B1]
-3. A hello **új ASP.NET projekt** párbeszédpanel, kattintson **Web API**, majd kattintson a **OK**.
-   
-    ![][B2]
-4. A hello **konfigurálása a Microsoft Azure Web Apps** párbeszédpanelen válasszon egy előfizetést, és egy **App Service-csomag** már létrehozott. Másik lehetőségként **hozzon létre egy új app service-csomag** , és hozzon létre egy hello párbeszédpanelről. Az oktatóanyag elvégzéséhez nincs szükség adatbázisra. Miután kiválasztotta az app service-csomag, kattintson a **OK** toocreate hello projekt.
-   
-    ![][B5]
+1. Indítsa el a Visual Studiót vagy a Visual Studio Expresst. 
 
-## <a name="authenticating-clients-toohello-webapi-backend"></a>Ügyfelek toohello WebAPI háttérrendszerből hitelesítése
-Ebben a szakaszban egy új üzenet kezelő osztályt hoz létre **AuthenticationTestHandler** hello új háttérrendszerének. Ez az osztály van származtatva [DelegatingHandler](https://msdn.microsoft.com/library/system.net.http.delegatinghandler.aspx) és fel van véve egy üzenetkezelő, hello háttér beérkező összes kérelmet tud feldolgozni. 
+2. Válassza ki **Server Explorer**, és jelentkezzen be az Azure-fiókjával. A webhely erőforrások létrehozásához a fiókjában, be kell jelentkeznie.
 
-1. A Megoldáskezelőben kattintson a jobb gombbal hello **AppBackend** projektre, kattintson **Hozzáadás**, majd kattintson a **osztály**. Hello új osztály neve **AuthenticationTestHandler.cs**, és kattintson a **Hozzáadás** toogenerate hello osztály. Ez az osztály lesz használt tooauthenticate felhasználók *az egyszerű hitelesítés* az egyszerűség érdekében. Vegye figyelembe, hogy az alkalmazása bármilyen hitelesítési séma alkalmazására képes.
-2. A AuthenticationTestHandler.cs, adja hozzá a hello következő `using` utasításokat:
+3. A Visual Studio válassza **fájl** > **új** > **projekt**, bontsa ki a **sablonok**, bontsa ki a **Visual C#**, majd válassza ki **webes** és **ASP.NET Web Application**.
+
+4. Az a **neve** mezőbe írja be **AppBackend**, majd válassza ki **OK**. 
+   
+    ![Az új projekt ablakról][B1]
+
+5. Az a **új ASP.NET projekt** ablakban válassza ki a **Web API** jelölje be a jelölőnégyzetet, majd válassza ki **OK**.
+   
+    ![Az új ASP.NET projekt ablakról][B2]
+
+6. Az a **konfigurálása a Microsoft Azure Web Apps** ablakban válasszon ki egy előfizetést, majd a a **App Service-csomag** listában, tegye a következők egyikét:
+
+    * Válassza ki az app service-csomag már létrehozta. 
+    * Válassza ki **hozzon létre egy új app service-csomag**, majd hozzon létre egyet. 
+    
+  Az oktatóanyag elvégzéséhez nincs szükség adatbázisra. Az app service-csomag kiválasztása után válassza ki a **OK** a projekt létrehozásához.
+   
+    ![A Microsoft Azure-webalkalmazás konfigurálása ablak][B5]
+
+## <a name="authenticate-clients-to-the-webapi-back-end"></a>A WebAPI háttér az ügyfelek hitelesítése
+Ebben a szakaszban hoz létre egy új üzenetkezelő osztályt **AuthenticationTestHandler** az új háttér. Ez az osztály van származtatva [DelegatingHandler](https://msdn.microsoft.com/library/system.net.http.delegatinghandler.aspx) és a hozzá egy üzenetkezelő, hogy az összes feldolgozható kéri, hogy a háttérben történő származnak. 
+
+1. A Megoldáskezelőben kattintson a jobb gombbal a **AppBackend** projektre, válassza **Hozzáadás**, majd válassza ki **osztály**. 
+ 
+2. Az új osztály neve **AuthenticationTestHandler.cs**, majd válassza ki **Hozzáadás** az osztály létrehozásához. Ez az osztály használatával hitelesíti a felhasználókat *az egyszerű hitelesítés* az egyszerűség érdekében. Az alkalmazás használhat egyetlen hitelesítési séma.
+
+3. Az AuthenticationTestHandler.cs osztályban adja hozzá a következő `using`-utasításokat:
    
         using System.Net.Http;
         using System.Threading;
@@ -41,19 +60,24 @@ Ebben a szakaszban egy új üzenet kezelő osztályt hoz létre **Authentication
         using System.Text;
         using System.Threading.Tasks;
 
-3. A AuthenticationTestHandler.cs hello cseréje `AuthenticationTestHandler` definition hello a következő kódot az osztály. 
+4. AuthenticationTestHandler.cs, cserélje le a `AuthenticationTestHandler` osztály definícióját a következő kóddal: 
    
-    A kezelő engedélyeztetéséhez használandó hello kérelem a következő három feltétel hello fennállása esetén:
+    A kezelő fogja engedélyezni a kérelmet, az alábbi három feltétel teljesülése esetén:
    
-   * hello kérelem része egy *engedélyezési* fejléc. 
-   * hello kérelem használ *alapvető* hitelesítés. 
-   * hello felhasználói név karakterláncát és hello jelszóval hello ugyanazt a karakterláncot.
+   * A kérelemben egy *engedélyezési* fejléc. 
+   * A kérés *alapszintű* hitelesítést használ. 
+   * A felhasználónév és a jelszó karakterlánc azonos.
      
-     Ellenkező esetben hello kérés elutasításra. Ez nem egy valós hitelesítési és engedélyezési módszer, csak egy nagyon egyszerű példa az oktatóanyag céljára.
+  Minden más esetben a rendszer a kérést elutasítja. Ez nem egy valós hitelesítési és engedélyezési módszer, Csak egy nagyon egyszerű példa ehhez az oktatóanyaghoz.
      
-     Ha hello kérelemüzenet hitelesítése és engedélyezése hello által `AuthenticationTestHandler`, akkor hello az egyszerű hitelesítés felhasználói lesz csatolt toohello aktuális kérelem hello [HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.current.aspx). Felhasználói adatok hello HttpContext-objektum egy másik vezérlő (RegisterController) által használható újabb tooadd egy [címke](https://msdn.microsoft.com/library/azure/dn530749.aspx) toohello értesítési regisztrációs kérelmet.
+  Ha a kérelemüzenet hitelesítése és engedélyezése által `AuthenticationTestHandler`, az egyszerű hitelesítés felhasználói csatolva van a jelenlegi kérelem a [HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.current.aspx). Felhasználói adatokat a HttpContext osztály által használható egy másik vezérlő (RegisterController) később hozzáadása egy [címke](https://msdn.microsoft.com/library/azure/dn530749.aspx) az értesítési regisztrációs kérésre.
      
-       public class AuthenticationTestHandler : DelegatingHandler   {       protected override Task<HttpResponseMessage> SendAsync(       HttpRequestMessage request, CancellationToken cancellationToken)       {           var authorizationHeader = request.Headers.GetValues("Authorization").First();
+       public class AuthenticationTestHandler : DelegatingHandler
+       {
+           protected override Task<HttpResponseMessage> SendAsync(
+           HttpRequestMessage request, CancellationToken cancellationToken)
+           {
+               var authorizationHeader = request.Headers.GetValues("Authorization").First();
      
                if (authorizationHeader != null && authorizationHeader
                    .StartsWith("Basic ", StringComparison.InvariantCultureIgnoreCase))
@@ -67,7 +91,7 @@ Ebben a szakaszban egy új üzenet kezelő osztályt hoz létre **Authentication
      
                    if (verifyUserAndPwd(user, password))
                    {
-                       // Attach hello new principal object toohello current HttpContext object
+                       // Attach the new principal object to the current HttpContext object
                        HttpContext.Current.User =
                            new GenericPrincipal(new GenericIdentity(user), new string[0]);
                        System.Threading.Thread.CurrentPrincipal =
@@ -96,29 +120,35 @@ Ebben a szakaszban egy új üzenet kezelő osztályt hoz létre **Authentication
        }
      
      > [!NOTE]
-     > **Biztonsági megjegyzés**: hello `AuthenticationTestHandler` osztály nem biztosítja az IGAZ hitelesítés. Az egyszerű hitelesítés használt csak toomimic, és nem biztonságos. Az éles alkalmazásokban és szolgáltatásokban implementálnia kell egy biztonságos hitelesítési mechanizmust.                
+     > Biztonsági Megjegyzés: A `AuthenticationTestHandler` osztály nem biztosítja az IGAZ hitelesítés. A rendszer azt csak az alapszintű hitelesítés utánzására használja, és nem tekinthető biztonságosnak. Az éles alkalmazásokban és szolgáltatásokban implementálnia kell egy biztonságos hitelesítési mechanizmust.                
      > 
      > 
-4. Adja hozzá a következő kód hello hello végén hello `Register` metódus a hello **App_Start/WebApiConfig.cs** osztály tooregister hello üzenetkezelő:
+5. Az üzenetkezelő regisztrálásához adja hozzá a következő kódot végén a `Register` metódust a **App_Start/WebApiConfig.cs** osztály:
    
         config.MessageHandlers.Add(new AuthenticationTestHandler());
-5. Mentse a módosításokat.
 
-## <a name="registering-for-notifications-using-hello-webapi-backend"></a>A hello WebAPI háttérrendszerből használatával értesítések regisztrálása
-Ebben a szakaszban adunk hozzá egy új tartományvezérlő toohello WebAPI háttér toohandle kérelmek tooregister a felhasználó-eszköz az értesítések a notification hubs hello ügyféloldali kódtár segítségével. hello vezérlő ad hozzá egy felhasználói címkét hello olyan felhasználóhoz, hitelesítési és toohello HttpContext hello által csatlakoztatott `AuthenticationTestHandler`. hello címke lesz hello karakterlánc-formátum `"username:<actual username>"`.
+6. Mentse a módosításokat.
 
-1. A Megoldáskezelőben kattintson a jobb gombbal hello **AppBackend** projektre, majd kattintson **NuGet-csomagok kezelése**.
-2. Kattintson a bal oldalon hello, **Online**, keresse meg a **Microsoft.Azure.NotificationHubs** a hello **keresési** mezőbe.
-3. Hello eredmények listájában kattintson **Microsoft Azure Notification Hubs**, és kattintson a **telepítése**. Hello telepítés befejeződését, majd zárja be a hello NuGet package manager ablakát.
+## <a name="register-for-notifications-by-using-the-webapi-back-end"></a>Regisztrálhat a WebAPI háttér használatával
+Ebben a szakaszban hozzá egy új tartományvezérlő a WebAPI hátteret a tanúsítványigénylések egy felhasználó és az értesítések egy eszköz regisztrálása az ügyféloldali kódtár a notification hubs használatával. A vezérlő ad hozzá egy felhasználói kód a felhasználó hitelesítése és csatlakozik a HttpContext osztály által `AuthenticationTestHandler`. A címke `"username:<actual username>"` karakterlánc-formátumú lesz.
+
+1. A Megoldáskezelőben kattintson a jobb gombbal a **AppBackend** projektre, majd válassza ki **NuGet-csomagok kezelése**.
+
+2. A bal oldali panelen válassza ki a **Online** , majd a a **keresési** mezőbe írja be **Microsoft.Azure.NotificationHubs**.
+
+3. Az eredmények listájában válassza **Microsoft Azure Notification Hubs**, majd válassza ki **telepítése**. A telepítés befejezéséhez, és zárja be a NuGet-Csomagkezelő ablak.
    
-    Ezzel hozzáad egy hivatkozást toohello Azure Notification Hubs SDK használatával hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet-csomag</a>.
-4. Most létrehozunk egy új osztály fájlt, amely a notification hub használt toosend értesítések hello kapcsolatot jelöli. A Solution Explorer hello, kattintson a jobb gombbal hello **modellek** mappát, kattintson a **hozzáadása**, majd kattintson a **osztály**. Hello új osztály neve **Notifications.cs**, majd kattintson a **Hozzáadás** toogenerate hello osztály. 
+    Ez a művelet hozzáad egy, az Azure Notification Hubs SDK-ra mutató hivatkozást a <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet-csomag</a> használatával.
+
+4. Hozzon létre egy új osztály fájlt az értesítési központban az értesítések küldéséhez használt kapcsolatot jelöli. A Megoldáskezelőben kattintson a jobb gombbal a **modellek** mappára, válassza **Hozzáadás**, majd válassza ki **osztály**. Az új osztály neve **Notifications.cs**, majd válassza ki **Hozzáadás** az osztály létrehozásához. 
    
-    ![][B6]
-5. A Notifications.cs, adja hozzá a hello következő `using` hello fájl hello tetején utasítást:
+    ![Az új elem hozzáadása ablak][B6]
+
+5. Adja hozzá a következő `using`-utasítást a Notifications.cs fájl elejéhez:
    
         using Microsoft.Azure.NotificationHubs;
-6. Cserélje le a hello `Notifications` hello következőre definition osztály, győződjön meg arról, hogy tooreplace hello két helyőrzőt hello kapcsolati karakterlánc (teljes hozzáférés) az értesítési központ és hello a központ nevét (rendelkezésre álló [klasszikus Azure portálon ](http://manage.windowsazure.com)):
+
+6. Cserélje le a `Notifications` osztály definícióját a következő kódra, és a két helyőrzőket cserélje le a kapcsolati karakterlánc (teljes hozzáférés) az értesítési központban és a központ nevét (rendelkezésre álló [Azure-portálon](http://portal.azure.com)):
    
         public class Notifications
         {
@@ -131,19 +161,25 @@ Ebben a szakaszban adunk hozzá egy új tartományvezérlő toohello WebAPI hát
                                                                              "<hub name>");
             }
         }
-7. A következőkben egy új vezérlőt fogunk létrehozni **RegisterController** néven. A Megoldáskezelőben kattintson a jobb gombbal hello **tartományvezérlők** mappát, majd kattintson a **hozzáadása**, kattintson a **vezérlő**. Kattintson a hello **Web API 2-es vezérlőhöz – üres** elemet, és kattintson a **Hozzáadás**. Hello új osztály neve **RegisterController**, és kattintson a **Hozzáadás** újra toogenerate hello vezérlő.
+7. Ezután hozzon létre egy új tartományvezérlő nevű **RegisterController**. A Megoldáskezelőben kattintson a jobb gombbal a **tartományvezérlők** mappára, válassza **Hozzáadás**, majd válassza ki **vezérlő**. 
+
+8. Válassza ki **Web API 2 vezérlő - üres**, majd válassza ki **Hozzáadás**.
    
-    ![][B7]
+    ![A hozzáadása Scaffold ablak][B7]
    
-    ![][B8]
-8. A RegisterController.cs, adja hozzá a hello következő `using` utasításokat:
+9. Az a **vezérlőnév** mezőbe írja be **RegisterController** az új osztály neve, majd válassza ki a **Hozzáadás**.
+
+    ![A vezérlő hozzáadása ablak][B8]
+
+10. Adja hozzá a következő `using`-utasításokat a RegisterController.cs fájlhoz:
    
         using Microsoft.Azure.NotificationHubs;
         using Microsoft.Azure.NotificationHubs.Messaging;
         using AppBackend.Models;
         using System.Threading.Tasks;
         using System.Web;
-9. Adja hozzá a következő kódot hello hello `RegisterController` definition osztályban. Vegye figyelembe, hogy ez a kód azt hozzá ez hello felhasználó felhasználói címke csatolt toohello HttpContext. hello felhasználó hitelesített, és csatlakoztatta toohello HttpContext osztály által hozzáadott, hello üzenetszűrő `AuthenticationTestHandler`. Azt is megteheti, hogy a felhasználó hello opcionális ellenőrzés tooverify legyen jogosultsága a hello tooregister kért címkék.
+
+11. Adja hozzá a következő kódot a(z) `RegisterController` osztálydefiníciójához: Vegye figyelembe, hogy ezzel a kóddal, azt hozzá egy felhasználói kód a HttpContext kapcsolt felhasználó. A felhasználó hitelesítése és a HttpContext osztály által hozzáadott, üzenetszűrő csatolt `AuthenticationTestHandler`. További választható ellenőrzéseket is hozzáadhat, amelyekkel ellenőrizheti, hogy a felhasználó jogosult-e a kért címkékre történő regisztráláshoz.
    
         private NotificationHubClient hub;
    
@@ -190,7 +226,7 @@ Ebben a szakaszban adunk hozzá egy új tartományvezérlő toohello WebAPI hát
         }
    
         // PUT api/register/5
-        // This creates or updates a registration (with provided channelURI) at hello specified id
+        // This creates or updates a registration (with provided channelURI) at the specified id
         public async Task<HttpResponseMessage> Put(string id, DeviceRegistration deviceUpdate)
         {
             RegistrationDescription registration = null;
@@ -215,7 +251,7 @@ Ebben a szakaszban adunk hozzá egy új tartományvezérlő toohello WebAPI hát
             registration.RegistrationId = id;
             var username = HttpContext.Current.User.Identity.Name;
    
-            // add check if user is allowed tooadd these tags
+            // add check if user is allowed to add these tags
             registration.Tags = new HashSet<string>(deviceUpdate.Tags);
             registration.Tags.Add("username:" + username);
    
@@ -248,22 +284,24 @@ Ebben a szakaszban adunk hozzá egy új tartományvezérlő toohello WebAPI hát
                     throw new HttpRequestException(HttpStatusCode.Gone.ToString());
             }
         }
-10. Mentse a módosításokat.
+12. Mentse a módosításokat.
 
-## <a name="sending-notifications-from-hello-webapi-backend"></a>Értesítések küldése a hello WebAPI háttérrendszerből
-Ebben a szakaszban vegyen fel egy új vezérlőt, amely elérhetővé teszi lehetővé az ügyfél eszközök toosend hello felhasználónév címke Azure Notification Hubs szolgáltatás könyvtár használatát hello ASP.NET WebAPI háttérrendszerből alapján értesítést.
+## <a name="send-notifications-from-the-webapi-back-end"></a>Értesítések küldése a WebAPI háttér
+Ebben a szakaszban vegyen fel egy új vezérlőt, amely elérhetővé teszi lehetővé az ügyféleszközök elküldeni egy értesítést. Az értesítés használó Azure Notification Hubs szolgáltatás könyvtár ASP.NET WebAPI háttérben lévő felhasználónév címke alapul.
 
-1. Hozzon létre egy másik új vezérlőt **NotificationsController** néven. Hozzon létre hello hello létrehozott ugyanúgy **RegisterController** hello előző szakaszban.
-2. A NotificationsController.cs, adja hozzá a hello következő `using` utasításokat:
+1. Hozzon létre egy másik új tartományvezérlő nevű **NotificationsController** létrehozott ugyanúgy **RegisterController** az előző szakaszban.
+
+2. Adja hozzá a következő `using`-utasításokat a NotificationsController.cs fájlhoz:
    
         using AppBackend.Models;
         using System.Threading.Tasks;
         using System.Web;
-3. Adja hozzá a következő metódus toohello hello **NotificationsController** osztály.
+
+3. Adja hozzá a következő metódust a **NotificationsController** osztály:
    
-    Ez a kód küldése egy értesítés típusa hello Platform Notification szolgáltatás (PNS) alapuló `pns` paraméter. hello értékének `to_tag` használt tooset hello van *felhasználónév* üdvözlőüzenetére a címkét. A címkének egyeznie kell egy aktív értesítésiközpont-regisztráció felhasználónév-címkéjével. hello értesítési üzenet hello POST kérelem törzse hello lekért és hello cél PNS van formázva. 
+    Ez a kód elküldi egy értesítési típus, amely a Platform Notification szolgáltatás (PNS) alapú `pns` paraméter. A(z) `to_tag` értékét a rendszer az üzenet *felhasználónév*-címkéjének beállítására használja. A címkének egyeznie kell egy aktív értesítésiközpont-regisztráció felhasználónév-címkéjével. Az értesítési üzenetet a rendszer a POST-kérés törzséből nyeri ki, és a cél PNS-nek megfelelően formázza. 
    
-    Hello Platform Notification szolgáltatás (PNS), a támogatott eszközök tooreceive értesítések használja-e, attól függően különböző értesítések támogatott különböző formátumokban használatával. Windows rendszerű eszközökön például használhat [bejelentési értesítéseket a WNS formátummal](https://msdn.microsoft.com/library/windows/apps/br230849.aspx), amelyet egy másik PNS nem támogat közvetlenül. Így háttéralkalmazásának tooformat hello értesítési be támogatott értesítést kell az eszköz PNS hello toosupport tervezi. Kövesse a hello hello megfelelő küldési API [NotificationHubClient osztály](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.notificationhubclient_methods.aspx)
+    A pns-sel, amelyek a támogatott eszközök használják, ha értesítést szeretne kapni, attól függően, hogy az értesítések többféle formátumúak által támogatott. Például Windows-eszközökön, használhatja a [WNS-sel való értesítési poharad](https://msdn.microsoft.com/library/windows/apps/br230849.aspx) , amely közvetlenül egy másik PNS nem támogatja. Ilyen esetben a háttér kell formáznia a támogatott értesítést a vonatkozó értesítést a pns-sel eszközök támogatásához. Akkor használja a megfelelő küldjön az API a [NotificationHubClient osztály](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.notificationhubclient_methods.aspx).
    
         public async Task<HttpResponseMessage> Post(string pns, [FromBody]string message, string to_tag)
         {
@@ -306,20 +344,30 @@ Ebben a szakaszban vegyen fel egy új vezérlőt, amely elérhetővé teszi lehe
    
             return Request.CreateResponse(ret);
         }
-4. Nyomja le az **F5** toorun hello alkalmazás- és tooensure hello munkája pontosságának eddig. hello app kell elindítani a webböngészőt, és hello ASP.NET kezdőlap megjelenítése. 
 
-## <a name="publish-hello-new-webapi-backend"></a>Közzététel új WebAPI háttérrendszerből hello
-1. Most már az alkalmazás tooan Azure-webhely rendelés toomake fogjuk üzembe helyezni az összes eszköz érhető el. Kattintson a jobb gombbal a hello **AppBackend** projektre, és válassza ki **közzététel**.
-2. Közzétételi célként válassza a **Microsoft Azure App Service** lehetőséget, majd kattintson a **New** (Új) gombra. Ekkor megnyílik a hello App Service létrehozása párbeszédpanel, amely segítséget nyújt az összes hello szükséges Azure-erőforrások toorun hello ASP.NET-webalkalmazás létrehozása az Azure-ban.
+4. Futtassa az alkalmazást, és ellenőrizze eddigi munkája pontosságának, jelölje be a **F5** kulcs. Az alkalmazást egy webböngészőben megnyílik, és az ASP.NET-kezdőlap jelenik meg. 
 
-    ![][B15]
-3. A hello **létrehozása az App Service** párbeszédpanelen válassza ki az Azure-fiókjával. Kattintson a **Change Type** (Típus módosítása) elemre, és válassza a **Web App** (Webalkalmazás) lehetőséget. Tartsa hello **webalkalmazásnév** adott és select hello **előfizetés**, **erőforráscsoport**, és **App Service-csomag**.  Kattintson a **Create** (Létrehozás) gombra.
+## <a name="publish-the-new-webapi-back-end"></a>Az új WebAPI háttér közzététele
+Ezután az alkalmazást telepít egy Azure-webhelyen elérhető összes eszközökről. 
 
-4. Jegyezze fel a hello **webhely URL-címe** hello tulajdonság **összegzés** szakasz. Toothis URL-CÍMÉRE hivatkozik a *háttér végpont* ebben az oktatóanyagban később. Kattintson a **Publish** (Közzététel) gombra.
+1. Kattintson a jobb gombbal a **AppBackend** projektre, majd válassza ki **közzététel**.
 
-5. Hello varázsló befejezése után hello ASP.NET web app tooAzure teszi közzé, és ezután elindítja hello app hello alapértelmezett böngészőben.  Az alkalmazását az Azure App Servicesben tekintheti meg.
+2. Válassza ki **Microsoft Azure App Service** a közzétételi célként, és válassza ki, **közzététel**.  
+    Az App Service létrehozása ablak nyílik meg. Itt az összes szükséges Azure-erőforrást az ASP.NET web app Azure rendszerben való futtatásra is létrehozhat.
 
-hello URL-cím hello webes alkalmazás neve a megadott korábban hello formátum http://<app_name>.azurewebsites.net használja.
+    ![A Microsoft Azure App Service csempe][B15]
+
+3. Az a **létrehozása az App Service** ablakban válassza ki az Azure-fiókjával. Válassza ki **típusának módosítása** > **webalkalmazás**. Tartsa meg az alapértelmezett **webalkalmazásnév**, majd válassza ki a **előfizetés**, **erőforráscsoport**, és **App Service-csomag**. 
+
+4. Kattintson a **Létrehozás** gombra.
+
+5. Jegyezze fel a **Summary** (Összegzés) szakaszban lévő **Site URL** (Webhely URL-címe) tulajdonságot. Az URL-címe a *háttér-végpont* az oktatóanyag későbbi. 
+
+6. Válassza ki **közzététele**.
+
+A varázsló befejezése után az ASP.NET web app közzéteszi az Azure-ba, és majd az alapértelmezett böngésző megnyitja az alkalmazást.  Az alkalmazás az Azure App Service szolgáltatások megtekinthető.
+
+Az URL-cím a webalkalmazás korábban megadott nevét használja, a következő formátumban: http://<alkalmazás_neve>.azurewebsites.net.
 
 [B1]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push1.png
 [B2]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push2.png

@@ -1,11 +1,15 @@
-Az Azure virtuális gépek több adatlemez csatolását támogatták. Az optimális teljesítmény érdekében érdemes erősen túlterhelt lemezek számát illetően toolimit hello csatolt toohello virtuális gép tooavoid lehetséges szabályozás. Ha az összes lemez nem kívánt magas használhatók hello, egy időben hello tárfiók egy nagyobb számú lemezek is támogatja.
+Az Azure virtuális gépek több adatlemez csatolását támogatták. Ez a cikk ismerteti a virtuális gép adatlemezek méretezhetőségi és Teljesítménycélok. Ezeken a célokon a segítségével meghatározhatja a számát és típusát, amelyekre szüksége van a teljesítmény és kapacitás követelményeinek megfelelően lemez. 
 
-* **Az Azure Managed lemezek:** felügyelt lemezek maximális száma regionális és hello tárolótípus is függ. alapértelmezett hello és is hello maximális száma 10 000 előfizetésenként, régiónként és egy tárolási típust. Például be too10 hozhat létre, 000 szabványos felügyelt lemezeket, és 10 000 premium lemezek egy előfizetésben és régióban felügyelt. 
+> [!IMPORTANT]
+> Az optimális teljesítmény érdekében korlátozza a erősen túlterhelt lehetséges szabályozás elkerülése érdekében a virtuális géphez csatolt lemezek számát. A csatlakoztatott lemezek magas nem használhatók egyszerre, ha a virtuális gép lemezek nagyobb számú is támogatja.
 
-    Felügyelt pillanatképek és a képeket elleni felügyelt lemezek korlátozása hello bájtjai számítanak.
+* **Az Azure Managed lemezek:** a lemez felügyelt lemezek határa régiónként, valamint minden lemez típusa. A maximális száma, valamint az alapértelmezett határérték 10 000 felügyelt lemezek régiónként és lemez típusonkénti az előfizetéshez. Például létrehozhat legfeljebb 10 000 standard szintű felügyelt lemez és a is 10 000 prémium által kezelt lemezeken régióban, előfizetésenként.
 
-* **Standard szintű tárfiókok esetén:** A Standard szintű tárfiókok összesen legfeljebb 20 000 IOPS kérelemaránnyal rendelkeznek. hello összes egy standard szintű tárfiók a virtuális gép lemezeinek teljes iops-érték nem haladhatja meg ezt a határt.
+    Felügyelt pillanatfelvételek és lemezképeket, csökkenti a felügyelt lemezek korlátot.
+
+* **Standard szintű tárfiókok esetén:** A Standard szintű tárfiókok összesen legfeljebb 20 000 IOPS kérelemaránnyal rendelkeznek. A Standard szintű tárfiókokon az összes virtuálisgép-lemezen lévő teljes IOPS nem léphet túl ezen a korláton.
   
-    Nagyjából kiszámításához hello erősen túlterhelt lemezek hello kérelem sávszélesség-korlátjának alapján egységes tárfiók által támogatott. Például egy virtuális gép, az alapszintű csomag hello maximális száma a magas be a lemezek készül 66 (20 000/300 iops-érték lemezenként), pedig a Standard szint virtuális gépek készül 40 (20 000 500 iops-érték lemezenként), hello az alábbi táblázatban ismertetett módon. 
-* **Prémium szintű tárfiókok esetén:** A prémium szintű tárfiókok összesen legfeljebb 50 Gbps átviteli sebességgel rendelkeznek. hello összes, a virtuális lemezek teljes átviteli sebesség nem haladhatja meg ezt a határt.
+    Nagyjából kiszámíthatja az egyetlen Standard szintű tárfiók által támogatott nagy kihasználtságú lemezek számát a kérelemarány korlátja alapján. Például egy alapszintű rétegben VM, erősen túlterhelt lemezek maximális száma érték a 66 (20 000/300 iops-érték lemezenként), és a Standard szint virtuális gépek, akkor hamarosan 40 (20 000 500 iops-érték lemezenként). 
+
+* **Prémium szintű tárfiókok esetén:** A prémium szintű tárfiókok összesen legfeljebb 50 Gbps átviteli sebességgel rendelkeznek. Az összes virtuálisgép-lemezen lévő teljes átvitel nem lépheti túl ezt a korlátot.
 

@@ -1,4 +1,4 @@
-hello Azure Resource Manager és az Azure erőforráscsoport-sablonok használatával csak a következő korlátozások hello vonatkozik.
+Az alábbi korlátokat alkalmazza, ha a felügyeleti műveleteket csak az Azure Resource Manager használatával.
 
 | Erőforrás | Alapértelmezett korlát |
 | --- | --- |

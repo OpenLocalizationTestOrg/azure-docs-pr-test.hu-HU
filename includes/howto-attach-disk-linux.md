@@ -4,20 +4,20 @@ További információ a lemezekkel kapcsolatban: [A lemezek és virtuális merev
 <a id="attachempty"></a>
 
 ## <a name="attach-an-empty-disk"></a>Üres lemez csatlakoztatása
-1. Nyissa meg az Azure CLI 1.0 és [csatlakozás Azure-előfizetés tooyour](../articles/xplat-cli-connect.md). Bizonyosodjon meg róla, Azure szolgáltatásfelügyelet módban van-e (`azure config mode asm`).
-2. Adja meg `azure vm disk attach-new` toocreate és egy új lemezt csatolni a hello a következő példában látható módon. Cserélje le *myVM* hello nevű a Linux virtuális gép, és adja meg a hello lemez hello méretét GB, ami *100GB* ebben a példában:
+1. Nyissa meg az Azure CLI 1.0-át, és [csatlakozzon Azure-előfizetéséhez](/cli/azure/authenticate-azure-cli). Bizonyosodjon meg róla, Azure szolgáltatásfelügyelet módban van-e (`azure config mode asm`).
+2. Írja be az `azure vm disk attach-new` parancsot egy új lemez létrehozásához és csatlakoztatásához az alábbi példában látható módon. A *myVM* karakterlánc helyébe írja a Linux virtuális gép nevét, és adja meg a lemez méretét GB-ban, ami ebben a példában *100 GB*:
 
     ```azurecli
     azure vm disk attach-new myVM 100
     ```
 
-3. Hello adatlemez létrehozni és csatolni, után hello kimenete felsorolt `azure vm disk list <virtual-machine-name>` a hello a következő példában látható módon:
+3. Az adatmeghajtó a létrehozása és csatlakoztatása után megjelenik az `azure vm disk list <virtual-machine-name>` kimenetében, amint az az alábbi példában látható:
    
     ```azurecli
     azure vm disk list TestVM
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```bash
     info:    Executing command vm disk list
@@ -37,14 +37,14 @@ További információ a lemezekkel kapcsolatban: [A lemezek és virtuális merev
 ## <a name="attach-an-existing-disk"></a>Meglévő lemez csatlakoztatása
 Meglévő lemez csatlakoztatása esetén rendelkeznie kell egy tárfiókban elérhető .vhd-vel.
 
-1. Nyissa meg az Azure CLI 1.0 és [csatlakozás Azure-előfizetés tooyour](../articles/xplat-cli-connect.md). Bizonyosodjon meg róla, Azure szolgáltatásfelügyelet módban van-e (`azure config mode asm`).
-2. Ellenőrizze, hogy ha hello VHD kívánt tooattach már feltöltött tooyour Azure-előfizetés:
+1. Nyissa meg az Azure CLI 1.0-át, és [csatlakozzon Azure-előfizetéséhez](/cli/azure/authenticate-azure-cli). Bizonyosodjon meg róla, Azure szolgáltatásfelügyelet módban van-e (`azure config mode asm`).
+2. Ellenőrizze, hogy a csatlakoztatni kívánt VHD fel van-e már töltve az Azure-előfizetésére:
    
     ```azurecli
     azure vm disk list
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```azurecli
      info:    Executing command vm disk list
@@ -58,13 +58,13 @@ Meglévő lemez csatlakoztatása esetén rendelkeznie kell egy tárfiókban elé
      info:    vm disk list command OK
     ```
 
-3. Ha nem találja a hello lemez adott meg toouse, előfordulhat, hogy töltse fel a helyi virtuális merevlemez tooyour előfizetés használatával `azure vm disk create` vagy `azure vm disk upload`. Példa `disk create` lenne, mint például a következő hello:
+3. Ha nem találja a használni kívánt lemezt, az `azure vm disk create` vagy `azure vm disk upload` parancs használatával feltölthet egy helyi VHD-t is. A következő példa a `disk create` egy lehetséges változatát mutatja be:
    
     ```azurecli
     azure vm disk create myVhd .\TempDisk\test.VHD -l "East US" -o Linux
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```azurecli
     info:    Executing command vm disk create
@@ -78,23 +78,23 @@ Meglévő lemez csatlakoztatása esetén rendelkeznie kell egy tárfiókban elé
     info:    vm disk create command OK
     ```
    
-   Is használhatja `azure vm disk upload` tooupload egy virtuális merevlemez tooa bizonyos tárolási fiókot. Olvasási hello kapcsolatos parancsok toomanage az Azure virtuális gép adatlemezek [keresztül Itt](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
+   Az `azure vm disk upload` használatával pedig feltölthet egy VHD-t egy adott tárfiókra. Az Azure virtuális gépek adatlemezeinek kezelését végző parancsokról bővebben [itt](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) olvashat.
 
-4. Most csatlakoztatása hello szükséges VHD tooyour virtuális gépet:
+4. Most csatlakoztassa a kívánt VHD-t a virtuális géphez:
    
     ```azurecli
     azure vm disk attach myVM myVhd
     ```
    
-   Győződjön meg arról, hogy tooreplace *myVM* hello nevet, a virtuális gépet, és *myVHD* rendelkező a kívánt virtuális Merevlemezt.
+   A *myVM* karakterlánc helyébe mindenképp a virtuális gép nevét, a *myVHD* helyébe pedig a kívánt VHD-t írja.
 
-5. Ellenőrizheti hello lemez virtuális géphez csatolt toohello `azure vm disk list <virtual-machine-name>`:
+5. Az `azure vm disk list <virtual-machine-name>` paranccsal ellenőrizheti, hogy a lemez csatlakozik-e a virtuális géphez:
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```azurecli
      info:    Executing command vm disk list
@@ -111,7 +111,7 @@ Meglévő lemez csatlakoztatása esetén rendelkeznie kell egy tárfiókban elé
     ```
 
 > [!NOTE]
-> Adatlemez hozzáadása után kell toolog toohello virtuális gépen kell és hello lemez inicializálása, hello virtuális gépek által használható hello lemez tárolás (lásd a következő hello lépéseit további információt hogyan toodo inicializálása hello lemez).
+> Az adatlemezek csatlakoztatását követően be kell jelentkeznie a virtuális gépre, és inicializálnia kell a lemezt, hogy a virtuális gép használhassa azt tárolásra (a lemez inicializálásának módjával kapcsolatban lásd a következő lépéseket).
 > 
 > 
 

@@ -1,4 +1,4 @@
-A virtuális hálózati átjáró létrehozásához meg kell toospecify hello átjáró, amelyet az toouse Termékváltozat. Válassza ki, amelyek megfelelnek a munkaterhelések, teljesítmények, szolgáltatások és SLA-k hello típusú alapján hello SKU.
+Egy virtuális hálózati átjáró létrehozásakor meg kell adni a használni kívánt termékváltozatot. Válassza ki a számítási feladatok, a teljesítmény, a funkciók és a szolgáltatói szerződés igényeinek megfelelő termékváltozatokat.
 
 [!INCLUDE [classic SKU](./vpn-gateway-classic-sku-support-include.md)]
 
@@ -6,7 +6,7 @@ A virtuális hálózati átjáró létrehozásához meg kell toospecify hello á
 
 ###  <a name="workloads"></a>Termelés *vs.* Dev-Test számítási feladatok
 
-Lejáró SLA-k és szolgáltatáskészletek toohello közötti különbségeket, azt javasoljuk termékváltozatok követő üzemi hello *és* fejlesztői-teszt:
+A szolgáltatói szerződések és a szolgáltatáskészletek eltérései miatt az alábbi termékváltozatokat javasoljuk termelés *vs.* dev-test környezetekhez:
 
 | **Számítási feladat**                       | **Termékváltozatok**               |
 | ---                                | ---                    |
@@ -14,26 +14,26 @@ Lejáró SLA-k és szolgáltatáskészletek toohello közötti különbségeket,
 | **Dev-test vagy a koncepció igazolása**   | Basic                  |
 |                                    |                        |
 
-Régi hello használata SKU, hello éles SKU javaslatok rendszer Standard és a HighPerformance SKU. Információk a hello régi termékváltozatok: [Gateway SKU-n (örökölt SKU)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).
+Ha a régi termékváltozatokat használja, a termelési termékváltozatnak a Standard és a Nagy teljesítményű termékváltozatot javasoljuk. További információ a régi termékváltozatokról: [Átjáró termékváltozatai (örökölt termékváltozatok)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).
 
 ###  <a name="feature"></a>Átjáró termékváltozatainak szolgáltatáskészletei
 
-hello új átjáró termékváltozatok hello átjárók kínált hello szolgáltatáskészletek egyszerűsítésére:
+Az átjárók új termékváltozatai egyszerűbbé teszik az átjárókon elérhető szolgáltatáskészleteket alkalmazását:
 
 | **Termékváltozat**| **Szolgáltatások**|
 | ---    | ---         |
-|**Basic**   | **Útvonalalapú VPN**: 10 alagút P2S-sel<br><br>**Házirend-alapú VPN** (IKEv1): 1 alagút, P2S nélkül|
-| **VpnGw1, VpnGw2 és VpnGw3** | **Útvonalalapú VPN**: too30 alagutak (*), P2S, a BGP-be aktív-aktív, az egyéni IPsec/IKE házirend, ExpressRoute-és VPN létezzenek |
+|**Basic**   | **Útvonalalapú VPN**: 10 alagutak rendelkező P2S; P2S; nincs RADIUS-hitelesítés nincs IKEv2 rendszer P2S<br>**Házirend-alapú VPN** (IKEv1): 1 alagút, P2S nélkül|
+| **VpnGw1, VpnGw2 és VpnGw3** | **Útvonalalapú VPN**: legfeljebb 30 alagút ( * ), P2S, BGP, aktív-aktív, egyéni IPsec/IKE-házirend, ExpressRoute/VPN együttes jelenléte |
 |        |             |
 
-(*) "PolicyBasedTrafficSelectors" tooconnect konfigurálhatja egy útvonalalapú VPN-átjáró (VpnGw1, VpnGw2, VpnGw3) toomultiple helyszíni tűzfal csoportházirend-alapú eszközök. Tekintse meg a túl[csatlakozás VPN-átjárók toomultiple a helyi csoportházirend-alapú VPN-eszközök PowerShell-lel](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) részleteiről.
+( * ) A „PolicyBasedTrafficSelectors” paraméter konfigurálásával egy útvonalalapú VPN-átjárót (VpnGw1, VpnGw2, VpnGw3) több helyszíni, házirendalapú tűzfaleszközhöz is csatlakoztathat. További részletekért tekintse meg a [VPN-átjárók több helyszíni házirendalapú VPN-eszközhöz való csatlakoztatása a PowerShellel](../articles/vpn-gateway/vpn-gateway-connect-multiple-policybased-rm-ps.md) című cikket.
 
 ###  <a name="resize"></a>Az átjárók termékváltozatainak átméretezése
 
 1. Az átméretezés során a VpnGw1, a VpnGw2 és a VpnGw3 termékváltozatok közül választhat.
-2. Az hello régi gateway SKU használatakor átméretezheti, Basic, Standard és a HighPerformance termékváltozatok között.
-2. Ön **nem** méretezze át a Basic vagy Standard/HighPerformance termékváltozatok toohello új VpnGw1/VpnGw2/VpnGw3 SKU. Meg kell, ehelyett [áttelepítése](#migrate) toohello új SKU.
+2. Ha a régi átjárók termékváltozataival dolgozik, az átméretezéskor az Alapszintű, a Standard és a Nagy teljesítményű termékváltozatok közül választhat.
+2. Az Alapszintű/Standard/Nagy teljesítményű termékváltozatokról **nem** méretezhet a VpnGw1/VpnGw2/VpnGw3 termékváltozatokra. Ehelyett [migrálnia](#migrate) kell az új termékváltozatokra.
 
-###  <a name="migrate"></a>Régi termékváltozatok toohello áttelepítése új termékváltozatok
+###  <a name="migrate"></a>Migrálás a régi termékváltozatokról az új termékváltozatokra
 
 [!INCLUDE [Migrate SKU](./vpn-gateway-migrate-legacy-sku-include.md)]

@@ -1,0 +1,127 @@
+- name: Az Azure IoT Hub eszközkiépítési szolgáltatás dokumentációja
+  href: index.yml
+- name: Áttekintés
+  items:
+    - name: Információk az IoT eszközkiépítésről
+      href: about-iot-dps.md
+- name: Gyors útmutatók
+  expanded: true
+  items:
+    - name: Automatikus kiépítés beállítása
+      href: quick-setup-auto-provision.md
+    - name: Szimulált eszköz létrehozása
+      items:
+        - name: TPM
+          items:
+            - name: 'C#'
+              href: quick-create-simulated-device.md
+            - name: Java
+              href: quick-create-simulated-device-tpm-java.md
+            - name: 'C#'
+              href: quick-create-simulated-device-tpm-csharp.md
+            - name: Python
+              href: quick-create-simulated-device-tpm-python.md
+        - name: X.509
+          items:
+            - name: 'C#'
+              href: quick-create-simulated-device-x509.md
+            - name: Java
+              href: quick-create-simulated-device-x509-java.md
+            - name: 'C#'
+              href: quick-create-simulated-device-x509-csharp.md
+            - name: Python
+              href: quick-create-simulated-device-x509-python.md
+    - name: Eszköz regisztrálása
+      items:
+        - name: TPM
+          items:
+            - name: Java
+              href: quick-enroll-device-tpm-java.md
+            - name: Node.js
+              href: quick-enroll-device-tpm-node.md
+        - name: X.509
+          items:
+            - name: Java
+              href: quick-enroll-device-x509-java.md
+            - name: Node.js
+              href: quick-enroll-device-x509-node.md
+- name: Oktatóanyagok
+  items:
+    - name: 1 – Felhőerőforrások beállítása
+      href: tutorial-set-up-cloud.md
+    - name: 2 – Eszköz beállítása
+      href: tutorial-set-up-device.md
+    - name: 3 – Eszköz kiépítése egy IoT hubon
+      items:
+        - name: 'C#'
+          href: tutorial-provision-device-to-hub.md
+        - name: 'C#'
+          href: tutorial-net-provision-device-to-hub.md
+    - name: 4 – Eszközök kiépítése több hubon
+      href: tutorial-provision-multiple-hubs.md
+    - name: 5 – Csoportos beléptetések létrehozása
+      href: tutorial-group-enrollments.md
+- name: Alapelvek
+  items:
+    - name: Eszközzel kapcsolatos alapelvek
+      href: concepts-device.md
+    - name: Szolgáltatással kapcsolatos alapelvek
+      href: concepts-service.md
+    - name: Biztonsági alapelvek
+      href: concepts-security.md
+- name: Útmutatók
+  items:
+    - name: Eszközök beléptetésének kezelése
+      items:
+        - name: Eszközök beléptetésének kezelése az Azure Portalon
+          href: how-to-manage-enrollments.md
+        - name: Eszközök beléptetésének kezelése szolgáltatási SDK-kal
+          href: how-to-manage-enrollments-sdks.md
+    - name: Eszköz hozzáférésének visszavonása
+      href: how-to-revoke-device-access-portal.md
+    - name: Eszközök leépítése
+      href: how-to-unprovision-devices.md
+    - name: A HSM használata az SDK-val
+      href: use-hsm-with-sdk.md
+    - name: Eszközkiépítési szolgáltatás hozzáférés-vezérlése
+      href: how-to-control-access.md
+    - name: A Device Provisioning Service kezelése az Azure CLI-vel
+      href: how-to-manage-dps-with-cli.md
+    - name: Fejlesztés SDK-eszközök használatával
+      href: how-to-use-sdk-tools.md
+- name: Referencia
+  items:
+    - name: REST
+      href: /rest/api/iot-dps
+- name: További források
+  items:
+    - name: Azure IoT Hub
+      href: 'https://azure.microsoft.com/services/iot-hub/'
+    - name: Azure Certified for IoT eszközkatalógus
+      href: 'https://catalog.azureiotsuite.com/'
+    - name: Azure IoT fejlesztői központ
+      href: 'https://azure.microsoft.com/develop/iot/'
+    - name: Azure-ütemterv
+      href: 'https://azure.microsoft.com/roadmap/?category=internet-of-things'
+    - name: Device Explorer eszköz
+      href: 'https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer'
+    - name: iothub-diagnostics eszköz
+      href: 'https://github.com/Azure/iothub-diagnostics'
+    - name: iothub-explorer eszköz
+      href: 'https://github.com/Azure/iothub-explorer'
+    - name: Képzési terv
+      href: 'https://azure.microsoft.com/documentation/learning-paths/iot-hub/'
+    - name: MSDN-fórum
+      href: 'https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub'
+    - name: Díjszabás
+      href: 'https://azure.microsoft.com/pricing/details/iot-hub/'
+    - name: Díjkalkulátor
+      href: 'https://azure.microsoft.com/pricing/calculator/'
+    - name: Szolgáltatási hírek
+      href: 'https://azure.microsoft.com/updates/?product=iot-hub'
+    - name: Stack Overflow
+      href: 'http://stackoverflow.com/questions/tagged/azure-iot-hub'
+    - name: Műszaki esettanulmányok
+      href: 'https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured'
+    - name: Videók
+      href: 'https://azure.microsoft.com/documentation/videos/index/?services=iot-hub'

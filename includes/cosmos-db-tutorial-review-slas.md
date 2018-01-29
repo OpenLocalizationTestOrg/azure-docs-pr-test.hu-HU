@@ -1,7 +1,11 @@
-Most, hogy az alkalmazás fut, érdemes tooensure üzleti folytonossági és figyelési felhasználói hozzáférés tooensure magas rendelkezésre állású. Hello Azure portál tooreview hello rendelkezésre állási, a késés, az átviteli sebesség és a konzisztencia a gyűjtemény használható. 
+Az átviteli sebesség, tárolási, rendelkezésre állási, késés és a a fiók erőforrásai konzisztenciájának figyeli az Azure portálon. Vegyük a metrikák gyorsan át. 
 
-Minden egyes diagram hello társított [Azure Cosmos DB szolgáltatói szerződések (SLA)](https://azure.microsoft.com/support/legal/sla/documentdb/) biztosít, egy sort, hogy látható hello kvóta szükséges toomeet hello SLA-t és a valós használatot, felkínálva a tiszta képet kaphat az adatbázis teljesítménye. További metrikákat, például a tárhelyhasználatot és kérelem / perc, hello portálon is szerepelnek.
+1. Kattintson a **metrikák** a navigációs menü.
 
-* Hello Azure-portálon, a hello a bal oldali ablaktáblán, a **figyelés**, kattintson a **metrikák**.
+   ![Az Azure-portálon a metrikák](./media/cosmos-db-tutorial-review-slas/metrics.png)
 
-   ![Teendőkezelő alkalmazás mintaadatokkal](./media/cosmos-db-tutorial-review-slas/azure-cosmosdb-portal-metrics-slas.png)
+2. Kattintson a egyes lapokon így tisztában a metrikák Azure Cosmos DB biztosít. 
+
+    Minden egyes diagram, amelyhez társítva van a [Azure Cosmos DB szolgáltatói szerződések (SLA)](https://azure.microsoft.com/support/legal/sla/cosmos-db/) jeleníti meg, ha a szolgáltatói szerződéseknek bármelyikét megsértése sorokkal biztosít. Azure Cosmos-adatbázis lehetővé teszi a szolgáltatásiszint-szerződések ennek a programcsomagnak a mérőszámok átlátható figyelése. 
+
+   ![Az Azure Cosmos DB metrikák csomag](./media/cosmos-db-tutorial-review-slas/metrics-suite.png)

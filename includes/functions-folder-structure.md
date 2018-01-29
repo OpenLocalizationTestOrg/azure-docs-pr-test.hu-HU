@@ -1,5 +1,5 @@
 
-az összes hello funkciók egy adott funkció alkalmazásban hello kód él, legfelső szintű mappa, amely tartalmaz egy állomás konfigurációs fájlja és hello kódot egy külön függvény, mint például a következő hello tartalmazhatnak, amelyek egy vagy több almappák:
+A kód egy adott funkció alkalmazás összes funkciójának egy állomás konfigurációs fájlja a gyökérmappa és egy vagy több almappában található. Minden egyes tartalmazza, a kódot egy külön függvény, az alábbi példában látható módon:
 
 ```
 wwwroot
@@ -15,7 +15,7 @@ wwwroot
  | | - run.csx
 ```
 
-Hello *host.json* tartalmaz néhány futásidejű konfigurációs fájl- és hello függvény alkalmazás gyökérmappájában hello helyezkedik el. A rendelkezésre álló beállítások információkért lásd: [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) hello WebJobs.Script tárház wiki.
+Host.json néhány futásidejű-specifikus konfigurációk tartalmazza, ezért a gyökérmappában található, a függvény alkalmazás helyezkedik el. Rendelkezésre álló beállításokkal kapcsolatos további információkért lásd: a [host.json hivatkozás](../articles/azure-functions/functions-host-json.md).
 
-Minden egyes függvény rendelkezik egy vagy több kódfájlok, hello function.json konfigurációs és egyéb függőségek tartalmazó mappát.
+Minden egyes függvény rendelkezik egy vagy több kód fájlok, a function.json konfigurációs és egyéb függőségek tartalmazó mappát.
 

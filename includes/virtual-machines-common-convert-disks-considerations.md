@@ -1,10 +1,12 @@
 
-* hello átalakításhoz hello virtuális gép újraindítása szükséges, úgy ütemezze hello áttelepítése a virtuális gépek egy már meglévő karbantartási időszak alatt. 
+* Az átalakításhoz újra kell indítani a virtuális gépet, ezért ütemezze a virtuális gépek migrálását egy meglévő karbantartási időszakra. 
 
-* hello konverzió nem nem vonható vissza. 
+* Az átalakítás nem vonható vissza. 
 
-* Lehet, hogy tootest hello átalakítás. A teszt virtuális gépek áttelepítéséhez, éles környezetben hello áttelepítés végrehajtása előtt.
+* Mindenképpen tesztelje az átalakítást. Migráljon egy tesztcélú virtuális gépet, mielőtt végrehajtja a migrálást éles környezetben.
 
-* Hello az átalakítás során hello VM felszabadítani. hello VM egy új IP-címet kap, amikor hello átalakítás után elindul. Ha szükséges, akkor [statikus IP-cím](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md) toohello virtuális gép.
+* Az átalakítás közben felszabadítja a virtuális gépet. A virtuális gép új IP-címet kap, amikor elindul az átalakítás után. Szükség esetén [hozzárendelhet egy statikus IP-címet](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md) a virtuális géphez.
 
-* hello eredeti VHD-k és használják a virtuális gép hello átalakítás előtti hello tárfiók nem törlődik. Mindaddig tooincur díjakat. Ezen összetevők kiszámlázott tooavoid hello eredeti VHD-blobok törlése, miután ellenőrizte, hogy helyesek-e hello átalakítás.
+* A virtuális gép által az átalakítás előtt használt eredeti virtuális merevlemezeket és a tárfiókot nem törli a rendszer. A futtatásuk továbbra is költségekkel jár. Annak érdekében, hogy ezekért az összetevőkért a továbbiakban ne fizessen, törölje az eredeti virtuálismerevlemez-blobokat, miután meggyőződött arról, hogy az átalakítás befejeződött.
+
+* Nézze át az Azure Virtuálisgép-ügynök az átalakítási folyamat támogatásához szükséges minimális verzióját. Ellenőrizze és frissítse az ügynök verziója kapcsolatos információkért lásd: [VM-ügynökök az Azure-ban által támogatott minimális verzió](https://support.microsoft.com/help/4049215/extensions-and-virtual-machine-agent-minimum-version-support)

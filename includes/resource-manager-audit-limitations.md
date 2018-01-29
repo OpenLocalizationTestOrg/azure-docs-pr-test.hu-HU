@@ -1,4 +1,4 @@
-hello tevékenységnapló az erőforrásokon végrehajtott minden írási műveletek (PUT, POST, Törlés) tartalmazza. Az olvasási műveletek (GET) nem tartalmazza. Hello naplózási naplók toofind hibaelhárítása során hiba vagy toomonitor hogyan a szervezet egy felhasználó módosította a következő erőforrás.
+A műveletnapló az erőforrásokon végrehajtott minden írási műveletek (PUT, POST, Törlés) tartalmazza. Az olvasási műveletek (GET) nem tartalmazza. Erőforrás-műveletek listáját, [Azure Resource Manager erőforrás-szolgáltató műveletek](../articles/active-directory/role-based-access-control-resource-provider-operations.md). A vizsgálati naplók található hiba esetén végzett hibaelhárításhoz vagy hogyan a szervezet egy felhasználó módosította a következő erőforrás figyelésére használható.
 
-Tevékenységi naplóit 90 napig megőrződnek. Bármely dátumtartomány alapján is kereshet, mindaddig, amíg hello kezdési dátum nem az elmúlt hello 90 napnál hosszabb.
+Tevékenységi naplóit 90 napig megőrződnek. Bármely dátumtartomány alapján is kereshet, mindaddig, amíg a kezdő dátum nem több mint 90 nappal ezelőtti.
 

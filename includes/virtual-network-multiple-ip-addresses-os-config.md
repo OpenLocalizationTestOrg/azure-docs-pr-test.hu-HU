@@ -1,52 +1,53 @@
-## <a name="os-config"></a>Adja hozzá az IP-címek tooa virtuális gép operációs rendszere
+## <a name="os-config"></a>IP-címek hozzáadása a virtuális gép operációs rendszeréhez
 
-Csatlakoztassa és bejelentkezési tooa VM létrehozott több privát IP-címmel. Minden hello magánhálózati IP-címek (többek között a következőket hello elsődleges), hogy hozzáadta a virtuális gép toohello manuálisan kell hozzáadni. Hajtsa végre a következő lépéseket a virtuális gép operációs rendszer hello:
+Csatlakozzon, és jelentkezzen be egy több magánhálózati IP-címmel létrehozott virtuális gépbe. A virtuális géphez hozzáadott összes magánhálózati IP-címet (az elsődlegest is beleértve) manuálisan kell hozzáadnia. Végezze el az alábbi lépések közül azokat, amelyek a virtuális gép operációs rendszerére vonatkoznak:
 
 ### <a name="windows"></a>Windows
 
-1. A parancssorba írja be az *ipconfig /all* parancsot.  Csak akkor jelenik meg hello *elsődleges* privát IP-cím (DHCP).
-2. Típus *ncpa.cpl* a hello parancssor tooopen hello **hálózati kapcsolat** ablak.
-3. Nyissa meg a megfelelő adapter hello hello tulajdonságainak: **helyi kapcsolat**.
+1. A parancssorba írja be az *ipconfig /all* parancsot.  Csak az *elsődleges* magánhálózati IP-cím látható (DHCP-vel).
+2. Írja be a parancssorba az *ncpa.cpl* parancsot a **Hálózati kapcsolatok** ablak megnyitásához.
+3. Nyissa meg a megfelelő adapter tulajdonságait: **Helyi kapcsolat**.
 4. Kattintson duplán A TCP/IP protokoll 4-es verziója (IPv4) elemre.
-5. Válassza ki **következő IP-cím használata hello** , és írja be a következő értékek hello:
+5. Jelölje be **A következő IP-cím használata:** elemet, és írja be a következő értékeket:
 
-    * **IP-cím**: Adja meg a hello *elsődleges* magánhálózati IP-cím
-    * **Alhálózati maszk**: Állítsa be az alhálózatának megfelelően. Például akkor, ha hello alhálózat egy/24 alhálózati majd hello alhálózati maszk pedig a 255.255.255.0.
-    * **Alapértelmezett átjáró**: hello hello alhálózat első IP-címet. Az alhálózat 10.0.0.0/24, majd hello átjáró IP-cím akkor 10.0.0.1.
-    * Kattintson a **a következő DNS-kiszolgálócímek használata hello** , és írja be a következő értékek hello:
-        * **Elsődleges DNS-kiszolgáló**: Ha nem a saját DNS-kiszolgálóját használja, adja meg a következőt: 168.63.129.16.  Ha a saját DNS-kiszolgálót használ, adja meg hello IP-címet a kiszolgáló.
-    * Kattintson a hello **speciális** gombra, majd adja hozzá a további IP-címeket. Adja hozzá az egyes hello másodlagos magánhálózati IP-címek 8. lépés toohello NIC az ugyanazon az alhálózaton hello elsődleges IP-címhez megadott hello szerepel.
+    * **IP-cím**: Adja meg az *elsődleges* magánhálózati IP-címet
+    * **Alhálózati maszk**: Állítsa be az alhálózatának megfelelően. Például ha az alhálózat egy /24 alhálózat, akkor az alhálózati maszk 255.255.255.0.
+    * **Alapértelmezett átjáró**: Az alhálózat első IP-címe. Ha az alhálózata 10.0.0.0/24, akkor az átjáró IP-címe 10.0.0.1.
+    * Kattintson **A következő DNS-kiszolgálócímek használata:** elemre, és írja be a következő értékeket:
+        * **Elsődleges DNS-kiszolgáló**: Ha nem a saját DNS-kiszolgálóját használja, adja meg a következőt: 168.63.129.16.  Ha a saját DNS-kiszolgálóját használja, adja meg a kiszolgáló IP-címét.
+    * Kattintson a **Speciális** gombra, és vegyen fel további IP-címeket. Adja hozzá a 8. lépésben felsorolt másodlagos magánhálózati IP-címeket a hálózati adapterhez ugyanazon alhálózat megadásával az elsődleges IP-címhez.
         >[!WARNING] 
-        >Nem lépések hello fenti megfelelően, ha megszakadhat a kapcsolat tooyour virtuális gép. Ellenőrizze, hogy 5. lépés megadott hello információt pontos a folytatás előtt.
+        >Ha nem megfelelően követi a fenti lépéseket, elveszítheti a kapcsolatot a virtuális géppel. A továbblépés előtt ellenőrizze, hogy az 5. lépésben megadott információk pontosak-e.
 
-    * Kattintson a **OK** tooclose kimenő hello TCP/IP-beállításokat, majd **OK** újra tooclose hello adapterre vonatkozó beállításai. A rendszer újból létesíti az RDP-kapcsolatot.
+    * Kattintson az **OK** gombra a TCP/IP-beállításokból való kilépéshez, majd kattintson ismét az **OK** gombra az adapterbeállítások bezárásához. A rendszer újból létesíti az RDP-kapcsolatot.
 
 6. A parancssorba írja be az *ipconfig /all* parancsot. Megjelenik az összes hozzáadott IP-cím, és a DHCP ki van kapcsolva.
+7. A Windows használják az elsődleges IP-konfiguráció magánhálózati IP-címét az Azure-ban az elsődleges IP-cím a Windows beállítása. Lásd: [nincs Internet-hozzáférést a Azure Windows virtuális Gépet, amely több IP-címmel rendelkezik](https://support.microsoft.com/help/4040882/no-internet-access-from-azure-windows-vm-that-has-multiple-ip-addresse) részleteiről. 
 
 
 ### <a name="validation-windows"></a>Ellenőrzés (Windows)
 
-tooensure képes tooconnect toohello interneten keresztül hello nyilvános IP-cím tartozó, megfelelő használatával hozzáadását követően a másodlagos IP-konfigurációja az lépések felett, a következő parancs hello használata:
+Ellenőrizze, hogy tud-e csatlakozni az internethez a másodlagos IP-konfigurációról az ahhoz tartozó nyilvános IP-címen keresztül. Ehhez a fenti lépésekkel történő hozzáadás után használja a következő parancsot:
 
 ```bash
 ping -S 10.0.0.5 hotmail.com
 ```
 >[!NOTE]
->Másodlagos IP-konfigurációk esetén csak a ping paranccsal toohello Internet egy nyilvános IP-cím hozzárendelve hello konfiguráció-e. Az elsődleges IP-konfiguráció egy nyilvános IP-cím nincs szükség tooping toohello Internet.
+>Másodlagos IP-konfigurációk esetén csak a ping paranccsal az interneten egy nyilvános IP-cím hozzárendelve a konfiguráció-e. Az elsődleges IP-konfiguráció egy nyilvános IP-cím nem szükséges az interneten a ping paranccsal.
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
 
 1. Nyisson meg egy terminálablakot.
-2. Ellenőrizze, hogy hello gyökér szintű felhasználó. Ha nem, adja meg a következő parancs hello:
+2. Győződjön meg arról, hogy Ön a gyökér szintű felhasználó. Ha nem Ön az, írja be a következő parancsot:
 
     ```bash
     sudo -i
     ```
 
-3. Frissítés hello konfigurációs fájl hello hálózati adapter (feltéve, hogy a "eth0").
+3. Frissítse a hálózati adapter (feltehetőleg „eth0”) konfigurációs fájlját.
 
-    * Hello DHCP meglévő sorelemet megtartása. hello elsődleges IP-cím marad konfigurált, mint korábban.
-    * Vegyen fel egy további statikus IP-címének konfigurációja tartalmazó hello a következő parancsokat:
+    * A dhcp esetében hagyja meg a meglévő sortételt. Az elsődleges IP-cím konfigurációja nem változik.
+    * Adjon hozzá egy konfigurációt egy további statikus IP-cím számára a következő parancsokkal:
 
         ```bash
         cd /etc/network/interfaces.d/
@@ -54,14 +55,14 @@ ping -S 10.0.0.5 hotmail.com
         ```
 
     Egy .cfg fájlnak kell megjelennie.
-4. Nyissa meg hello fájlt. A következő sort: hello hello fájl végét hello kell megjelennie:
+4. Nyissa meg a fájlt. A következő soroknak kell megjelennie a fájl végén:
 
     ```bash
     auto eth0
     iface eth0 inet dhcp
     ```
 
-5. Adja hozzá az alábbi után, amely a fájl létezik hello sorok hello:
+5. Írja be a következő sorokat a fájl meglévő sorai alá:
 
     ```bash
     iface eth0 inet static
@@ -69,66 +70,66 @@ ping -S 10.0.0.5 hotmail.com
     netmask <your subnet mask>
     ```
 
-6. Hello fájl mentése hello a következő parancs segítségével:
+6. Mentse a fájlt a következő paranccsal:
 
     ```bash
     :wq
     ```
 
-7. Alaphelyzetbe állítása hello hálózati illesztő – hello a következő parancsot:
+7. Állítsa alaphelyzetbe a hálózati adaptert a következő paranccsal:
 
     ```bash
     sudo ifdown eth0 && sudo ifup eth0
     ```
 
     > [!IMPORTANT]
-    > Azonos sor, ha távoli kapcsolatot hello ifdown és ifup is futott.
+    > Ha távoli kapcsolatot használ, az ifdown és az ifup parancsokat ugyanabban a sorban futtassa.
     >
 
-8. Ellenőrizze, hogy hello IP-cím hozzá toohello hálózati illesztő rendelkező hello a következő parancsot:
+8. A következő paranccsal ellenőrizze, hogy az IP-cím hozzá van-e adva a hálózati adapterhez:
 
     ```bash
     ip addr list eth0
     ```
 
-    Hello IP-cím hozzáadni a hello lista kell megjelennie.
+    A listán meg kell jelennie a hozzáadott IP-címnek.
 
 ### <a name="linux-redhat-centos-and-others"></a>Linux (Redhat, CentOS és egyebek)
 
 1. Nyisson meg egy terminálablakot.
-2. Ellenőrizze, hogy hello gyökér szintű felhasználó. Ha nem, adja meg a következő parancs hello:
+2. Győződjön meg arról, hogy Ön a gyökér szintű felhasználó. Ha nem Ön az, írja be a következő parancsot:
 
     ```bash
     sudo -i
     ```
 
-3. Adja meg a jelszavát, és kövesse a megjelenő utasításokat. Miután hello gyökér szintű felhasználó, keresse meg a toohello hálózati parancsfájlmappa a hello a következő parancsot:
+3. Adja meg a jelszavát, és kövesse a megjelenő utasításokat. Miután Ön lett a gyökér szintű felhasználó, lépjen a hálózati parancsfájlok mappájába a következő paranccsal:
 
     ```bash
     cd /etc/sysconfig/network-scripts
     ```
 
-4. Lista hello kapcsolódó ifcfg fájlokat a hello a következő parancsot:
+4. Listázza a kapcsolódó ifcfg-fájlokat a következő paranccsal:
 
     ```bash
     ls ifcfg-*
     ```
 
-    Megtekintheti az *ifcfg-eth0* hello fájlok egyikét.
+    A fájlok között meg kell jelennie az *ifcfg-eth0* fájlnak.
 
-5. tooadd IP-cím, egy konfigurációs fájl létrehozása az alább látható módon. Vegye figyelembe, hogy minden IP-konfigurációhoz létre kell hozni egy fájlt.
+5. IP-cím hozzáadásához hozzon létre egy hozzá tartozó konfigurációs fájlt az alábbiakban látható módon. Vegye figyelembe, hogy minden IP-konfigurációhoz létre kell hozni egy fájlt.
 
     ```bash
     touch ifcfg-eth0:0
     ```
 
-6. Nyissa meg hello *ifcfg-eth0:0* hello parancs a következő fájlt:
+6. Nyissa meg az *ifcfg-eth0:0* fájlt a következő paranccsal:
 
     ```bash
     vi ifcfg-eth0:0
     ```
 
-7. Adja hozzá a tartalom toohello fájl *eth0:0* ebben az esetben a parancs a következő hello. Lehet, hogy tooupdate információkat a IP-címe alapján.
+7. Adjon tartalmat a fájlhoz (ebben az esetben az *eth0:0* fájlhoz) a következő paranccsal. Ne felejtse el frissíteni az információkat az IP-címe alapján.
 
     ```bash
     DEVICE=eth0:0
@@ -138,32 +139,32 @@ ping -S 10.0.0.5 hotmail.com
     NETMASK=255.255.255.0
     ```
 
-8. A következő parancs hello hello fájl mentése:
+8. Mentse a fájlt a következő paranccsal:
 
     ```bash
     :wq
     ```
 
-9. Indítsa újra a hello hálózati szolgáltatások, és gondoskodjon arról, hogy hello változtatások sikeres hello a következő parancsok futtatásával:
+9. Indítsa újra a hálózati szolgáltatásokat, és a következő parancsok futtatásával győződjön meg arról, hogy a módosítások sikeresen végre lettek hajtva:
 
     ```bash
     /etc/init.d/network restart
     ifconfig
     ```
 
-    Megtekintheti az hello IP-cím hozzá, *eth0:0*, a visszaadott hello listában.
+    A hozzáadott *eth0:0* IP-címnek meg kell jelennie a rendszer által visszaadott listában.
 
 ### <a name="validation-linux"></a>Ellenőrzés (Linux)
 
-Biztosan tudni tooconnect toohello tooensure interneten keresztül hello nyilvános IP-cím a másodlagos IP-konfigurációja az tartozó azt, a következő parancs hello használata:
+Ellenőrizze, hogy tud-e csatlakozni az internethez a másodlagos IP-konfigurációról az ahhoz tartozó nyilvános IP-címen keresztül. Ehhez használja a következő parancsot:
 
 ```bash
 ping -I 10.0.0.5 hotmail.com
 ```
 >[!NOTE]
->Másodlagos IP-konfigurációk esetén csak a ping paranccsal toohello Internet egy nyilvános IP-cím hozzárendelve hello konfiguráció-e. Az elsődleges IP-konfiguráció egy nyilvános IP-cím nincs szükség tooping toohello Internet.
+>Másodlagos IP-konfigurációk esetén csak a ping paranccsal az interneten egy nyilvános IP-cím hozzárendelve a konfiguráció-e. Az elsődleges IP-konfiguráció egy nyilvános IP-cím nem szükséges az interneten a ping paranccsal.
 
-Linux virtuális gépek, a másodlagos hálózati adapter kimenő kapcsolat toovalidate közben esetleg tooadd megfelelő útvonalak. Nincsenek számos módon toodo ez. Tekintse át a Linux-disztribúciójára vonatkozó megfelelő dokumentációt. hello következő Ez egy metódus tooaccomplish van:
+Linux rendszerű virtuális gépek esetében a másodlagos hálózati adapterről kimenő kapcsolatok ellenőrzésekor szükség lehet a megfelelő útvonalak hozzáadására. Ezt többféleképpen teheti meg. Tekintse át a Linux-disztribúciójára vonatkozó megfelelő dokumentációt. Az egyik lehetséges módszer a következő:
 
 ```bash
 echo 150 custom >> /etc/iproute2/rt_tables 
@@ -172,7 +173,7 @@ ip rule add from 10.0.0.5 lookup custom
 ip route add default via 10.0.0.1 dev eth2 table custom
 
 ```
-- Lehet, hogy tooreplace:
-    - **10.0.0.5** hello privát IP-címet, amely rendelkezik egy nyilvános IP-cím társított tooit cím
-    - **10.0.0.1** tooyour alapértelmezett átjáró
-    - **eth2** toohello nevét a másodlagos hálózati adapter
+- Cserélje le:
+    - a **10.0.0.5**-öt arra a magánhálózati IP-címre, amelyhez nyilvános IP-cím is tartozik
+    - a **10.0.0.1**-et az alapértelmezett átjáróra
+    - az **eth2**-t a másodlagos hálózati adapter nevére

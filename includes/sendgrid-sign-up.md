@@ -1,69 +1,69 @@
-Az Azure-ügyfelek havonta 25 000 ingyenes e-mailt oldhatnak fel. Ezek 25 000 ingyenes havi e-maileket kap hozzáférést tooadvanced jelentéskészítés és elemzés és [minden API] [ all APIs] (Web, SMTP, esemény, elemzési és több). Kiegészítő szolgáltatásokat nyújtja SendGrid kapcsolatos információkért látogasson el a hello [SendGrid megoldások] [ SendGrid Solutions] lap.
+Az Azure-ügyfelek havonta 25 000 ingyenes e-mailt oldhatnak fel. Ez a havi 25 000 ingyenes e-mail hozzáférést biztosít a fejlett jelentéskészítési és elemzési szolgáltatásokhoz, valamint [az API-k mindegyikéhez][all APIs] (többek között Web, SMTP, Event, Parse). A SendGrid által biztosított további szolgáltatásokról a [SendGrid Solutions][SendGrid Solutions] oldalán talál információkat.
 
-### <a name="toosign-up-for-a-sendgrid-account"></a>a SendGrid-fiókot toosign
-1. Jelentkezzen be toohello [Azure felügyeleti portálon][Azure Management Portal].
-2. Hello hello bal oldali menüben kattintson a **új**.
+### <a name="to-sign-up-for-a-sendgrid-account"></a>SendGrid-fiók regisztrálása
+1. Jelentkezzen be a [Azure-portálon][Azure portal].
+2. A bal oldali menüben kattintson az **Új** lehetőségre.
 
     ![command-bar-new][command-bar-new]
 3. Kattintson a **Bővítmények**, majd pedig a **SendGrid Email Delivery** lehetőségre.
 
     ![sendgrid-store][sendgrid-store]
-4. Hello bejelentkezési űrlap kitöltése és kiválasztása **létrehozása**.
+4. Töltse ki a regisztrációs űrlapot, majd válassza a **Létrehozás** lehetőséget.
 
     ![sendgrid-create][sendgrid-create]
-5. Adjon meg egy **neve** tooidentify a SendGrid szolgáltatás az Azure beállításaiban. A neveknek 1–100 karakter hosszúságúnak kell lenniük, és kizárólag alfanumerikus karaktereket, kötőjeleket, pontokat és aláhúzásjeleket tartalmazhatnak. hello nevének elemre az Azure-tároló előfizetett elemek egyedinek kell lennie.
+5. Adjon meg egy **Nevet** a SendGrid-szolgáltatás azonosításához az Azure beállításaiban. A neveknek 1–100 karakter hosszúságúnak kell lenniük, és kizárólag alfanumerikus karaktereket, kötőjeleket, pontokat és aláhúzásjeleket tartalmazhatnak. A névnek egyedinek kell lennie az előfizetett Azure Store-elemek listájában.
 6. Adja meg és erősítse meg a **Jelszót**.
 7. Válassza ki az **Előfizetést**.
 8. Hozzon létre egy új **Erőforráscsoportot** vagy használjon egy meglévőt.
-9. A hello **tarifacsomag** csoportban jelölje be a toosign kívánt hello SendGrid terv.
+9. A **Tarifacsomag** szakaszban válassza ki azt a SendGrid-csomagot, amelyre regisztrálni kíván.
 
     ![sendgrid-pricing][sendgrid-pricing]
 10. Adjon meg egy **Promóciókódot**, ha rendelkezik ilyennel.
 11. Adja meg a **Kapcsolattartási adatait**.
-12. Tekintse át és fogadja el a hello **jogi feltételeket**.
-13. A vásárlás megerősítése után megjelenik egy **sikeres telepítés** előugró ablak, és megjelenik a fiókját a hello **összes erőforrás** szakasz.
+12. Tekintse át és fogadja el a **Jogi feltételeket**.
+13. A vásárlás megerősítését követően egy **Sikeres üzembe helyezés** szöveggel ellátott előugró ablakot fog látni, a fiókja pedig megjelenik a **Minden erőforrás** szakaszban.
 
     ![all-resources][all-resources]
 
-    Miután befejezte a vásárlást, és kattint hello **kezelése** gomb tooinitiate hello e-mail ellenőrzési folyamata, kapni fog egy e-mailt a SendGrid tooverify kéri fel a fiókot. Ha nem kapja meg ezt az e-mailt, vagy problémába ütközik a fiókja megerősítésével kapcsolatban, tekintse meg a Gyakori kérdéseket.
+    Miután befejezte a vásárlást, valamint a **Kezelés** gombra kattintva elindította az e-mail ellenőrzésének folyamatát, a SendGrid küld egy e-mailt, amelyben a fiókja megerősítésére kéri. Ha nem kapja meg ezt az e-mailt, vagy problémába ütközik a fiókja megerősítésével kapcsolatban, tekintse meg a Gyakori kérdéseket.
 
     ![kezelés][manage]
 
-    **Csak küldhet e-mailek/nap/too100 mentése amíg nem ellenőrizte a fiókját.**
+    **Fiókja megerősítéséig naponta legfeljebb 100 e-mailt tud elküldeni.**
 
-    toomodify az előfizetési csomagot vagy lásd: hello SendGrid kapcsolattartási beállításai, kattintson a SendGrid szolgáltatás tooopen hello SendGrid piactér irányítópult hello nevére.
+    Az előfizetési csomag módosításához vagy a SendGrid kapcsolattartási beállításainak megtekintéséhez kattintson a SendGrid-szolgáltatás nevére a SendGrid Marketplace irányítópultjának megnyitásához.
 
     ![beállítások][settings]
 
-    az e-mailek SendGrid toosend, meg kell adnia az API-kulcs.
+    Ha a SendGrid használatával szeretne e-mailt küldeni, meg kell adnia API-kulcsát.
 
-### <a name="toofind-your-sendgrid-api-key"></a>toofind a SendGrid API-kulcs
+### <a name="to-find-your-sendgrid-api-key"></a>A SendGrid API-kulcsának megkeresése
 1. Kattintson a **Kezelés** gombra.
 
     ![kezelés][manage]
-2. A SendGrid-irányítópulton, válassza ki a **beállítások** , majd **API-kulcsokat** hello bal oldali hello menüben.
+2. A SendGrid irányítópultján válassza a **Beállítások**, majd az **API-kulcsok** lehetőséget a bal oldali menüben.
 
     ![api-keys][api-keys]
 
-3. Hello kattintson **API-kulcs létrehozása** legördülő menüből válassza ki **általános API-kulcs**.
+3. Kattintson az **API-kulcs létrehozása** legördülő listára, és válassza az **Általános API-kulcs** lehetőséget.
 
     ![general-api-key][general-api-key]
-4. Minimális, adja meg a hello **nevet ennek a kulcsnak** , és adja meg a teljes körű hozzáférési túl**E-mail küldése** válassza **mentése**.
+4. Adja meg legalább a **Kulcs nevét**, biztosítson teljes hozzáférést a **Levélküldés** számára, majd válassza a **Mentés** lehetőséget.
 
     ![hozzáférés][access]
-5. Ekkor az API egyetlen alkalommal megjelenik. Felhívjuk meg arról, hogy toostore azt biztonságosan.
+5. Ekkor az API egyetlen alkalommal megjelenik. Ügyeljen arra, hogy biztonságosan tárolja.
 
-### <a name="toofind-your-sendgrid-credentials"></a>toofind a Sendgridbeli hitelesítő adataival
-1. Kattintson a kulcs ikonra toofind hello a **felhasználónév**.
+### <a name="to-find-your-sendgrid-credentials"></a>A SendGrid hitelesítő adatainak megkeresése
+1. Kattintson a kulcs ikonra a **Felhasználónév** megkereséséhez.
 
     ![kulcs][key]
-2. hello jelszava hello egyet a telepítéskor választott. Kiválaszthatja **jelszó módosítása** vagy **jelszó-átállítási** toomake módosításokat.
+2. A jelszó megegyezik azzal, amelyet a beállításkor megadott. Módosításokat a **Jelszó módosítása** vagy a **Jelszó alaphelyzetbe állítása** lehetőségek kiválasztásával eszközölhet.
 
-toomanage az e-mailek deliverability beállításokat, kattintson a hello **Manage gomb**. A program átirányítja tooyour SendGrid irányítópult.
+Az e-mailek kézbesítési eredményessége beállításainak kezeléséhez kattintson a **Kezelés gombra**. Ez a átirányítja a SendGrid-irányítópultot.
 
     ![manage][manage]
 
-    For more information on sending email through SendGrid, visit hello [Email API Overview][Email API Overview].
+    For more information on sending email through SendGrid, visit the [Email API Overview][Email API Overview].
 
 <!--images-->
 
@@ -82,7 +82,7 @@ toomanage az e-mailek deliverability beállításokat, kattintson a hello **Mana
 <!--Links-->
 
 [SendGrid Solutions]: https://sendgrid.com/solutions
-[Azure Management Portal]: https://manage.windowsazure.com
+[Azure portal]: https://portal.azure.com
 [SendGrid Getting Started]: http://sendgrid.com/docs
 [SendGrid Provisioning Process]: https://support.sendgrid.com/hc/articles/200181628-Why-is-my-account-being-provisioned-
 [all APIs]: https://sendgrid.com/docs/API_Reference/index.html

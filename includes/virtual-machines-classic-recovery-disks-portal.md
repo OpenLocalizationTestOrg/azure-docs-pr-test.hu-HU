@@ -1,61 +1,62 @@
-Ha a virtuális gép (VM) az Azure-ban rendszerindító vagy a lemez hibát tapasztal, szükség lehet a tooperform hibaelhárítási hello virtuális merevlemezen magát. Ilyenek például a sikertelen frissítés, amely megakadályozza, hogy a virtuális gép hello sikeresen indítását lenne. Ez a cikk ismerteti, hogyan toouse az Azure portál tooconnect a virtuális merevlemez tooanother VM toofix ki a hibákat, majd hozza újra létre az eredeti virtuális gép.
+Ha az Azure-ban valamely virtuális gép (VM) indítási vagy lemezhibát észlel, előfordulhat, hogy magán a virtuális merevlemezen kell elvégeznie a hibaelhárítást. Egy gyakori példa erre, amikor egy sikertelen alkalmazásfrissítés megakadályozza, hogy a virtuális gép sikeresen elinduljon. A cikk leírja, hogyan csatlakoztathatja virtuális merevlemezét egy másik virtuális géphez az Azure Portal használatával a hibák javítása és az eredeti virtuális gép ismételt létrehozása érdekében.
+
 
 ## <a name="recovery-process-overview"></a>Helyreállítási folyamat áttekintése
-hibaelhárítási folyamatának hello a következőképpen történik:
+A hibaelhárítási folyamat a következő:
 
-1. Törölje a virtuális Gépet, amely kapcsolatban felmerült problémák hello, de megőrizni hello virtuális merevlemezeket.
-2. Csatolja, és a csatlakoztatási hello virtuális merevlemez tooanother VM hibaelhárításhoz.
-3. Csatlakoztassa a VM hibaelhárítási toohello. Szerkesztheti a fájlokat, vagy futtassa a eszközöket toofix hibák hello eredeti virtuális merevlemez.
-4. Válassza le a lemezképet, és válassza le hello virtuális merevlemezt a virtuális gép hibakeresési hello.
-5. Hozzon létre egy virtuális Gépet hello eredeti virtuális merevlemez használatával.
+1. Törölje a meghibásodott virtuális gépet, de a virtuális merevlemezeket ne.
+2. Csatlakoztassa a virtuális merevlemezt egy másik virtuális géphez hibaelhárítás céljából.
+3. Kapcsolódjon a hibaelhárítást végző virtuális gépre. A fájlok szerkesztésével vagy eszközök futtatásával javítsa a hibákat az eredeti virtuális merevlemezen.
+4. Válassza le a virtuális merevlemezt a hibaelhárító virtuális gépről.
+5. Hozzon létre egy virtuális gépet az eredeti virtuális merevlemez használatával.
 
-## <a name="delete-hello-original-vm"></a>Törlés hello az eredeti virtuális gép
-A virtuális merevlemezek és a virtuális gépek az Azure-erőforrások két különböző típusa. A virtuális merevlemez hello operációs rendszer, alkalmazások és konfigurációk tárolására. virtuális gép hello, amely meghatározza, hogy hello vagy a hely és az erőforrások, például egy virtuális merevlemezt vagy virtuális hálózati kártya (NIC) hivatkozik, amely csak metaadatokat. Mindegyik virtuális merevlemezt lekérdezi a címbérlet létrehozásakor kell, hogy a lemez csatlakoztatott tooa virtuális gép. Bár adatlemezt csatolni, és leválasztott hello virtuális gép futása közben is, hello operációsrendszer-lemez nem választható le, kivéve, ha a virtuális gép erőforrásához hello törlődik. hello bérleti tooassociate hello OS lemez tooa virtuális gép továbbra is, akkor is, ha ezt a virtuális Gépet felszabadított és leállított állapotban van.
+## <a name="delete-the-original-vm"></a>Az eredeti virtuális gép törlése
+A virtuális merevlemezek és a virtuális gépek az Azure-erőforrások két különböző típusa. A virtuális merevlemezen található az operációs rendszer, az alkalmazások, valamint a konfigurációk. A virtuális gép ezzel szemben csak egy metaadathalmaz, amely a méretet vagy a helyet határozza meg, illetve amely az erőforrásokra, például a virtuális merevlemezre vagy a virtuális hálózati kártyára (NIC) hivatkozik. A rendszer minden egyes virtuális merevlemezhez hozzárendel egy bérletet, amikor az adott merevlemez egy virtuális géphez lesz csatlakoztatva. Bár az adatlemezek akkor is csatlakoztathatók és leválaszthatók, amikor a virtuális gép üzemel, az operációs rendszer merevlemeze nem csatlakoztatható le, hacsak nem törli a VM-erőforrást. A bérlet továbbra is hozzárendeli az operációs rendszer merevlemezét a virtuális gépekhez, még ha az adott virtuális gép leállított vagy felszabadított állapotban van is.
 
-első lépés toorecovering hello a virtuális gép toodelete hello VM erőforrás magát. Virtuális gép törlése hello hello virtuális merevlemezek elhagyja a tárfiókban lévő. Hello a virtuális gép törlődik, miután hello virtuális merevlemez tooanother VM tootroubleshoot csatolja, és hello hibák. 
+A virtuális gép helyreállításának első lépése magának a virtuális gép erőforrásnak a törlése. A virtuális gép törlésével a virtuális merevlemezek a tárfiókban maradnak. A virtuális gép törlését követően a virtuális merevlemezt csatlakoztathatja egy másik virtuális géphez a hibák megkeresése és elhárítása érdekében. 
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com). 
-2. A hello hello bal oldali menüben kattintson **virtuális gépek (klasszikus)**.
-3. Jelölje be hello virtuális Gépet, amely hello problémát tapasztal, kattintson a **lemezek**, majd keresse meg hello hello virtuális merevlemez nevét. 
-4. Válassza ki az operációs rendszer hello virtuális merevlemez, és ellenőrizze a hello **hely** tooidentify hello tárfiókot, amely tartalmazza a virtuális merevlemezt. A következő példa hello, hello karakterlánc előtt közvetlenül ". blob.core.windows.net" hello tárfiók neve van.
+1. Jelentkezzen be az [Azure Portal](https://portal.azure.com). 
+2. A bal oldali menüben kattintson a **Virtuális gépek (klasszikus)** elemre.
+3. Válassza ki a hibás virtuális gépet, kattintson a **Lemezek** elemre, majd azonosítsa a virtuális merevlemez nevét. 
+4. Válassza ki az operációs rendszer merevlemezét, és a **Hely** mezőben azonosítsa a virtuális merevlemezt tároló tárfiók nevét. Az alábbi példában a közvetlenül a „.blob.core.windows.net” előtt álló karakterlánc a tárfiók neve.
 
     ```
     https://portalvhds73fmhrw5xkp43.blob.core.windows.net/vhds/SCCM2012-2015-08-28.vhd
     ```
 
-    ![a virtuális gép helyével kapcsolatos hello kép](./media/virtual-machines-classic-recovery-disks-portal/vm-location.png)
+    ![A virtuális gép helyét bemutató kép](./media/virtual-machines-classic-recovery-disks-portal/vm-location.png)
 
-5. Kattintson a jobb gombbal a virtuális gép hello, és válassza ki **törlése**. Győződjön meg arról, hogy hello lemezek nem választott hello virtuális gép törlésekor.
-6. Hozzon létre egy új helyreállítási virtuális gépet. A virtuális gép lehet hello azonos régióban és erőforrás csoportban (Felhőszolgáltatás) hello probléma virtuális gép.
-7. Hello helyreállítási virtuális Gépet, majd válassza ki és **lemezek** > **meglévő csatolása**.
-8. tooselect a meglévő virtuális merevlemez kattintson **VHD-fájl**:
+5. Kattintson jobb gombbal a virtuális gépre, majd válassza a **Törlés** lehetőséget. Győződjön meg róla, hogy a lemezek nincsenek kijelölve, amikor törli a virtuális gépet.
+6. Hozzon létre egy új helyreállítási virtuális gépet. Ennek a virtuális gépnek ugyanabban a régióban és erőforráscsoportban (felhőszolgáltatás) kell lennie, mint a hibás virtuális gépnek.
+7. Jelölje ki a helyreállítási virtuális gépet, majd válassza a **Lemezek** > **Meglévő csatolása** lehetőséget.
+8. A meglévő virtuális merevlemez kiválasztásához kattintson a **VHD-fájl** lehetőségre:
 
     ![Meglévő VHD keresése](./media/virtual-machines-classic-recovery-disks-portal/select-vhd-location.png)
 
-9. Válassza ki a tárfiók hello > VHD-tároló > hello virtuális merevlemez, kattintson a hello **válasszon** tooconfirm gomb szabadon választott.
+9. Jelölje ki a tárfiókot > a VHD-tárolót > és a virtuális merevlemezt, majd kattintson a **Kiválasztás** gombra a kijelölés megerősítéséhez.
 
     ![Meglévő VHD kiválasztása](./media/virtual-machines-classic-recovery-disks-portal/select-vhd.png)
 
-10. Válassza ki a most kijelölt virtuális merevlemez a **OK** tooattach hello létező virtuális merevlemezt.
-11. Néhány másodperc múlva hello **lemezek** a virtuális gép ablaktábla a meglévő virtuális merevlemez csatlakoztatva adatlemezt számára:
+10. Miután már kiválasztotta a VHD-t, kattintson az **OK** gombra a meglévő virtuális merevlemez csatlakoztatásához.
+11. Néhány másodperc elteltével a virtuális gép **Lemezek** panelje csatlakoztatott adatlemezként jeleníti meg a meglévő virtuális merevlemezt:
 
     ![Adatlemezként csatlakoztatott meglévő virtuális merevlemez](./media/virtual-machines-classic-recovery-disks-portal/attached-disk.png)
 
-## <a name="fix-issues-on-hello-original-virtual-hard-disk"></a>Hello eredeti virtuális merevlemez kapcsolatos problémák megoldása
-Ha hello meglévő virtuálismerevlemez-fájl csatlakoztatva van, minden karbantartási és hibaelhárítási lépéseket, igény szerint most elvégezhet. Egyszer foglalkoztak hello problémák, folytassa a következő lépéseket hello.
+## <a name="fix-issues-on-the-original-virtual-hard-disk"></a>Hibák javítása az eredeti virtuális merevlemezen
+Miután csatlakoztatta a meglévő virtuális merevlemezt, végrehajthatja a szükséges karbantartási és hibaelhárítási lépéseket. Miután végzett a hibák javításával, folytassa az alábbi lépésekkel.
 
-## <a name="unmount-and-detach-hello-original-virtual-hard-disk"></a>Válassza le a lemezképet, és válassza le hello eredeti virtuális merevlemezt
-Amennyiben az esetleges hibákat fakadó problémák megoldásával leválasztása, és válassza le hello meglévő virtuális merevlemezt a hibaelhárítási virtuális gépről. A virtuális merevlemez más virtuális gép együtt nem használható, amíg hello bérleti hello virtuális merevlemez toohello VM hibaelhárítási csatlakozó.  
+## <a name="unmount-and-detach-the-original-virtual-hard-disk"></a>Az eredeti virtuális merevlemez leválasztása
+Miután a hibákat kijavította, válassza le a meglévő virtuális merevlemezt a hibaelhárító virtuális gépről. A virtuális merevlemezt nem használhatja más virtuális géppel, amíg a virtuális merevlemezt a hibaelhárító virtuális géphez társító bérlet nincs feloldva.  
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com). 
-2. A hello hello bal oldali menüben válassza **virtuális gépek (klasszikus)**.
-3. Keresse meg a hello helyreállítási virtuális Gépet. Válassza ki a lemezt, kattintson a jobb gombbal hello lemezre, majd **leválasztási**.
+1. Jelentkezzen be az [Azure Portal](https://portal.azure.com). 
+2. A bal oldali menüben válassza a **Virtuális gépek (klasszikus)** elemet.
+3. Keresse meg a helyreállítási virtuális gépet. Válassza a Lemezek lehetőséget, kattintson a jobb gombbal a lemezre, majd válassza a **Leválasztás** parancsot.
 
-## <a name="create-a-vm-from-hello-original-hard-disk"></a>Hozzon létre egy virtuális Gépet hello eredeti merevlemez
+## <a name="create-a-vm-from-the-original-hard-disk"></a>Virtuális gép létrehozása az eredeti merevlemezről
 
-toocreate egy virtuális Gépet az eredeti virtuális merevlemez használata [a klasszikus Azure portálon](https://manage.windowsazure.com).
+Egy virtuális Gépet hozhat létre az eredeti virtuális merevlemez [Azure-portálon](https://portal.azure.com).
 
-1. Jelentkezzen be a [klasszikus Azure portálra](https://manage.windowsazure.com).
-2. Hello hello portál alsó részén, jelölje ki a **új** > **számítási** > **virtuális gép** > **a gyűjteménye** .
-3. A hello **kép kiválasztása** szakaszban jelölje be **a lemezek**, és ezután válasszon hello eredeti virtuális merevlemezt. Ellenőrizze a hello helyére vonatkozó információkat. Ez a hello régió, ahol hello VM kell telepíteni. Válassza ki a hello Tovább gombra.
-4. A hello **virtuálisgép-konfiguráció** szakaszt, írja be a nevet a virtuális gép hello és hello VM kiválasztásához.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+2. A portálon, válassza a bal felső at **új** > **számítási** > **virtuális gép** > **a gyűjtemény**.
+3. A **Kép kiválasztása** szakaszban válassza a **Saját lemezek** lehetőséget, majd válassza ki az eredeti virtuális merevlemezt. Ellenőrizze a helyadatokat. Ez az a régió, ahol a virtuális gépet üzembe kell helyezni. Válassza a Tovább gombot.
+4. A **Virtuális gép konfigurációja** szakaszban írja be a virtuális gép nevét, majd válasszon méretet a virtuális gép számára.

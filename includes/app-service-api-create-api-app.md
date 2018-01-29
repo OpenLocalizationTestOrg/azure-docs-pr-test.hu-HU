@@ -1,15 +1,15 @@
 
-Hozzon létre egy [API-alkalmazás](../articles/app-service-api/app-service-api-apps-why-best-platform.md) a hello `myAppServicePlan` hello az App Service-csomag [az webalkalmazás létrehozása](/cli/azure/appservice/web#create) parancsot. 
+Az [az webapp create](/cli/azure/webapp?view=azure-cli-latest#az_webapp_create) paranccsal hozzon létre egy alkalmazást a `myAppServicePlan` App Service-csomagban. 
 
-hello webalkalmazás üzemeltetési helyet biztosít az API-t, és egy URL-cím tooview hello telepített alkalmazás biztosít.
+A webalkalmazás üzemeltetési tárterületet biztosít a API-hoz, valamint megadja az üzembe helyezett alkalmazás megtekintéséhez szükséges URL-címet.
 
-Hello a következő parancsban cserélje le  *\<alkalmazás_neve >* egyedi névvel. Ha `<app_name>` van nem egyedi, a hibaüzenet hello hiba "A megadott nevű < alkalmazásnév > webhely már létezik." az alapértelmezett hello webalkalmazás URL-címe hello `https://<app_name>.azurewebsites.net`. 
+Az alábbi parancsban cserélje le az *\<alkalmazás_neve>* elemet egy egyedi névre. Ha az `<app_name>` nem egyedi, a következő hibaüzenet jelenik meg: „A megadott <alkalmazás_neve> névvel már létezik webhely.” A webalkalmazás alapértelmezett URL-címe `https://<app_name>.azurewebsites.net`. 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-Hello webalkalmazás létrehozásakor hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg:
+A webalkalmazás létrehozása után az Azure CLI az alábbi példához hasonló információkat jelenít meg:
 
 ```json
 {

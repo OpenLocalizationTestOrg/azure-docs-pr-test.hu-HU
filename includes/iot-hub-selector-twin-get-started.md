@@ -3,37 +3,36 @@
 > * [C#/node.js](../articles/iot-hub/iot-hub-csharp-node-twin-getstarted.md)
 > * [C#](../articles/iot-hub/iot-hub-csharp-csharp-twin-getstarted.md)
 > * [Java](../articles/iot-hub/iot-hub-java-java-twin-getstarted.md)
+> * [Python](../articles/iot-hub/iot-hub-python-twin-getstarted.md)
 
-Az ikereszközök JSON-dokumentumok, amelyek az eszközök állapotinformációit (metaadatokat, konfigurációkat és állapotokat) tárolják. Az IoT-központ továbbra is fennáll, egy eszköz iker tooit csatlakozó eszközökről.
+Az ikereszközök JSON-dokumentumok, amelyek az eszközök állapotinformációit (metaadatokat, konfigurációkat és állapotokat) tárolják. Az IoT-központ továbbra is fennáll, egy eszköz iker az egyes eszközök ahhoz csatlakozó ügyfélnél.
 
 Az eszköz twins használja:
 
 * A megoldás háttérből eszköz metaadatait tárolja.
-* Például a rendelkezésre álló lehetőségeket, és a feltételek (például hello kapcsolat használt módszer) aktuális állapotadatokat jelentést az eszköz alkalmazásból.
-* Egy eszköz alkalmazás és a háttér-alkalmazások között (például a belső vezérlőprogram és konfigurációja frissítések) hosszan futó munkafolyamatok hello állapotának szinkronizálása.
+* Például a rendelkezésre álló lehetőségeket, és a feltételek (például a kapcsolat használt módszer) aktuális állapotadatokat jelentést az eszköz alkalmazásból.
+* Egy eszköz alkalmazás és a háttér-alkalmazások között (például a belső vezérlőprogram és konfigurációja frissítések) hosszan futó munkafolyamatok állapotának szinkronizálása.
 * Az eszköz metaadatait, konfigurációs vagy az állapot lekérdezése.
 
 > [!NOTE]
-> Eszköz twins úgy tervezték, a szinkronizálás és eszköz-konfigurációk és a kikötések lekérdezése. Ha toouse eszköz twins itt található: a további informations [eszköz twins megértéséhez][lnk-twins].
+> Eszköz twins úgy tervezték, a szinkronizálás és eszköz-konfigurációk és a kikötések lekérdezése. További információ a használati eszköz twins található [eszköz twins megértéséhez][lnk-twins].
 
 Eszköz twins az IoT-központ tárolódnak, és tartalmazza:
 
-* *címkék*, csak hello megoldás háttérrendszerének; által elérhető eszköz metaadatait
-* *szükségeskonfiguráció-tulajdonságok*, hello megoldás által módosítható JSON-objektumok biztonsági vége és megfigyelhető hello eszközalkalmazás; és
-* *Tulajdonságok jelentett*, JSON-objektumok hello eszköz alkalmazás által módosítható és hello megoldás háttérrendszerének által is olvasható. Címkék és a Tulajdonságok tömb nem tartalmazhat, de az objektumok egymásba ágyazható.
+* *címkék*, csak a megoldás háttérrendszeréhez; által elérhető eszköz metaadatait
+* *szükségeskonfiguráció-tulajdonságok*, a megoldás által módosítható JSON-objektumok biztonsági vége és megfigyelhető az eszköz alkalmazás; és
+* *Tulajdonságok jelentett*, JSON-objektumok módosítható az eszköz alkalmazás, és a megoldás háttérrendszeréhez által is olvasható. Címkék és a Tulajdonságok tömb nem tartalmazhat, de az objektumok egymásba ágyazható.
 
 ![][img-twin]
 
-Emellett hello megoldás háttérrendszerének lekérdezheti az eszköz twins összes hello fenti adatok alapján.
-Tekintse meg a túl[eszköz twins megértéséhez] [ lnk-twins] további információt az eszköz twins és toohello [IoT-központ lekérdezési nyelv] [ lnk-query] referencia a lekérdezésre.
+Ezen felül a megoldás háttérrendszeréhez lekérdezheti az eszköz twins a fenti adatok alapján.
+Tekintse meg [eszköz twins megértéséhez] [ lnk-twins] eszköz twins, és a további információt a [IoT-központ lekérdezési nyelv] [ lnk-query] hivatkozást lekérdezése.
 
-> [!NOTE]
-> Ilyenkor eszköz twins elérhetők, csak az eszközök, tooIoT központi csatlakozás hello MQTT protokoll használatával. Tekintse meg a toohello [MQTT támogatási] [ lnk-devguide-mqtt] a cikk útmutatást tooconvert meglévő eszköz alkalmazás toouse MQTT.
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* Hozzon létre egy háttér-alkalmazást, amely *címkék* tooa eszköz iker, és a szimulált eszköz alkalmazást, amely kapcsolatát jelentések csatorna egy *tulajdonság jelentett* a hello eszköz iker.
-* A háttér-alkalmazás szűrők használata a hello címkék és a korábban létrehozott tulajdonságok eszközök lekérdezése.
+* Hozzon létre egy háttér-alkalmazást, amely *címkék* egy eszköz iker, és a szimulált eszköz alkalmazást, amely szerint a kapcsolat csatorna jelentések egy *tulajdonság jelentett* meg az eszköz iker.
+* A szűrők használata a címkék és a korábban létrehozott tulajdonságok a háttér-alkalmazás eszközök lekérdezése.
 
 <!-- images -->
 [img-twin]: media/iot-hub-selector-twin-get-started/twin.png

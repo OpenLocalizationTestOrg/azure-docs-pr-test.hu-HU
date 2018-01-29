@@ -1,19 +1,19 @@
-Ha már nincs szüksége, amely csatolt tooa virtuális gép (VM) adatlemezt, könnyen leválasztás. Ha Ön a lemezt leválasztani a virtuális gép hello, hello lemez nem raktárból azt. Ha újra toouse hello meglévő hello a lemezen lévő adatokat, akkor is csatlakoztassa újra toohello azonos virtuális gép vagy egy másikra.  
+Ha már nincs szüksége egy virtuális géphez (VM-hez) csatolt adatlemezre, könnyedén leválaszthatja. Amikor leválaszt egy lemezt a virtuális gépről, a lemezt nem távolítja el a tárolóból. Ha ismét használni szeretné a lemezen lévő adatokat, újból csatolhatja ugyanahhoz vagy egy másik virtuális géphez.  
 
 > [!NOTE]
-> Az Azure-ban a virtuális gépek különböző lemeztípusokat használnak – operációsrendszer-lemezt, helyi ideiglenes lemezt és opcionális adatlemezeket. További információ: [A lemezek és virtuális merevlemezek ismertetése](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Operációsrendszer-lemez nem választható le, kivéve, ha a virtuális gép hello is törli.
+> Az Azure-ban a virtuális gépek különböző lemeztípusokat használnak – operációsrendszer-lemezt, helyi ideiglenes lemezt és opcionális adatlemezeket. További információ: [A lemezek és virtuális merevlemezek ismertetése](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Az operációsrendszer-lemezeket csak akkor választhatja le, ha a virtuális gépet is törli.
 
-## <a name="find-hello-disk"></a>Hello lemez található
-Akkor is a lemezt leválasztani a virtuális gép kell toofind kimenő hello logikai egység száma, amely hello lemez toobe leválasztott azonosítója. az toodo, kövesse az alábbi lépéseket:
+## <a name="find-the-disk"></a>A lemez megkeresése
+Mielőtt leválaszthatna egy lemezt egy virtuális gépről, meg kell keresnie a LUN számot, amely a leválasztani kívánt lemez azonosítója. Ehhez kövesse az alábbi lépéseket:
 
-1. Nyissa meg az Azure CLI és [csatlakozás Azure-előfizetés tooyour](../articles/xplat-cli-connect.md). Bizonyosodjon meg róla, Azure szolgáltatásfelügyelet módban van-e (`azure config mode asm`).
-2. Annak meghatározása, hogy mely lemezek csatolt tooyour VM-et hello alábbi példa felsorolja hello nevű virtuális gép lemezeinek `myVM`:
+1. Nyissa meg az Azure CLI-t, és [csatlakozzon Azure-előfizetéséhez](/cli/azure/authenticate-azure-cli). Bizonyosodjon meg róla, Azure szolgáltatásfelügyelet módban van-e (`azure config mode asm`).
+2. Azonosítsa, hogy mely lemezek vannak a virtuális gépéhez csatolva. Az alábbi példa felsorolja a `myVM` nevű virtuális gép lemezeit:
 
     ```azurecli
     azure vm disk list myVM
     ```
 
-    hello hasonló toohello a következő példa a kimenetre:
+    A kimenet a következő példához hasonló:
 
     ```azurecli
     * Fetching disk images
@@ -26,12 +26,12 @@ Akkor is a lemezt leválasztani a virtuális gép kell toofind kimenő hello log
       info:    vm disk list command OK
     ```
 
-3. Vegye figyelembe a logikai egység hello vagy hello **logikaiegység-szám** , amelyet az toodetach hello lemezhez.
+3. Jegyezze fel a leválasztani kívánt lemez LUN-ját (**logikaiegység-szám**).
 
-## <a name="remove-operating-system-references-toohello-disk"></a>Operációs rendszer hivatkozások toohello lemez eltávolítása
-Mielőtt hello lemez leválasztása a hello Linux Vendég, meg kell győződnie arról, hogy minden partíció hello lemezen nincsenek használatban. Győződjön meg arról, hogy hello operációs rendszer nem próbálkozik tooremount őket a rendszer újraindítása után. Ezeket a lépéseket a visszavonás vélhetőleg létrehozta azon mikor hello konfigurációs [csatolása](../articles/virtual-machines/linux/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) hello lemez.
+## <a name="remove-operating-system-references-to-the-disk"></a>A lemezre mutató operációs rendszerbeli hivatkozások eltávolítása
+Mielőtt leválasztaná a lemezt a Linux-vendégről, meg kell győződnie arról, hogy a lemez egyik partíciója sincs használatban. Győződjön meg arról, hogy az operációs rendszer nem kísérli meg újból csatlakoztatni őket az újraindítás után. Ezek a lépések visszavonják a lemez [csatolásakor](../articles/virtual-machines/linux/classic/attach-disk-classic.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) valószínűleg létrehozott konfigurációt.
 
-1. Használjon hello `lsscsi` parancs toodiscover hello lemez azonosítója. Az `lsscsi` a `yum install lsscsi` (Red Hat-alapú disztribúciókon) vagy az `apt-get install lsscsi` (Debian-alapú disztribúciókon) használatával telepíthető. Hello LUN számot a keresett hello lemezazonosítót található. hello utolsó hello rekordot sorokban értéke hello logikai Egységet. Az alábbi példa hello `lsscsi`, LUN 0 leképezhető túl  */dev/sdc*
+1. Az `lsscsi` paranccsal derítse fel a lemez azonosítóját. Az `lsscsi` a `yum install lsscsi` (Red Hat-alapú disztribúciókon) vagy az `apt-get install lsscsi` (Debian-alapú disztribúciókon) használatával telepíthető. A LUN számmal megtalálhatja a keresett lemezazonosítót. Minden sorban a rekord utolsó száma a LUN szám. A következő `lsscsi`-példában a LUN 0 a következőnek felel meg: */dev/sdc*
 
     ```bash
     [1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
@@ -40,7 +40,7 @@ Mielőtt hello lemez leválasztása a hello Linux Vendég, meg kell győződnie 
     [5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc
     ```
 
-2. Használjon `fdisk -l <disk>` hello lemez toobe leválasztott társított toodiscover hello partíciókat. hello következő példa bemutatja a hello kimeneti `/dev/sdc`:
+2. Az `fdisk -l <disk>` paranccsal fedezze fel a leválasztani kívánt lemezzel társított partíciókat. Az alábbi példa a `/dev/sdc` kimenetét mutatja be:
 
     ```bash
     Disk /dev/sdc: 1098.4 GB, 1098437885952 bytes, 2145386496 sectors
@@ -54,13 +54,13 @@ Mielőtt hello lemez leválasztása a hello Linux Vendég, meg kell győződnie 
     /dev/sdc1            2048  2145386495  1072692224   83  Linux
     ```
 
-3. Mindegyik partíció felsorolt hello lemez leválasztása. hello alábbi példa leválasztja `/dev/sdc1`:
+3. Válassza le a lemezhez felsorolt összes partíciót. Az alábbi példa leválasztja a következőt: `/dev/sdc1`
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-4. Használjon hello `blkid` parancs toodiscovery hello UUID-k minden partíció esetében. hello hasonló toohello a következő példa a kimenetre:
+4. A `blkid` paranccsal derítse fel az összes partíció UUID-jét. A kimenet a következő példához hasonló:
 
     ```bash
     /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
@@ -68,7 +68,7 @@ Mielőtt hello lemez leválasztása a hello Linux Vendég, meg kell győződnie 
     /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
     ```
 
-5. Távolítsa el a bejegyzéseket hello **/etc/fstab** tartozó hello eszköz elérési utak vagy UUID-k hello lemez toobe leválasztott tartozó összes partíció fájlt.  Ebben a példában a bejegyzések a következők lehetnek:
+5. Távolítsa el az eszközútvonalakkal vagy az összes partíció UUID-ivel társított **/etc/fstab** fájlban lévő bejegyzéseket a lemez leválasztásához.  Ebben a példában a bejegyzések a következők lehetnek:
 
     ```sh  
    UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
@@ -80,23 +80,23 @@ Mielőtt hello lemez leválasztása a hello Linux Vendég, meg kell győződnie 
    /dev/sdc1   /datadrive   ext4   defaults   1   2
    ```
 
-## <a name="detach-hello-disk"></a>Hello lemez leválasztása
-Hello logikai egység száma hello lemez és eltávolított hello operációs rendszer hivatkozások megtalálta most készen áll a toodetach azt:
+## <a name="detach-the-disk"></a>A lemez leválasztása
+Miután megtalálta a lemez LUN számát és eltávolította az operációs rendszer hivatkozásait, készen áll a lemez leválasztására:
 
-1. Hello kijelölt lemezt leválasztani a virtuális gép hello hello parancs futtatásával `azure vm disk detach
-   <virtual-machine-name> <LUN>`. hello alábbi példa leválasztja LUN `0` hello nevű virtuális gép a `myVM`:
+1. A következő parancs futtatásával válassza le a kiválasztott lemezt a virtuális gépről: `azure vm disk detach
+   <virtual-machine-name> <LUN>`. Az alábbi példa leválasztja a `0` LUN számú lemezt a `myVM` nevű virtuális gépről:
    
     ```azurecli
     azure vm disk detach myVM 0
     ```
 
-2. Ha hello lemez leválasztott állapotban a kapott a következő futtatásával ellenőrizheti `azure vm disk list` újra. a következő példa ellenőrzések hello hello nevű virtuális gép `myVM`:
+2. A `azure vm disk list` ismételt futtatásával ellenőrizheti, hogy leválasztotta-e a lemezt. Az alábbi példa ellenőrzi a `myVM` nevű virtuális gépet:
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    a kimeneti hello van a hasonló toohello következő példának, amely bemutatja a hello adatok lemez már csatlakoztatva van:
+    A kimenet a következő példához hasonló, amelyen látható, hogy az adatlemez már nincs csatolva:
 
     ```azurecli
     info:    Executing command vm disk list
@@ -110,5 +110,5 @@ Hello logikai egység száma hello lemez és eltávolított hello operációs re
      info:    vm disk list command OK
     ```
 
-lemez leválasztása hello tárolási megmarad, de már nem csatlakoztatott tooa virtuális gépet.
+A leválasztott lemez a tárolóban marad, de más nincs virtuális géphez csatlakoztatva.
 

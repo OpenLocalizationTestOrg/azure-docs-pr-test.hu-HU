@@ -1,0 +1,104 @@
+- name: Hozzáférés kezelésének áttekintése
+  href: manage-access-to-azure-resources.md
+- name: Erőforrás-hozzáférés az Azure-ban
+  href: active-directory-understanding-resource-access.md
+- name: Szerepköralapú hozzáférés-vezérlés (RBAC)
+  href: role-based-access-control-what-is.md
+  items:
+    - name: Hozzáférés-hozzárendelések kezelése
+      items:
+        - name: Felhasználó szerint
+          href: role-based-access-control-manage-assignments.md
+        - name: Erőforrás szerint
+          href: role-based-access-control-configure.md
+    - name: Beépített szerepkörök
+      href: role-based-access-built-in-roles.md
+    - name: Egyéni szerepkörök
+      href: role-based-access-control-custom-roles.md
+    - name: Egyéni szerepkörök hozzárendelése belső és külső felhasználókhoz
+      href: role-based-access-control-create-custom-roles-for-internal-external-users.md
+    - name: Jelentéskészítés
+      href: role-based-access-control-access-change-history-report.md
+    - name: Szerepkörök kezelésének további módjai
+      items:
+        - name: Az Azure CLI-vel
+          href: role-based-access-control-manage-access-azure-cli.md
+        - name: A PowerShell-lel
+          href: role-based-access-control-manage-access-powershell.md
+        - name: A REST-tel
+          href: role-based-access-control-manage-access-rest.md
+    - name: Bérlői rendszergazda hozzáférési szintjének emelése
+      href: role-based-access-control-tenant-admin-access.md
+    - name: Hibaelhárítás
+      href: role-based-access-control-troubleshooting.md
+    - name: Erőforrás-szolgáltatói műveletek
+      href: role-based-access-control-resource-provider-operations.md
+- name: Privileged Identity Management (PIM) RBAC-hez
+  href: pim-azure-resource.md
+- name: Feltételes hozzáférés az Azure felügyeleti szolgáltatásaihoz
+  href: conditional-access-azure-management.md
+- name: Felügyeltszolgáltatás-identitás
+  href: msi-overview.md
+  items:
+    - name: Az MSI konfigurálása Azure-beli virtuális géphez
+      items:
+        - name: Az Azure Portal használata
+          href: msi-qs-configure-portal-windows-vm.md
+        - name: A PowerShell használata
+          href: msi-qs-configure-powershell-windows-vm.md
+        - name: Az Azure parancssori felület használata
+          href: msi-qs-configure-cli-windows-vm.md
+        - name: Az Azure Resource Manager-sablonok használata
+          href: msi-qs-configure-template-windows-vm.md
+        - name: Az Azure SDK használata
+          href: msi-qs-configure-sdk-windows-vm.md
+    - name: Virtuális gép MSI hozzáférésének biztosítása a Resource Managerhez
+      items:
+        - name: Az Azure Portal használata
+          href: msi-howto-assign-access-portal.md
+        - name: A PowerShell használata
+          href: msi-howto-assign-access-powershell.md
+        - name: Az Azure parancssori felület használata
+          href: msi-howto-assign-access-cli.md
+    - name: Virtuális gép MSI használata
+      items:
+        - name: Hozzáférési jogkivonat beszerzése
+          href: msi-how-to-use-vm-msi-token.md
+        - name: Bejelentkezés a PowerShellbe és az Azure CLI-be
+          href: msi-how-to-use-vm-msi-sign-in.md
+        - name: Használat Azure SDK-kal
+          href: msi-how-to-use-vm-msi-sdk.md
+    - name: Virtuális gép MSI használata az Azure Data Lake Store eléréséhez
+      items:
+        - name: Windows rendszerű virtuális gépről
+          href: msi-tutorial-windows-vm-access-datalake.md
+        - name: Linux rendszerű virtuális gépről
+          href: msi-tutorial-linux-vm-access-datalake.md
+    - name: Virtuális gép MSI használata az Azure Resource Manager eléréséhez
+      items:
+        - name: Windows rendszerű virtuális gépről
+          href: msi-tutorial-windows-vm-access-arm.md
+        - name: Linux rendszerű virtuális gépről
+          href: msi-tutorial-linux-vm-access-arm.md
+    - name: Virtuális gép MSI használata az Azure SQL eléréséhez
+      items:
+        - name: Windows rendszerű virtuális gépről
+          href: msi-tutorial-windows-vm-access-sql.md
+    - name: Virtuális gép MSI használata egy Azure-tároló eléréséhez
+      items:
+        - name: Windows rendszerű virtuális gépről hozzáférési kulccsal
+          href: msi-tutorial-windows-vm-access-storage.md
+        - name: Windows rendszerű virtuális gépről SAS-szel
+          href: msi-tutorial-windows-vm-access-storage-sas.md
+        - name: Linux rendszerű virtuális gépről hozzáférési kulccsal
+          href: msi-tutorial-linux-vm-access-storage.md
+        - name: Linux rendszerű virtuális gépről SAS-szel
+          href: msi-tutorial-linux-vm-access-storage-sas.md
+    - name: Virtuális gép MSI használata az Azure Key Vault eléréséhez
+      items:
+        - name: Windows rendszerű virtuális gépről
+          href: msi-tutorial-windows-vm-access-nonaad.md
+        - name: Linux rendszerű virtuális gépről
+          href: msi-tutorial-linux-vm-access-nonaad.md
+    - name: Gyakori kérdések és ismert problémák
+      href: msi-known-issues.md

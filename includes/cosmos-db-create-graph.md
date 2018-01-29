@@ -1,16 +1,16 @@
-Hello Data Explorer eszköz már használhatja, ha az Azure portál toocreate egy grafikonon adatbázis hello. 
+Az Azure Portal Adatkezelő eszközét mostantól gráfadatbázisok létrehozására is használhatja. 
 
-1. Hello hello bal oldali navigációs menü, Azure-portálon kattintson **adatok kezelővel (előzetes verzió)**. 
-2. A hello **adatok kezelővel (előzetes verzió)** panelen kattintson a **új Graph**, használja a következő információ hello hello lapon töltse ki.
+1. Az Azure portálon a bal oldali menüben válassza ki a **adatok kezelővel (előzetes verzió)**.
 
-    ![Az Azure-portálon hello adatkezelő](./media/cosmos-db-create-graph/azure-cosmosdb-data-explorer.png)
+2. A **adatok kezelővel (előzetes verzió)**, jelölje be **új diagram**. Az alábbi információk segítségével, majd adja meg a lap:
+
+    ![Adatkezelő az Azure Portalon](./media/cosmos-db-create-graph/azure-cosmosdb-data-explorer.png)
 
     Beállítás|Ajánlott érték|Leírás
     ---|---|---
-    Adatbázis azonosítója|sample-database|az új adatbázis hello azonosítója. Az adatbázis neve 1–255 karakter hosszúságú lehet, és nem tartalmazhat `/ \ # ?` karaktereket vagy záró szóközt.
-    Gráfazonosító|sample-graph|az új diagram hello azonosítója. Graph nevek rendelkezik hello azonos követelmények karakter, adatbázis-azonosító.
-    Tárkapacitás| 10 GB|Hagyja hello alapértelmezett értéket. Ez a hello tárolási kapacitás hello adatbázis.
-    Teljesítmény|400 kérelemegység|Hagyja hello alapértelmezett értéket. Legfeljebb hello átviteli később Ha azt szeretné, hogy tooreduce késés.
-    Partíciókulcs|/userid|A partíciós kulcs, amely egyenletes elosztása adatok tooeach partíció. Megfelelő partíciókulcs fontos létrehozni egy performant hello kiválasztásával diagramot, további tájékoztatást talál a [a particionálás tervezése](../articles/cosmos-db/partition-data.md#designing-for-partitioning).
+    Adatbázis azonosítója|sample-database|Az új adatbázisnak adja a *sample-database* nevet. Adatbázis nevének 1 és 255 karakter közé kell esnie, és nem tartalmazhat `/ \ # ?` vagy záró szóköz.
+    Gráfazonosító|sample-graph|Az új gyűjteménynek adja a *sample-graph* nevet. A gráfok nevére ugyanazok a karakterkorlátozások vonatkoznak, mint az adatbázis-azonosítókra.
+    Tárkapacitás| 10 GB|Ne módosítsa az alapértelmezett értéket. Ez az adatbázis tárkapacitása.
+    Teljesítmény|400 kérelemegység|Ne módosítsa az alapértelmezett értéket. Később lehetősége lesz növelni az átviteli sebességet a késés csökkentése érdekében.
 
-3. Amikor hello űrlap ki van töltve, kattintson a **OK**.
+3. Miután a rendszer kitölti az űrlapot, jelölje ki a **OK**.

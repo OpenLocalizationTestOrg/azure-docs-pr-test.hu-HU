@@ -1,53 +1,52 @@
-# <a name="scale-agent-nodes-in-a-container-service-cluster"></a>Ügynökcsomópontok méretezése a Container Service-fürtökben
-Miután [Azure Tárolószolgáltatás-fürt telepítése](../articles/container-service/dcos-swarm/container-service-deployment.md), előfordulhat, hogy az ügynök csomópontok toochange hello számát. Például ha több ügynökre van szüksége további tárolóalkalmazások vagy -példányok futtatásához. 
+[Az Azure Container Service-fürt üzembe helyezését követően](../articles/container-service/dcos-swarm/container-service-deployment.md) előfordulhat, hogy módosítania kell az ügynökcsomópontok számát. Például ha több ügynökre van szüksége további tárolóalkalmazások vagy -példányok futtatásához. 
 
-DC/OS, Docker Swarm vagy Kubernetes fürt csomópontjai ügynök hello számának módosításához hello Azure-portál használatával, vagy Azure CLI 2.0 hello. 
+Az Azure Portal vagy az Azure CLI 2.0 használatával módosíthatja az ügynökcsomópontok számát DC/OS-, Docker Swarm- vagy Kubernetes-fürtökben. 
 
-## <a name="scale-with-hello-azure-portal"></a>Méretezést hello Azure-portálon
+## <a name="scale-with-the-azure-portal"></a>Méretezés az Azure Portal használatával
 
-1. A hello [Azure-portálon](https://portal.azure.com), tallózással keresse meg **tárolószolgáltatásainak**, majd kattintson a megjeleníteni kívánt toomodify hello tárolószolgáltatás.
-2. A hello **tárolószolgáltatás** panelen kattintson a **ügynökök**.
-3. A **virtuális gépek száma**, adja meg a szükséges hello ügynökök csomópontok száma.
+1. Az [Azure Portalon](https://portal.azure.com) lépjen a **Container Services** felületre, majd kattintson a módosítani kívánt tárolószolgáltatásra.
+2. A **Tárolószolgáltatás** panelen kattintson az **Ügynökök** elemre.
+3. A **Virtuális gépek száma** mezőben adja meg az ügynökcsomópontok kívánt számát.
 
-    ![Egy készlet hello portálon méretezése](./media/container-service-scale/container-service-scale-portal.png)
+    ![Készlet méretezése a portálon](./media/container-service-scale/container-service-scale-portal.png)
 
-4. toosave hello konfigurációs, kattintson a **mentése**.
+4. A konfiguráció mentéséhez kattintson a **Mentés** gombra.
 
-## <a name="scale-with-hello-azure-cli-20"></a>Az Azure CLI 2.0 hello méretezése
+## <a name="scale-with-the-azure-cli-20"></a>Méretezés az Azure CLI 2.0 használatával
 
-Győződjön meg arról, hogy Ön [telepített](/cli/azure/install-az-cli2) hello Azure CLI legújabb 2.0 és tooan bejelentkezve azure-fiók (`az login`).
+Győződjön meg arról, hogy [telepítve van](/cli/azure/install-az-cli2) a legfrissebb Azure CLI 2.0, és hogy bejelentkezett egy Azure-fiókba (`az login`).
 
-### <a name="see-hello-current-agent-count"></a>Lásd: hello aktuális ügynökök száma
-jelenleg ügynökök száma toosee hello hello fürtben futtatni hello `az acs show` parancsot. Ez azt jelenti, hello fürtkonfiguráció. Például a parancs azt mutatja be hello nevű hello tároló szolgáltatás konfigurációját a következő hello `containerservice-myACSName` hello erőforráscsoportban `myResourceGroup`:
+### <a name="see-the-current-agent-count"></a>Az ügynökök aktuális számának megtekintése
+A jelenleg a fürtben lévő ügynökök számának megtekintéséhez futtassa az `az acs show` parancsot. Ez megjeleníti a fürtkonfigurációt. Az alábbi parancs például a `myResourceGroup` erőforráscsoportban lévő `containerservice-myACSName` nevű tárolószolgáltatás konfigurációját jeleníti meg:
 
 ```azurecli
 az acs show -g myResourceGroup -n containerservice-myACSName
 ```
 
-hello parancs hello ügynökök számát adja vissza hello `Count` értékét `AgentPoolProfiles`.
+A parancs az ügynökök számát a `Count` értékében adja vissza az `AgentPoolProfiles` területen.
 
-### <a name="use-hello-az-acs-scale-command"></a>Használja hello az acs méretezési parancs
-ügynök csomópontok, futtassa a hello toochange hello száma `az acs scale` parancsot, és a szállítási hello **erőforráscsoport**, **Tárolónév-szolgáltatás**, és a szükséges hello **új ügynökök száma**. Alacsonyabb illetve magasabb érték megadásával vertikálisan le- illetve felskálázhatja a fürtöt.
+### <a name="use-the-az-acs-scale-command"></a>Az acs scale parancs használata
+Az ügynökcsomópontok számának módosításához futtassa az `az acs scale` parancsot, és adja meg az **erőforráscsoportot**, a **tárolószolgáltatás nevét** és az **ügynökök új számának** kívánt értékét. Alacsonyabb illetve magasabb érték megadásával vertikálisan le- illetve felskálázhatja a fürtöt.
 
-Például toochange hello ügynökök száma hello előző fürt too10, típus hello a következő parancsot:
+Például ha az előző fürtben az ügynökök számát 10-re szeretné módosítani, a következő parancsot adja meg:
 
 ```azurecli
 az acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 10
 ```
 
-hello Azure CLI 2.0 adja vissza JSON karakterláncként hello új konfigurációjának hello tárolószolgáltatás, beleértve a hello új ügynökök száma.
+Az Azure CLI 2.0 egy JSON-karakterláncot ad vissza, amely a tárolószolgáltatás új konfigurációját jelöli, beleértve az ügynökök új számát is.
 
 További parancsbeállításokért futtassa az `az acs scale --help` parancsot.
 
 ## <a name="scaling-considerations"></a>Méretezési szempontok
 
-* hello ügynök csomópontok száma 1 és 100, a határokat is beleértve között kell lennie. 
+* Az ügynökcsomópontok számának 1 és 100 közé kell esnie, a határokat is beleértve. 
 
-* A magok kvótájának hello ügynök fürtben található csomópontok számát korlátozhatja.
+* Magkvótája korlátozhatja a lehetséges ügynökcsomópontok számát a fürtben.
 
-* Ügynök csomópont skálázási műveletek esetében alkalmazott tooan Azure virtuális gépek méretezési hello ügynök készletet tartalmazó. A DC/OS fürtben csak ügynök csomópontok hello titkos készletben méretezve, ebben a cikkben szereplő hello műveletei által.
+* Az ügynökcsomópontok méretezésére irányuló műveletek egy, az ügynökkészletet tartalmazó Azure virtuálisgép-méretezési csoporton lesznek végrehajtva. A DC/OS-fürtökben a jelen cikkben bemutatott műveletekkel csak a magánkészletekben lévő ügynökcsomópontok méretezhetők.
 
-* Attól függően, hogy a fürt telepítése hello orchestrator külön-külön méretezheti a tároló hello fürtben futó példányok hello száma. Például a DC/OS fürtben, használja a hello [Marathon felhasználói felület](../articles/container-service/dcos-swarm/container-service-mesos-marathon-ui.md) toochange hello több példányban egy tároló alkalmazást.
+* A fürtben üzembe helyezett vezénylőtől függően külön méretezheti a fürtben futó tárolók példányainak számát. A DC/OS-fürtökben például a [Marathon felhasználói felület](../articles/container-service/dcos-swarm/container-service-mesos-marathon-ui.md) használatával módosíthatja a tárolóalkalmazások példányainak számát.
 
 * Az ügynökcsomópontok automatikus méretezése a Container Service-fürtökben jelenleg nem támogatott.
 

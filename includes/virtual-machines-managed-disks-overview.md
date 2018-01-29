@@ -1,37 +1,37 @@
 # <a name="azure-managed-disks-overview"></a>Az Azure felügyelt lemezekhez – áttekintés
 
-Azure-lemezeket felügyelt egyszerűbbé teszi a Lemezkezelés Azure IaaS virtuális gépek kezelésével hello [tárfiókok](../articles/storage/common/storage-introduction.md) hello virtuális gépek lemezei társított. Csak akkor kell toospecify hello típusa ([prémium](../articles/storage/common/storage-premium-storage.md) vagy [szabványos](../articles/storage/common/storage-standard-storage.md)) és hello mérete lemez van szüksége, és Azure hoz létre, és kezeli a hello lemez meg.
+Azure-lemezeket felügyelt egyszerűbbé teszi a Lemezkezelés Azure IaaS virtuális gépekhez való kezelésekor a [tárfiókok](../articles/storage/common/storage-introduction.md) a virtuális gépek lemezei társított. Csak akkor kell megadnia a típus ([prémium](../articles/virtual-machines/windows/premium-storage.md) vagy [szabványos](../articles/virtual-machines/windows/standard-storage.md)) lemez mérete van szüksége, és Azure hoz létre, és az Ön kezeli a lemezt.
 
 ## <a name="benefits-of-managed-disks"></a>Felügyelt lemezek előnyei
 
-Vessen egy pillantást, néhány hello előnyt ettől kezdve által kezelt lemezek segítségével kezdődő, és ezt a Channel 9 videót [jobb Azure VM rugalmassági felügyelt lemezzel](https://channel9.msdn.com/Blogs/Azure/Managed-Disks-for-Azure-Resiliency).
+Vessen egy pillantást, ettől kezdve által kezelt lemezek segítségével kezdődő, és ezt a Channel 9 videót előnyöket nyújtja [jobb Azure VM rugalmassági felügyelt lemezzel](https://channel9.msdn.com/Blogs/Azure/Managed-Disks-for-Azure-Resiliency).
 <br/>
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Managed-Disks-for-Azure-Resiliency/player]
 
 ### <a name="simple-and-scalable-vm-deployment"></a>Egyszerű és skálázható módon telepíthetők a Virtuálisgép-telepítéshez
 
-Kezelve lemezek leírók tárolási hello színfalak mögött. Toocreate fiókok toohold hello tárolólemezek (VHD-fájlokat) korábban, az Azure virtuális gépeken volt. Ha vertikális felskálázásával, kellett toomake, így nem haladhatja meg a tárolási IOPS-korláttal hello egyetlen, a lemezek létrehozott további tárfiókokat. A felügyelt lemezek kezelése tárolási, már nem korlátozott hello tárfiókok korlátai által (például a 20 000 IOPS / fiók). Már nem rendelkezik toocopy az egyéni lemezképek (VHD-fájlokat) toomultiple storage-fiókok. – Egy tárfiókot Azure régiónként – központi helyen kezelheti azokat, és használatuk toocreate több száz virtuális gépek egy előfizetésben.
+Kezelve lemezek leírók tárolási a háttérben. Korábban meg kellett storage-fiókok a lemezeket (VHD-fájlokat) az Azure virtuális gépek tárolására. Ha vertikális felskálázásával, ellenőrizze, hogy további tárfiókok létrehozott, a lemezek egyik tárolási IOPS-korláttal nem haladhatja meg kellett. A felügyelt lemezek kezelése tárolási, már nem korlátozott a tárfiókok korlátai által (például a 20 000 IOPS / fiók). Már nem kell több tárfiókot másolja az egyéni lemezképek (VHD-fájlokat). – Egy tárfiókot Azure régiónként – központi helyen kezelheti azokat, és hozhatók létre a virtuális gépek több száz egy előfizetésben.
 
-Felügyelt lemezek lehetővé teszi a too10, 000 virtuális gép mentése toocreate **lemezek** egy előfizetésben található, amely lehetővé teszi a több ezer toocreate **virtuális gépek** az egy-egy előfizetéshez. Ez a szolgáltatás tovább növeli a hello méretezhetőségét [virtuális gép méretezési készletek (VMSS)](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) : lehetővé teszi a Piactéri rendszerkép használatával egy VMSS toocreate tooa ezer virtuális gépeinek.
+Felügyelt lemezek lehetővé teszi, hogy legfeljebb 10 000 virtuális gép létrehozása **lemezek** egy előfizetésben található, amely lehetővé teszi a több ezer létrehozásához **virtuális gépek** az egy-egy előfizetéshez. Ez a szolgáltatás tovább növeli a méretezhetőséget biztosít a [virtuális gép méretezési készletek (VMSS)](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) azáltal, hogy legfeljebb egy ezred virtuális gépeket létrehozni a Piactéri rendszerkép használatával VMSS.
 
 ### <a name="better-reliability-for-availability-sets"></a>A rendelkezésre állási csoportok jobb megbízhatóságot
 
-Győződjön meg arról, hogy hello által kezelt lemezek biztosít az a rendelkezésre állási csoportok nagyobb megbízhatóságot lemezek [virtuális gépek rendelkezésre állási csoport](../articles/virtual-machines/windows/manage-availability.md#use-managed-disks-for-vms-in-an-availability-set) elég elkülönül egymástól tooavoid egyetlen ponton felmerülő hibákat. Ennek érdekében automatikusan helyezi el hello lemezek különböző tárolási méretezési egységeit (bélyegek). A stamp toohardware-vagy szoftverhiba miatt meghiúsul, ha csak hello Virtuálisgép-példányok az adott bélyegzők lemezzel sikertelen lesz. Ha tegyük fel például, öt virtuális gépeken futó egy alkalmazást, és hello virtuális gépek rendelkezésre állási csoport. hello lemezeket a virtuális gépek nem tárolja a hello azonos stamp, így egyetlen stampet konfiguráljon leáll, ha hello más hello alkalmazás példányát tovább toorun.
+Felügyelt lemezek biztosít nagyobb megbízhatóságot rendelkezésre állási készletek biztosítva, hogy a lemezek [virtuális gépek rendelkezésre állási csoport](../articles/virtual-machines/windows/manage-availability.md#use-managed-disks-for-vms-in-an-availability-set) elég különítve egymástól elkerülése érdekében a hibaérzékeny pontokat. Ennek érdekében automatikusan helyezi el a lemezek különböző tárolási méretezési egységeit (bélyegek). A stamp hardver-vagy szoftverhiba miatt meghiúsul, ha csak a Virtuálisgép-példányok az adott bélyegzők lemezzel sikertelen. Ha tegyük fel például, öt virtuális gépeken futó egy alkalmazást, és a virtuális gépek rendelkezésre állási csoport. A lemezek a virtuális gépek nem tárolja az azonos bélyegen, így ha egyetlen stampet konfiguráljon leáll, az alkalmazás más példányát tovább futnak.
 
 ### <a name="highly-durable-and-available"></a>Tartós és magas rendelkezésre állású
 
-Az Azure Disks 99,999%-os elérhetőséggel büszkélkedhet. REST-könnyebb ismerete, hogy rendelkezik-e az adatok, amely lehetővé teszi a magas tartósság három replikákat. Egy vagy akár két replikák problémákba ütközhetnek, ha hello fennmaradó replikák biztosíthatja az adatok és a hibákkal szemben magas tolerancia megőrzése. Ezzel a kialakítással az Azure rendszeresen vállalati szintű tartósságot nyújthat az IaaS-lemezeknek, iparágvezető NULLA %-os Éves Hibaszázalékkal. 
+Az Azure Disks 99,999%-os elérhetőséggel büszkélkedhet. REST-könnyebb ismerete, hogy rendelkezik-e az adatok, amely lehetővé teszi a magas tartósság három replikákat. Ha egy vagy két replika meghibásodik, a fennmaradó replikák azok feladatátvételével garantálják az adatok megőrzését és a magas fokú hibatűrő képességet. Ezzel a kialakítással az Azure rendszeresen vállalati szintű tartósságot nyújthat az IaaS-lemezeknek, iparágvezető NULLA %-os Éves Hibaszázalékkal. 
 
 ### <a name="granular-access-control"></a>A részletes hozzáférés-vezérlés
 
-Használhat [átruházásához hozzáférés-vezérlés (RBAC)](../articles/active-directory/role-based-access-control-what-is.md) tooassign meghatározott engedélyek egy felügyelt lemezes tooone vagy több felhasználó. Felügyelt lemezek tesz elérhetővé a különféle műveletek, beleértve az olvasási, írási (létrehozása/frissítése), törölje és lekérése egy [közös hozzáférésű jogosultságkód (SAS) URI](../articles/storage/common/storage-dotnet-shared-access-signature-part-1.md) hello lemezhez. Meg lehet adni tooonly hello műveletek egy személy kell tooperform a feladata. Például ha egy személy toocopy felügyelt lemezes tooa tárfiók nem szeretné, választhat nem toogrant hozzáférés toohello exportálási művelet a felügyelt lemezt. Hasonlóképpen, ha nem szeretné, hogy egy személy toouse egy SAS URI toocopy felügyelt lemezes, választhat nem toogrant adott engedély toohello kezelt lemezre.
+Használhat [átruházásához hozzáférés-vezérlés (RBAC)](../articles/active-directory/role-based-access-control-what-is.md) felügyelt lemezes jellemző engedélyek hozzárendelése egy vagy több felhasználó. Felügyelt lemezek tesz elérhetővé a különféle műveletek, beleértve az olvasási, írási (létrehozása/frissítése), törölje és lekérése egy [közös hozzáférésű jogosultságkód (SAS) URI](../articles/storage/common/storage-dotnet-shared-access-signature-part-1.md) a lemezhez. Csak azokat a műveleteket, a feladat végrehajtásához szükséges egy személy hozzáférést biztosíthat. Például ha nem szeretné felügyelt lemezes tárfiókba másolása egy személy, is nem kíván hozzáférést biztosíthat az exportálási művelet a felügyelt lemezt. Hasonlóképpen ha egy személy egy SAS URI követve másolja át a felügyelt lemezes, hogy nem szeretné, dönthet úgy, nem engedélyt szeretne megadni, hogy a kezelt lemezre.
 
 ### <a name="azure-backup-service-support"></a>Az Azure Backup szolgáltatás támogatása
-Azure biztonsági mentési szolgáltatás használata felügyelt lemezek toocreate az idő-alapú biztonsági mentések, könnyű VM-helyreállítás és biztonsági másolatok megőrzésének házirendek segítségével a biztonsági mentési feladatot. Felügyelt lemezek csak támogatják az helyileg redundáns tárolás (LRS) hello replikációs beállítás; Ez azt jelenti, hogy egyetlen régión belül hello adatok három másolatot tart. Regionális vész-helyreállítási kell biztonsági mentést készíteni a virtuális gépek lemezei be egy másik régióban [Azure Backup szolgáltatás](../articles/backup/backup-introduction-to-azure-backup.md) és a biztonsági mentési tárolóval Georedundáns tárfiókot. Azure Backup szolgáltatás jelenleg adatok mérete too1TB fel a biztonsági mentéshez. További információk a következő [használata Azure Backup szolgáltatás felügyelt lemezzel rendelkező virtuális gépek](../articles/backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup).
+A felügyelt lemezek Azure Backup szolgáltatás használatával hozzon létre egy biztonsági mentési feladat idő-alapú biztonsági mentések, könnyű VM-helyreállítás és biztonsági mentési adatmegőrzési. Felügyelt lemezek csak támogatják az helyileg redundáns tárolás (LRS) a következő replikálási beállítás; Ez azt jelenti, hogy az adatok három másolatot tart egyetlen régión belül. Regionális vész-helyreállítási kell biztonsági mentést készíteni a virtuális gépek lemezei be egy másik régióban [Azure Backup szolgáltatás](../articles/backup/backup-introduction-to-azure-backup.md) és a biztonsági mentési tárolóval Georedundáns tárfiókot. Azure biztonsági mentési támogatja adatlemez jelenleg biztonsági mentés akár 1TB méretű. További információk a következő [használata Azure Backup szolgáltatás felügyelt lemezzel rendelkező virtuális gépek](../articles/backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup).
 
 ## <a name="pricing-and-billing"></a>Árak és számlázás
 
-Felügyelt lemezek használata esetén alkalmazza a következő számlázási szempontok hello:
+Felügyelt lemezek használatakor az alábbi számlázási szempontok érvényesek:
 * Tárolási típus
 
 * Lemezméret
@@ -44,26 +44,26 @@ Felügyelt lemezek használata esetén alkalmazza a következő számlázási sz
 
 Vegyük a következő részletes bemutatása.
 
-**Tárolási típus:** felügyelt lemezek 2 teljesítmény rétegek kínál: [prémium](../articles/storage/common/storage-premium-storage.md) (SSD-alapú) és [szabványos](../articles/storage/common/storage-standard-storage.md) (HDD-alapú). egy kezelt lemez hello számlázási attól függ, hello lemez kiválasztott tárolási típusát.
+**Tárolási típus:** felügyelt lemezek 2 teljesítmény rétegek kínál: [prémium](../articles/virtual-machines/windows/premium-storage.md) (SSD-alapú) és [szabványos](../articles/virtual-machines/windows/standard-storage.md) (HDD-alapú). Egy kezelt lemez számlázási függ a lemez kiválasztott tárolási típusát.
 
 
-**Lemezméret**: felügyelt lemezek számlázási hello lemez mérete kiépített hello függ. Azure maps hello (kerekítve) kiosztott mérete toohello legközelebbi hello az alábbi táblázatok a felügyelt lemezek lehetőséget. Minden felügyelt lemezes maps tooone a hello támogatott kiosztott méretek, és ennek megfelelően van-e terhelve. Például hozzon létre egy standard szintű felügyelt lemezes és 200 GB-os kiosztott méretet adjon meg, ha díját is felszámítjuk hello árképzése hello S20 lemeztípus szerint.
+**Lemezméret**: felügyelt lemezek számlázási a kiépített lemez méretének függ. Azure a kiépített mérete (kerekítve) van leképezve a legközelebbi felügyelt lemezek beállítást az alábbi táblázatban megadottak. Minden felügyelt lemezes egy, a támogatott kiosztott méretű van leképezve, és ennek megfelelően van-e terhelve. Például hozzon létre egy standard szintű felügyelt lemezes és 200 GB-os kiosztott méretet adjon meg, ha díját is felszámítjuk a S20 lemeztípus díjszabás szerint.
 
-Íme egy prémium szintű felügyelt lemezes hello mérete:
+Íme egy prémium szintű felügyelt lemezes a lemezméret:
 
-| **Prémium szintű kezelt <br>lemez típusa** | **P4** | **P6** |**P10** | **P20** | **P30** | **P40** | **P50** | 
-|------------------|---------|---------|---------|---------|----------------|----------------|----------------|  
-| Lemezméret        | 32 GB   | 64 GB   | 128 GB  | 512 GB  | 1024 GB (1 TB) | 2048 GB (2 TB) | 4095 GB (4 TB) | 
+| **Prémium szintű kezelt <br>lemez típusa** | **P4** | **P6** |**P10** | **P15** | **P20** | **P30** | **P40** | **P50** | 
+|------------------|---------|---------|---------|---------|---------|----------------|----------------|----------------|  
+| Lemezméret        | 32 GiB   | 64 GiB   | 128 GiB  | 256 GiB  | 512 GiB  | 1024 GiB (1 TiB) | 2048 GiB (2 TiB) | 4095 GiB (4 TiB) | 
 
 
-Íme egy standard szintű felügyelt lemezes hello mérete:
+Íme egy standard szintű felügyelt lemezes a lemezméret:
 
 | **Standard felügyelt <br>lemez típusa** | **S4** | **S6** | **S10** | **S20** | **S30** | **S40** | **S50** |
 |------------------|---------|---------|--------|--------|----------------|----------------|----------------| 
-| Lemezméret        | 32 GB   | 64 GB   | 128 GB | 512 GB | 1024 GB (1 TB) | 2048 GB (2 TB) | 4095 GB (4 TB) | 
+| Lemezméret        | 32 GiB   | 64 GiB   | 128 GiB | 512 GiB | 1024 GiB (1 TiB) | 2048 GiB (2 TiB) | 4095 GiB (4 TiB) | 
 
 
-**A tranzakciók számának**: hello hajt végre egy standard szintű felügyelt lemezes tranzakciók száma a kell fizetni. Nincs a prémium szintű felügyelt lemezes tranzakciók költség nélkül.
+**A tranzakciók számának**: hajt végre egy standard szintű felügyelt lemezes tranzakciók száma a kell fizetni. Nincs a prémium szintű felügyelt lemezes tranzakciók költség nélkül.
 
 **Kimenő adatátvitel**: [kimenő adatátviteli](https://azure.microsoft.com/pricing/details/data-transfers/) (az adatok Azure-adatközpont kilépő) gigabájtalapú sávszélesség-használat.
 
@@ -72,58 +72,58 @@ Felügyelt lemezek árakkal kapcsolatos részletes információkért lásd: [lem
 
 ## <a name="managed-disk-snapshots"></a>Felügyelt lemezes pillanatképek
 
-Felügyelt pillanatkép egy csak olvasható, teljes másolata egy felügyelt lemezes, amely alapértelmezés szerint egy standard szintű felügyelt lemezes tárolja. A pillanatképekkel akkor készíthet biztonsági másolatot a felügyelt lemezek bármikor időben. Ezeket a pillanatképeket hello forráslemez független is és lehet használt toocreate új kezelt lemezek. Azok a használt hello mérete alapján számlázzuk. Például ha 64 GB-os kiosztott kapacitását és tényleges használt adatok mérete 10 GB-os felügyelt lemezes pillanatképet hoz létre, pillanatkép alapján számlázzuk csak a használt hello adatok mérete 10 GB-os.  
+Felügyelt pillanatkép egy csak olvasható, teljes másolata egy felügyelt lemezes, amely alapértelmezés szerint egy standard szintű felügyelt lemezes tárolja. A pillanatképekkel akkor készíthet biztonsági másolatot a felügyelt lemezek bármikor időben. Ezeket a pillanatképeket független a forrás lemez létezik, és új kezelt lemezek létrehozásához használható. Azok a felhasznált mérete alapján számlázzuk. Például 64 GiB kiosztott kapacitását és tényleges használt adatok mérete 10 GiB felügyelt lemezes pillanatképet hoz létre, ha pillanatkép alapján számlázzuk csak a 10 GiB használt adatok méretét.  
 
-[Növekményes pillanatképek](../articles/virtual-machines/windows/incremental-snapshots.md) lemezek felügyelete jelenleg nem támogatottak, de a jövőbeli hello támogatott.
+[Növekményes pillanatképek](../articles/virtual-machines/windows/incremental-snapshots.md) lemezek felügyelete jelenleg nem támogatottak, de a jövőben támogatott.
 
-toolearn arról hogyan felügyelt lemezek pillanatképei toocreate vegye ki ezeket az erőforrásokat:
+A felügyelt lemezek pillanatképek létrehozásával kapcsolatos további tudnivalókért vegye ki ezeket az erőforrásokat:
 
 * [Felügyelt lemezként tárolt VHD másolatának létrehozása pillanatképekkel Windows alatt](../articles/virtual-machines/windows/snapshot-copy-managed-disk.md)
-* [Felügyelt lemezként tárolt VHD másolatának létrehozása pillanatképekkel Linux alatt](../articles/virtual-machines/windows/snapshot-copy-managed-disk.md)
+* [Felügyelt lemezként tárolt VHD másolatának létrehozása pillanatképekkel Linux alatt](../articles/virtual-machines/linux/snapshot-copy-managed-disk.md)
 
 
 ## <a name="images"></a>Képek
 
-Felügyelt lemezeket is támogatja a felügyelt egyéni lemezkép létrehozása. Kép hozhat létre, az egyéni virtuális merevlemez olyan tárfiókban illetve közvetlenül egy általánosított (sys prepped) virtuális Gépet. Ez az összes felügyelt egy virtuális Gépet, beleértve az operációs rendszer hello és adatlemezek hozzárendelt egyetlen rendszerképbe írja le. Ez lehetővé teszi, hogy az egyéni lemezképet nélkül hello használata virtuális gépek több száz létrehozása toocopy kell, vagy a storage-fiókok kezelése.
+Felügyelt lemezeket is támogatja a felügyelt egyéni lemezkép létrehozása. Kép hozhat létre, az egyéni virtuális merevlemez olyan tárfiókban illetve közvetlenül egy általánosított (sys prepped) virtuális Gépet. Ez az összes felügyelt egy virtuális Gépet, beleértve az operációs rendszer és az adatok lemezek hozzárendelt egyetlen rendszerképbe írja le. Ez lehetővé teszi a virtuális gépek az egyéni lemezképet, nem kell másolnia, vagy a storage-fiókok kezelése létrehozása több száz.
 
-Információ az egyéni lemezképek adjon tekintse meg a következő cikkek hello:
-* [Hogyan toocapture egy általánosított virtuális Gépet az Azure-ban kezelt képe](../articles/virtual-machines/windows/capture-image-resource.md)
-* [Hogyan toogeneralize és rögzítése egy Linux virtuális gép használt hello Azure CLI 2.0](../articles/virtual-machines/linux/capture-image.md)
+Információ az egyéni lemezképek adjon tekintse meg a következő cikkeket:
+* [Egy felügyelt képre az Azure-ban egy általánosított virtuális gép rögzítése](../articles/virtual-machines/windows/capture-image-resource.md)
+* [Generalize és az Azure CLI 2.0 használatával Linux virtuális gép rögzítése](../articles/virtual-machines/linux/capture-image.md)
 
 ## <a name="images-versus-snapshots"></a>A pillanatképek és lemezképek
 
-Hello word "lemezképpel" használt virtuális gépek gyakran megjelenik, és ekkor megjelenik a "pillanatképek" is. Fontos toounderstand hello különbség a között. A felügyelt lemezek esetében is igénybe vehet egy általánosított virtuális Gépet, amely fel lettek szabadítva képe. Ez a lemezképben hello csatlakoztatott lemezek toohello VM mindegyikét. A kép toocreate egy új virtuális Gépet is használhat, és ez magában foglalja a hello lemezeket.
+Gyakran használt virtuális gépek "kép" szó látható, és ekkor megjelenik a "pillanatképek" is. Fontos ezek közötti különbségek megértése. A felügyelt lemezek esetében is igénybe vehet egy általánosított virtuális Gépet, amely fel lettek szabadítva képe. Ez a rendszerkép tartalmazza a virtuális Géphez csatlakozik, a lemezeket. Ez a rendszerkép használatával hozzon létre egy új virtuális Gépet, és ez magában foglalja a lemezeket.
 
-Pillanatkép van szükséges idő hello ponton a lemez egy példányát. Csak érvényes tooone lemez. Ha egy lemez (hello az operációs rendszer) rendelkező virtuális gép, pillanatképet, vagy egy képet, és hozzon létre egy virtuális Gépet hello pillanatkép vagy hello kép.
+Pillanatkép van szükséges idő a ponton a lemez egy példányát. Csak egy lemezre vonatkozik. Ha egy lemez (az operációs rendszer) rendelkező virtuális gép, pillanatkép vagy egy képet, és vagy a pillanatképet, vagy a lemezképet a virtuális gép létrehozása.
 
-Mi történik, ha a virtuális gépek öt lemezzel rendelkezik, és azok csíkozott? Az egyes lemezek hello pillanatképet készíthet, de nincs észlelési hatókörén belül hello hello állapot hello lemezt – hello pillanatképek a virtuális gép csak tudni, hogy egy lemez van. Ebben az esetben hello pillanatképek egymással koordinált toobe lenne szükség, és, amely jelenleg nem támogatott.
+Mi történik, ha a virtuális gépek öt lemezzel rendelkezik, és azok csíkozott? Minden lemez pillanatképet készíthet, de nincs nincs belül a virtuális Gépet, a lemezek – állapotának figyelése a pillanatképek csak tudni, hogy egy lemez. Ebben az esetben a pillanatképek kell lennie a koordinált egymással, és, amely jelenleg nem támogatott.
 
 ## <a name="managed-disks-and-encryption"></a>Felügyelt lemezek és titkosítás
 
-Nincsenek kétféle titkosítási toodiscuss hivatkozás toomanaged lemezeken. hello először egyik tárolási szolgáltatás titkosítási (SSE), amely hello tároló szolgáltatás hajtja végre. hello második az operációs rendszer hello és adatlemezek engedélyezheti a virtuális gépek Azure Disk Encryption.
+Nincsenek titkosítási és beszéljék meg, állapotalapú felügyelt lemezek kétféle. Az elsőt a Storage szolgáltatás titkosítási (SSE), amely végzi el a társzolgáltatás. A második érték engedélyezheti a virtuális gépek az operációs rendszer és az adatok lemezeken Azure Disk Encryption.
 
-### <a name="storage-service-encryption-sse"></a>Storage szolgáltatás titkosítási (SSE)
+### <a name="storage-service-encryption-sse"></a>Storage Service Encryption (SSE)
 
-[Az Azure Storage szolgáltatás titkosítási](../articles/storage/common/storage-service-encryption.md) nyugalmi titkosítási biztosít, és megakadályozhatja az adatok toomeet a szervezeti biztonsági és megfelelőségi jár kötelezettségekkel. SSE alapértelmezés szerint az összes felügyelt lemezek, a pillanatképek és a képeket minden hello régióban, amennyiben rendelkezésre áll-e felügyelt lemezek engedélyezve van. 2017. június 10., kezdve az összes új felügyelt lemezek/pillanatképek/képek és felügyelt tooexisting lemezek új adatokat automatikusan titkosítva nyugalmi Microsoft által felügyelt kulcsokkal.  A Microsoft hello [kezelt lemezek gyakori kérdéseket tartalmazó oldal](../articles/virtual-machines/windows/faq-for-disks.md#managed-disks-and-storage-service-encryption) további részleteket.
+[Az Azure Storage szolgáltatás titkosítási](../articles/storage/common/storage-service-encryption.md) nyugalmi titkosítási biztosít, és megakadályozhatja az adatokat, hogy megfeleljen a szervezeti biztonsági és megfelelőségi jár kötelezettségekkel. SSE alapértelmezés szerint az összes felügyelt lemezek, a pillanatképek és a képeket minden régióban, amennyiben rendelkezésre áll-e felügyelt lemezek engedélyezve van. 2017. június 10., kezdve az összes új felügyelt lemezek/pillanatképek/képek és új adatokat írni a meglévő felügyelt lemezek automatikusan titkosítva nyugalmi Microsoft által felügyelt kulcsokkal.  Látogasson el a [kezelt lemezek gyakori kérdéseket tartalmazó oldal](../articles/virtual-machines/windows/faq-for-disks.md#managed-disks-and-storage-service-encryption) további részleteket.
 
 
-### <a name="azure-disk-encryption-ade"></a>Az Azure Disk Encryption (ADE)
+### <a name="azure-disk-encryption-ade"></a>Azure Disk Encryption (ADE)
 
-Az Azure Disk Encryption lehetővé teszi tooencrypt hello az operációs rendszer és az infrastruktúra-szolgáltatási virtuális gép által használt adatok lemezeket. Ez magában foglalja a felügyelt lemezek. A Windows hello meghajtók titkosítása szabványos BitLocker titkosítás technológia használatával. A Linux hello lemezek titkosítása hello DM-Crypt technológia használatával. Ez az integrálva van az Azure Key Vault tooallow meg toocontrol és hello lemez titkosítási kulcsok kezeléséhez. További információkért lásd: [lemez titkosítás a Windows Azure és a Linux IaaS virtuális gépeket](../articles/security/azure-security-disk-encryption.md).
+Az Azure Disk Encryption lehetővé teszi, hogy az operációsrendszer- és adatlemezek egy infrastruktúra-szolgáltatási virtuális gép által használt titkosítását. Ez magában foglalja a felügyelt lemezek. A Windows a meghajtók titkosítása szabványos BitLocker titkosítás technológia használatával. Linux a lemez titkosítása a DM-Crypt technológia használatával. Ez integrálva van az Azure Key Vault lehetővé teszi a lemez titkosítási kulcsok kezeléséhez, és szabályozhatja. További információkért lásd: [lemez titkosítás a Windows Azure és a Linux IaaS virtuális gépeket](../articles/security/azure-security-disk-encryption.md).
 
-## <a name="next-steps"></a>Következő lépések
+## <a name="next-steps"></a>További lépések
 
-A felügyelt lemezek kapcsolatos további információkért tekintse meg a következő cikkek toohello.
+A felügyelt lemezek kapcsolatos további információkért tekintse meg a következő cikkekben talál.
 
 ### <a name="get-started-with-managed-disks"></a>Ismerkedés a Managed Disks szolgáltatással
 
 * [Virtuális gép létrehozása a Resource Manager és a PowerShell használatával](../articles/virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm.md)
 
-* [Linux virtuális gép létrehozása Azure CLI 2.0 hello](../articles/virtual-machines/linux/quick-create-cli.md)
+* [Linux-alapú virtuális gép létrehozása az Azure CLI 2.0-s verziójával](../articles/virtual-machines/linux/quick-create-cli.md)
 
-* [Egy felügyelt adatok lemez tooa Windows virtuális gép csatlakoztatása PowerShell használatával](../articles/virtual-machines/windows/attach-disk-ps.md)
+* [Felügyelt adatlemezt csatolni egy Windows-VM PowerShell-lel](../articles/virtual-machines/windows/attach-disk-ps.md)
 
-* [Egy felügyelt lemezes tooa Linux virtuális gép hozzáadása](../articles/virtual-machines/linux/add-disk.md)
+* [Felügyelt lemez hozzáadása Linux rendszerű virtuális géphez](../articles/virtual-machines/linux/add-disk.md)
 
 * [Felügyelt lemezek PowerShell-mintaparancsfájlok](https://github.com/Azure-Samples/managed-disks-powershell-getting-started)
 
@@ -131,12 +131,12 @@ A felügyelt lemezek kapcsolatos további információkért tekintse meg a köve
 
 ### <a name="compare-managed-disks-storage-options"></a>Felügyelt lemezek tárolási lehetőségek összehasonlítása
 
-* [Prémium szintű storage és a lemezek](../articles/storage/common/storage-premium-storage.md)
+* [Prémium szintű storage és a lemezek](../articles/virtual-machines/windows/premium-storage.md)
 
-* [Standard szintű tárolást és a lemezek](../articles/storage/common/storage-standard-storage.md)
+* [Standard szintű tárolást és a lemezek](../articles/virtual-machines/windows/standard-storage.md)
 
 ### <a name="operational-guidance"></a>Műveleti útmutató
 
-* [Telepítse át AWS és más platformokra tooManaged lemezt az Azure-ban](../articles/virtual-machines/windows/on-prem-to-azure.md)
+* [Az Azure-ban kezelt lemezek áttelepítésére AWS és más platformokra](../articles/virtual-machines/windows/on-prem-to-azure.md)
 
-* [Az Azure-ban Azure virtuális gépek toomanaged lemezek konvertálása](../articles/virtual-machines/windows/migrate-to-managed-disks.md)
+* [Alakítsa át a Azure virtuális gépeken futó felügyelt Azure-ban](../articles/virtual-machines/windows/migrate-to-managed-disks.md)

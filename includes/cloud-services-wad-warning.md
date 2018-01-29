@@ -1,5 +1,5 @@
 > [!WARNING]
-> Ha egy meglévő szerepkör diagnosztika engedélyezéséhez engedélyezte a kiterjesztések letiltja hello csomag telepítésekor. Ezek a következők:
+> Ha egy meglévő szerepkör diagnosztika engedélyezéséhez bármely már beállított kiszolgálóbővítmények le vannak tiltva, a csomag telepítésekor. Ezek a következők:
 >
 > * A Microsoft Monitoring Agent diagnosztika
 > * A Microsoft Azure biztonsági figyelése
@@ -11,5 +11,5 @@
 > * Windows Azure távoli asztali bővítmény
 > * Windows Azure naplógyűjtő
 >
-> A bővítmények hello Azure portál vagy PowerShell frissítése hello szerepkör telepítése után újra engedélyezheti.
+> A bővítmények az Azure portálon vagy a PowerShell segítségével visszaállíthatja a frissített szerepkör telepítése után.
 >

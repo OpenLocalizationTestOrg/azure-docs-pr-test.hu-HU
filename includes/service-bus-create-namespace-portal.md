@@ -1,30 +1,31 @@
-a Service Bus használatával toobegin várólisták az Azure-ban, akkor először létre kell hoznia egy névtér esetében Azure egyedi névvel. A névtér egy hatókörkezelési tárolót biztosít a Service Bus erőforrásainak címzéséhez az alkalmazáson belül.
+A Service Bus-üzenetküldési entitások Azure-ban való használatának megkezdéséhez először létre kell hoznia egy, az Azure-ban egyedi névvel rendelkező névteret. A névtér egy hatókörkezelési tárolót biztosít a Service Bus erőforrásainak címzéséhez az alkalmazáson belül.
 
-egy névtér toocreate:
+Névtér létrehozása:
 
-1. Jelentkezzen be toohello [Azure-portálon][Azure portal].
-2. Hello portal hello bal oldali navigációs ablaktábláján kattintson **új**, majd kattintson a **vállalati integrációs**, és kattintson a **Service Bus**.
-3. A hello **névtér létrehozása** párbeszédpanelen adja meg a névtér nevét. hello rendszer azonnal ellenőrzi toosee, ha hello neve érhető el.
-4. Miután meggyőződött arról hello név nem érhető el, válassza ki azt a hello tarifacsomag (alapszintű, Standard vagy prémium).
-5. A hello **előfizetés** mezőben válassza ki az Azure-előfizetés mely toocreate hello névtérben.
-6. A hello **erőforráscsoport** mezőben válasszon egy meglévő erőforráscsoportot, mely hello névtér lesz élő, vagy hozzon létre egy újat.      
-7. A **hely**, válassza ki a hello országban vagy régióban, amelyben a névtér üzemeltetve lesz.
+1. Jelentkezzen be az [Azure Portalra][Azure portal].
+2. A portál bal oldali navigációs ablaktábláján kattintson **+ hozzon létre egy erőforrást**, majd kattintson a **vállalati integrációs**, és kattintson a **Service Bus**.
+3. A **Névtér létrehozása** párbeszédpanelen adja meg a névtér nevét. A rendszer azonnal ellenőrzi, hogy a név elérhető-e.
+4. Miután ellenőrizte, hogy a névtér neve elérhető-e, válassza ki a tarifacsomagot (Basic, Standard vagy Prémium).
+5. Az **Előfizetés** mezőben válassza ki azt az Azure-előfizetést, amelyben a névteret létre kívánja hozni.
+6. Az **Erőforráscsoport** mezőben válasszon ki egy meglévő erőforráscsoportot, amelynek a névtér a része lesz, vagy hozzon létre egy újat.      
+7. A **Hely** mezőben válassza ki azt az országot vagy régiót, amelyben a névtér üzemeltetve lesz.
    
     ![Névtér létrehozása][create-namespace]
-8. Kattintson a **Create** (Létrehozás) gombra. hello rendszer most hoz létre a névteret, majd engedélyezi. Lehetséges, hogy toowait hello rendszer kiosztja az erőforrásokat, a fiók néhány percig.
+8. Kattintson a **Létrehozás** gombra. A rendszer ekkor létrehozza és engedélyezi a névteret. Előfordulhat, hogy néhány percet várnia kell, amíg a rendszer kiosztja az erőforrásokat a fiókja számára.
 
-### <a name="obtain-hello-management-credentials"></a>Hello felügyeleti hitelesítő adatok beszerzése
+### <a name="obtain-the-management-credentials"></a>A felügyeleti hitelesítő adatok beszerzése
+Az elsődleges és másodlagos kulcsok, hogy minden egyes teljes hozzáférés a névtér összes elemeit társított párjának automatikusan hozza létre egy új névtér hoz létre egy kezdeti közös hozzáférésű Jogosultságkód (SAS) szabály. Lásd: [Service Bus hitelesítési és engedélyezési](../articles/service-bus-messaging/service-bus-authentication-and-authorization.md) több további szabályok létrehozásával kapcsolatos információkat a korlátozott jogok rendszeres küldő és a. A kezdeti szabály másolásához kövesse az alábbi lépéseket: 
 
-1. Hello névterek, kattintson az újonnan létrehozott névtér neve hello.
-2. Hello névtér paneljén kattintson **megosztott elérési házirendek**.
-3. A hello **megosztott elérési házirendek** panelen kattintson a **RootManageSharedAccessKey**.
+1.  Kattintson a **összes erőforrás**, majd kattintson az újonnan létrehozott névtér nevére.
+2. A névtér ablakában kattintson **megosztott elérési házirendek**.
+3. Az a **megosztott elérési házirendek** kattintson **RootManageSharedAccessKey**.
    
     ![connection-info][connection-info]
-4. A hello **házirend: RootManageSharedAccessKey** panelen kattintson a Másolás gombra hello tovább túl**kapcsolati karakterlánc – elsődleges kulcs**, toocopy hello kapcsolati karakterlánc tooyour vágólapra későbbi használatra. Illessze be ezt az értéket a Jegyzettömbbe vagy egy másik ideiglenes helyre.
+4. Az a **házirend: RootManageSharedAccessKey** ablak, kattintson a Másolás gombra a Tovább gombra **kapcsolati karakterlánc – elsődleges kulcs**, hogy másolja a kapcsolati karakterláncot a vágólapra későbbi használatra. Illessze be ezt az értéket a Jegyzettömbbe vagy egy másik ideiglenes helyre.
    
     ![connection-string][connection-string]
 
-5. Ismétlődő hello előző lépést, másolás és beillesztés hello értékének **elsődleges kulcs** tooa ideiglenes helyre későbbi használatra.
+5. A későbbi használat érdekében ismételje meg az előző lépést, és másolja ki és illessze be az **Elsődleges kulcs** értékét egy ideiglenes helyre.
 
 <!--Image references-->
 

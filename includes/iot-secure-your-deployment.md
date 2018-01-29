@@ -1,95 +1,87 @@
 # <a name="secure-your-iot-deployment"></a>Az IoT üzemelő példányának védelme
-Ez a cikk hello következő szint biztosít hello Azure IoT-alapú az eszközök internetes hálózatát (IoT) infrastruktúra védelmének biztosítása. Tooimplementation szint konfigurálása és telepítése az egyes összetevők részletes hivatkozik. Összehasonlítás és a lehetőségek között a különböző versengő módszer is biztosít.
 
-Hello Azure IoT telepítés biztonságossá tétele a következő három biztonsági területek hello osztható:
+Ez a cikk a következő részletességi biztosít az Azure IoT-alapú az eszközök internetes hálózatát (IoT) infrastruktúra védelmének biztosítása. Hivatkozik szintű részleteket minden összetevőjének telepítése és konfigurálása. Összehasonlítás és a lehetőségek között a különböző versengő módszer is biztosít.
 
-* **Eszközbiztonsági**: biztonságossá tétele hello IoT-eszközök a helyettesítő hello telepítésekor.
-* **Kapcsolat biztonsági**: hello IoT-eszközök és az IoT-központ között továbbított összes adat biztosítva a bizalmas és hamisíthatatlan.
-* **A felhő biztonsági**: azt toosecure adatokat szolgáltató keresztül halad át, és hello felhőben van tárolva.
+Az Azure IoT-telepítés biztonságossá tétele a következő három biztonsági területeket osztható:
+
+* **Eszközbiztonsági**: biztonságossá tétele az IoT-eszközök, amíg a helyettesítő telepítették.
+* **Kapcsolat biztonsági**: bizalmas és hamisíthatatlan biztosítása az IoT-eszközök és az IoT-központ között továbbított összes adat.
+* **A felhő biztonsági**: biztonságos adatokat, amikor egy keresztül bonyolítanak, és a felhőben tárolt eszközöket biztosítva.
 
 ![Három biztonsági területek][img-overview]
 
 ## <a name="secure-device-provisioning-and-authentication"></a>Kiépítés biztonságos eszköz és a hitelesítés
-hello Azure IoT Suite az IoT-eszközök a következő két módszer hello biztonságossá tételére:
 
-* Az egyes eszközök ad meg egy egyedi identitáskulcs (biztonsági jogkivonatokat), amelyekkel hello eszköz toocommunicate a hello IoT-központ által.
-* A-eszköz segítségével [X.509 tanúsítvány] [ lnk-x509] és titkos kulcsok azt jelenti, hogy tooauthenticate hello eszköz toohello IoT-központot. Ez a hitelesítési módszer biztosítja, hogy hello hello eszközön titkos kulcs nem ismert hello eszköz kívül bármikor, így magasabb szintű biztonságot.
+Az Azure IoT Suite az IoT-eszközök az alábbi két módszer biztonságossá tételére:
 
-hello biztonsági token módszer minden hívás hello szimmetrikus kulcs tooeach hívás társításával hello eszköz tooIoT központ által végzett hitelesítést nyújt. X.509-alapú hitelesítés lehetővé teszi, hogy az IoT-eszközök hitelesítési hello fizikai rétegben hello TLS kapcsolat létrehozásának részeként. hello biztonsági jogkivonat-alapú módszer hello X.509-hitelesítést, amely egy kevésbé biztonságos minta nélkül használható lesz. hello hello két módszerek közötti választást van elsősorban meghatározni által, hogy mennyire vannak biztonságban hello eszköz hitelesítést kell toobe és biztonságos tárolási hello eszközön rendelkezésre állását (toostore hello titkos kulcs biztonságos).
+* Az egyes eszközök ad meg egy egyedi identitáskulcs (biztonsági jogkivonatokat), amelyekkel az eszköz kommunikáljon az IoT-központot.
+* A-eszköz segítségével [X.509 tanúsítvány] [ lnk-x509] és titkos kulcsok segítségével hitelesíteni az eszközt az IoT-központ számára. Ez a hitelesítési módszer biztosítja, hogy a titkos kulcs az eszközön nem ismert az eszköz kívül bármikor, így magasabb szintű biztonságot.
+
+A biztonsági token módszer minden hívás által végzett az eszközt az IoT-központ a szimmetrikus kulcsot minden hívás társításával hitelesítést nyújt. X.509-alapú hitelesítés lehetővé teszi, hogy az IoT-eszközök hitelesítési a fizikai rétegben TLS kapcsolat létrehozásának részeként. A biztonsági jogkivonat-alapú módszer használható egy kevésbé biztonságos minta X.509 hitelesítés nélkül. A két módszerek közötti választást elsősorban határozza meg hogy mennyire vannak biztonságban eszköz hitelesítési kell lennie, és az eszközön (tárolja biztonságos helyen a titkos kulcs) biztonságos tárolási rendelkezésre állását.
 
 ## <a name="iot-hub-security-tokens"></a>IoT Hub biztonsági tokenek
-Az IoT-központ biztonsági jogkivonatokat tooauthenticate eszközöket és szolgáltatásokat tooavoid kulcsok küldése hello hálózati használja. Emellett biztonsági jogkivonatok érvényesség és hatókör korlátozott. Azure IoT SDK-k automatikusan hoz létre jogkivonatokat anélkül, hogy semmiféle speciális beállítást. Bizonyos esetekben azonban hello felhasználói toogenerate igényelnek, és biztonsági jogkivonatokat közvetlenül használható. Ezek közé tartozik a hello hello MQTT, az AMQP vagy a HTTP-felületek közvetlen használatát, vagy hello végrehajtásának hello biztonságijogkivonat-szolgáltatás mintát.
 
-További részleteket a hello biztonsági jogkivonatot, és a használati hello szerkezete hello a következő cikkekben található:
+Az IoT-központ biztonsági jogkivonatokat használ hitelesítéséhez, eszközöket és szolgáltatásokat lehet, ne küldjön kulcsok a hálózaton. Emellett biztonsági jogkivonatok érvényesség és hatókör korlátozott. Azure IoT SDK-k automatikusan hoz létre jogkivonatokat anélkül, hogy semmiféle speciális beállítást. Bizonyos esetekben azonban a felhasználónak kell hozhat létre és használhat közvetlenül a biztonsági jogkivonatokat. Ezek a forgatókönyvek a MQTT, az AMQP vagy a HTTP-felületek közvetlen használatát, vagy a biztonságijogkivonat-szolgáltatás mintát végrehajtásának tartalmazza.
+
+A biztonsági jogkivonat és a használati szerkezetének további részleteket a következő cikkekben talál:
 
 * [Biztonsági jogkivonat szerkezete][lnk-security-tokens]
 * [SAS-tokenje eszközként használatával][lnk-sas-tokens]
 
-Minden egyes IoT-központ rendelkezik egy [identitásjegyzékhez] [ lnk-identity-registry] , amely lehet hello szolgáltatás, például egy várólista, amely tartalmazza az üzenetsoroktól felhő eszközre üzenetek és tooallow hozzáférés toohello használt toocreate eszközönkénti erőforrások eszköz felé néző végpontok. az IoT-központ identitásjegyzékhez hello eszköz identitások és a biztonsági kulcsok megoldás biztonságos tárolására szolgál. Személy vagy eszköz identitások csoportok is hozzáadhatók tooan engedélyezése, vagy egy tiltólista engedélyezése a teljes felügyeletet gyakorolhat az eszközök elérést. hello következő cikkekben további részletekkel szolgálnak hello struktúra hello identitásjegyzékhez és a támogatott műveletek.
+Minden egyes IoT-központ rendelkezik egy [identitásjegyzékhez] [ lnk-identity-registry] , amely a a szolgáltatás, például az üzenetsoroktól felhő eszközre üzeneteket tartalmaz várólista eszközönkénti erőforrások létrehozásához és az eszköz felé néző végpontok eléréséhez használható. Az IoT-központ identitásjegyzékhez eszköz identitások és a biztonsági kulcsok megoldás biztonságos tárolására szolgál. Személy vagy eszköz identitások csoportok felveheti egy engedélyezési lista vagy egy tiltólista engedélyezése a teljes felügyeletet gyakorolhat az eszközök elérést. A következő cikkekben további részletekkel szolgálnak az identitásjegyzékhez és a támogatott műveletek struktúra.
 
-[Az IoT-központ például MQTT AMQP vagy HTTP protokollt támogat][lnk-protocols]. Biztonsági jogkivonatokat a hello IoT eszköz tooIoT Hub másképp egyes ezeket a protokollokat használja:
+[Az IoT-központ például MQTT AMQP vagy HTTP protokollt támogat][lnk-protocols]. Biztonsági jogkivonatokat az IoT-eszközről az IoT hubhoz másképp egyes ezeket a protokollokat használ:
 
-* AMQP: SASL egyszerű és AMQP jogcímalapú biztonsági ({házirendnév}@sas.root. { iothubName} hello esetben az IoT hub-szintű tokenek; {deviceId} eszköz hatókörű jogkivonatok esetén).
-* MQTT: {DeviceId} csomagot használ Csatlakozás másként hello {ClientId}, {IoThubhostname} / {deviceId} hello a **felhasználónév** mező és SAS-kód a token hello **jelszó** mező.
-* HTTP: Érvénytelen lexikális elem hello engedélyezési kérelem fejlécében.
+* AMQP: SASL egyszerű és AMQP jogcímalapú biztonsági (`{policyName}@sas.root.{iothubName}` IoT hub-szintű jogkivonatokkal; `{deviceId}` eszköz hatókörű jogkivonatokkal).
+* MQTT: Csatlakozás a csomag által használt `{deviceId}` , a `{ClientId}`, `{IoThubhostname}/{deviceId}` a a **felhasználónév** mező, és egy SAS-token a a **jelszó** mező.
+* HTTP: Érvénytelen lexikális elem a hitelesítési kérelem fejlécében.
 
-Az IoT-központ identitásjegyzékhez használt tooconfigure eszközönkénti hitelesítő adatokat kell, és hozzáférés-vezérlést. Azonban ha egy IoT-megoldás már jelentős befektetési egy [egyéni eszköz identitása beállításjegyzék és/vagy hitelesítési séma][lnk-custom-auth], ezért integrálható az IoT hubbal meglévő infrastruktúra hozzon létre egy jogkivonat-szolgáltatás.
+Az IoT-központ identitásjegyzékhez segítségével eszközönkénti biztonsági hitelesítő adatok konfigurálása és hozzáférés-vezérlést. Azonban ha egy IoT-megoldás már jelentős befektetési egy [egyéni eszköz identitása beállításjegyzék és/vagy hitelesítési séma][lnk-custom-auth], ezért integrálható az IoT hubbal meglévő infrastruktúra hozzon létre egy jogkivonat-szolgáltatás.
 
 ### <a name="x509-certificate-based-device-authentication"></a>X.509 tanúsítvány alapú eszközhitelesítés
-hello használata egy [eszközalapú X.509 tanúsítvány] [ lnk-use-x509] és a társított titkos és nyilvános kulcsból álló kulcspárt lehetővé teszi, hogy a további hitelesítési hello fizikai rétegben. hello titkos kulcs lesz biztonságosan tárolva hello eszközt, és nincs felderíthető hello eszköz kívül. hello X.509 tanúsítvány hello eszköz, eszköz-Azonosítóját, például információ és az egyéb szervezeti adatait tartalmazza. Egy hello tanúsítvány aláírása generálja hello titkos kulccsal.
+
+Használatát egy [eszközalapú X.509 tanúsítvány] [ lnk-use-x509] és a társított titkos és nyilvános kulcsból álló kulcspárt lehetővé teszi, hogy a további hitelesítési a fizikai rétegben. A titkos kulcs lesz biztonságosan tárolva az eszközt, és nincs felderíthető kívül az eszközt. Az X.509 tanúsítvány információkat az eszköz, például az eszköz-Azonosítóját, és az egyéb szervezeti adatait tartalmazza. A tanúsítvány aláírása hozza létre a titkos kulccsal.
 
 Magas szintű eszköz üzembe helyezési folyamata:
 
-* Egy azonosító tooa fizikai eszköz társítása – eszközidentitást és/vagy X.509 tanúsítvány társított toohello eszköz eszköz gyártási vagy üzembe helyezés során.
-* Hozzon létre egy megfelelő identitás IoT Hub – eszközidentitást és az IoT-központ identitásjegyzékhez hello társított eszközadatokat.
+* Társítson egy fizikai eszközön – eszközidentitást és/vagy eszköz gyártási vagy üzembe helyezés során az eszközhöz társított X.509-tanúsítvány azonosítót.
+* Hozzon létre egy megfelelő identitás IoT Hub – eszközidentitást és az IoT-központ identitásjegyzékhez társított eszköz információival.
 * Biztonságosan tárolja az IoT-központ identitásjegyzékhez X.509 tanúsítvány ujjlenyomata.
 
 ### <a name="root-certificate-on-device"></a>Legfelső szintű tanúsítványt az eszközre
-Az IoT hubbal biztonságos TLS kapcsolat létrehozásakor hello IoT-eszközök hello eszköz SDK részét képező legfelső szintű tanúsítványt használ az IoT-központ hitelesíti magát. Hello C ügyfél SDK hello tanúsítvány hello mappában található "\\c\\Tanúsítványos" hello tárház hello gyökere alatt. Bár a legfelső szintű tanúsítványok hosszú élettartamú, továbbra is lehetséges, hogy lejáratukig vagy vonható vissza. Ha nincs mód frissítésére a hello tanúsítvány hello eszközön hello eszköz nem lehet toosubsequently csatlakoztassa az IoT-központ toohello (vagy bármely más felhőalapú szolgáltatás). Azt jelenti, hogy tooupdate hello legfelső szintű tanúsítvánnyal rendelkező hello IoT-eszközök telepítése után fog hatékonyan a kockázat csökkentése érdekében.
 
-## <a name="securing-hello-connection"></a>Hello kapcsolat biztonságossá tétele
-Internet kapcsolat hello IoT-eszközök és az IoT-központ között hello Transport Layer Security (TLS) szabvány használatával lett biztonságossá. Az Azure IoT támogatja [TLS 1.2][lnk-tls12], TLS 1.1 és TLS 1.0, az itt megadott sorrendben. A TLS 1.0 támogatását a csak a visszamenőleges kompatibilitás érdekében. Mivel a lehető legnagyobb biztonságot nyújt hello toouse TLS 1.2-es ajánlott.
+Az IoT hubbal biztonságos TLS kapcsolódás közben, az IoT-eszközök hitelesíti az IoT-központot egy legfelső szintű tanúsítványt használ, amely az eszköz SDK része. A C ügyfél SDK, a tanúsítványt a mappában található "\\c\\Tanúsítványos" alatt a tárház gyökérkönyvtárában. Bár a legfelső szintű tanúsítványok hosszú élettartamú, továbbra is lehetséges, hogy lejáratukig vagy vonható vissza. Ha nem tudja frissíteni a tanúsítvány az eszközön, az eszköz nem lehet csatlakozni később az IoT-központ (vagy bármely más felhőalapú szolgáltatás). A kockázat rendelkezik a legfelső szintű tanúsítvány frissítése után az IoT-eszközök telepítése hatékony módszert csökkenti.
 
-Az Azure IoT Suite titkosító csomag sorrendje a következő hello támogatja.
+## <a name="securing-the-connection"></a>A kapcsolat biztonságossá tétele
 
-| Titkosítási csomagok | Hossza |
-| --- | --- |
-| A TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA384 (0xc028) ECDH secp384r1 (eq. FS 7680 bits RSA) |256 |
-| A TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA-256 (0xc027) ECDH secp256r1 (eq. FS 3072 bits RSA) |128 |
-| A TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA (0xc014) ECDH secp384r1 (eq. FS 7680 bits RSA) |256 |
-| A TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA (0xc013) ECDH secp256r1 (eq. FS 3072 bits RSA) |128 |
-| A TLS\_RSA\_WITH\_AES\_256\_GCM\_SHA384 (0x9d) |256 |
-| A TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA-256 (0x9c) |128 |
-| A TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA-256 (0x3d) |256 |
-| A TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA-256 (0x3c) |128 |
-| A TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA (0x35 hiba) |256 |
-| A TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA (0x2f) |128 |
-| A TLS\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA (0xa) |112 |
+Az IoT-eszközök és az IoT-központ között internetkapcsolat használatával lett biztonságossá téve a Transport Layer Security (TLS) szabvány. Az Azure IoT támogatja [TLS 1.2][lnk-tls12], TLS 1.1 és TLS 1.0, az itt megadott sorrendben. A TLS 1.0 támogatását a csak a visszamenőleges kompatibilitás érdekében. Ha lehetséges használja a TLS 1.2 a lehető legnagyobb biztonságot nyújt.
 
-## <a name="securing-hello-cloud"></a>Hello felhő biztonságossá tétele
-Az Azure IoT-központ lehetővé teszi, hogy a definíciója [hozzáférés-vezérlési házirendeket] [ lnk-protocols] minden egyes biztonsági kulcshoz. A következő engedélyek toogrant hozzáférés tooeach az IoT-központok végpontjai készlete hello használ. Engedélyek korlátozása hello hozzáférés tooan IoT-központ funkciókon alapulnak.
+## <a name="securing-the-cloud"></a>A felhő biztonságossá tétele
 
-* **RegistryRead**. Olvasási hozzáférés toohello identitásjegyzékhez biztosít. További információkért lásd: [identitásjegyzékhez][lnk-identity-registry].
-* **RegistryReadWrite**. Biztosít olvasási és írási hozzáférés toohello identitásjegyzékhez. További információkért lásd: [identitásjegyzékhez][lnk-identity-registry].
-* **ServiceConnect**. A hozzáférési toocloud szolgáltatás irányuló kommunikációt és a végpontok ellenőrzésére. Például ad engedélyt tooback-a befejezési felhőalapú szolgáltatások tooreceive eszközről a felhőbe üzeneteket, és a felhő-eszközre küldött üzenetek küldése hello megfelelő kézbesítési visszaigazolások beolvasása.
-* **DeviceConnect**. A hozzáférési toodevice felé néző végpontok. Például engedélyt ad toosend eszközről a felhőbe üzeneteket, és felhő-eszközre küldött üzenetek fogadására. Ez az engedély eszközöket használják.
+Az Azure IoT-központ lehetővé teszi, hogy a definíciója [hozzáférés-vezérlési házirendeket] [ lnk-protocols] minden egyes biztonsági kulcshoz. Hozzáférést biztosít egyes IoT-központok végpontjai használja a következő engedélyekkel vannak beállítva. Az engedélyek korlátozhatják az IoT-központ funkciókon alapulnak.
 
-Nincsenek a két módon tooobtain **DeviceConnect** IoT hubot engedélyeket [biztonsági jogkivonatokat][lnk-sas-tokens]: egy eszköz identitáskulcs, vagy egy megosztott elérési kulcsot. Ezenkívül fontos toonote eszközökhöz elérhető összes funkciót előtaggal rendelkező végpontokon szándékosan elérhetővé `/devices/{deviceId}`.
+* **RegistryRead**. Olvasási hozzáférést biztosít az identitásjegyzékhez. További információkért lásd: [identitásjegyzékhez][lnk-identity-registry].
+* **RegistryReadWrite**. Biztosít az olvasási és írási hozzáférést biztosít az identitásjegyzékhez. További információkért lásd: [identitásjegyzékhez][lnk-identity-registry].
+* **ServiceConnect**. Cloud service irányuló kommunikációra és figyelési végpontok biztosít hozzáférést. Például az engedélyt háttér-felhőszolgáltatások eszközről a felhőbe üzeneteket fogadni, felhőalapú-eszközre küldött üzenetek küldése és a megfelelő kézbesítési visszaigazolások beolvasása.
+* **DeviceConnect**. Engedélyezi a hozzáférést a eszköz felé néző végpontok. Például az engedélyt felhő eszközre üzeneteket eszköz a felhőbe küldött üzeneteket küldjön és fogadjon. Ez az engedély eszközöket használják.
 
-[Szolgáltatás-összetevők csak hozhat létre a biztonsági jogkivonatokat] [ lnk-service-tokens] használatával megosztott hozzáférési házirendek hello megfelelő jogosultságokat.
+Két módon beszerzése **DeviceConnect** IoT hubot engedélyeket [biztonsági jogkivonatokat][lnk-sas-tokens]: egy eszköz identitáskulcs, vagy egy megosztott elérési kulcsot. Fontos továbbá, vegye figyelembe, hogy eszközökhöz elérhető összes funkciót tesz elérhetővé előtaggal rendelkező végpontokon tervezési `/devices/{deviceId}`.
 
-Azure IoT Hub és egyéb szolgáltatásokat, amelyek hello megoldás részét képezhetik engedélyezése a felhasználók a hello Azure Active Directory felügyeleti.
+[Szolgáltatás-összetevők csak hozhat létre a biztonsági jogkivonatokat] [ lnk-service-tokens] használatával megosztott hozzáférési házirendeket a megfelelő jogosultságokat.
 
-Azure IoT-központ által okozhatnak adatokat képes használni a számos olyan szolgáltatásokat, például Azure Stream Analytics és az Azure blob Storage tárolóban. Ezek a szolgáltatások felügyeleti hozzá lehessen férni. További tájékoztatást talál a szolgáltatások és a rendelkezésre álló lehetőségeket az alábbi:
+Azure IoT Hub és egyéb szolgáltatások, a megoldás részét képezhetik engedélyezése az Azure Active Directory használatával felhasználókat kezelését.
 
-* [Az Azure DocumentDB][lnk-docdb]: egy méretezhető, teljes mértékben indexelt dokumentumadatbázis-szolgáltatás, amely kezeli a metaadatok hello eszközök félig strukturált adatok ellátásához, például az attribútumokat, a konfiguráció és a biztonsági tulajdonságait. A DocumentDB nagy teljesítményű és nagy átviteli feldolgozás, a séma-független indexelő adatokat, és egy részletes SQL-lekérdezési felületet kínál.
-* [Az Azure Stream Analytics][lnk-asa]: valós idejű streamfeldolgozó hello felhőben, amely lehetővé teszi, hogy toorapidly fejlesztéséhez és központi telepítése egy alacsony költségű analytics megoldás toouncover valós idejű elemzése eszközök, érzékelőket, infrastruktúra, és az alkalmazások. a teljes körűen felügyelt szolgáltatás hello adatait is méretezhető tooany kötet megőrzése mellett nagy átviteli sebességet, alacsony késéssel és rugalmasság.
-* [Az Azure App Services][lnk-appservices]: egy felhőalapú platform toobuild hatékony webes és mobilalkalmazások bárhol; toodata hello felhőalapú vagy helyszíni. Vonzó alkalmazások készítése iOS, Android és Windows rendszerre. Integrálható a szoftver szolgáltatott szoftverként (SaaS) és vállalati alkalmazások a felhő alapú szolgáltatások out-of-az-box kapcsolat toodozens és vállalati alkalmazások. A kedvenc nyelvi és IDE az (.NET, Node.js, PHP, Python vagy Java) toobuild webes alkalmazásokat és API-k minden eddiginél gyorsabban.
-* [A Logic Apps][lnk-logicapps]: hello Logic Apps szolgáltatás az Azure App Service segítségével rendszerintegráció IoT megoldás tooyour meglévő üzleti és munkafolyamat-folyamatok automatizálása. A Logic Apps lehetővé teszi, hogy a fejlesztők toodesign munkafolyamatok, amelyek egy és majd végrehajtanak bizonyos lépéseket – szabályok és a műveletek, amelyeket az üzleti folyamatok hatékony összekötők toointegrate használhat. A Logic Apps kínál out-of-az-box kapcsolat tooa túlnyomó ökoszisztémájának alkalmazásával az SaaS, a felhő alapú, és a helyszíni alkalmazások.
-* [Az Azure blob storage][lnk-blob]: hello adatok, az eszközök küldjön toohello felhő gazdaságos, megbízható felhőalapú tárolása.
+Azure IoT-központ által okozhatnak adatokat képes használni a számos olyan szolgáltatásokat, például Azure Stream Analytics és az Azure blob Storage tárolóban. Ezek a szolgáltatások felügyeleti hozzá lehessen férni. További tájékoztatást talál a szolgáltatások és az elérhető lehetőségek:
+
+* [Az Azure Cosmos DB][lnk-cosmosdb]: egy méretezhető, teljes mértékben indexelt dokumentumadatbázis-szolgáltatás, amely felügyeli az eszközök metaadatok félig strukturált adatok ellátásához, például az attribútumokat, a konfiguráció és a biztonsági tulajdonságait. Azure Cosmos DB nagy teljesítményű és nagy átviteli feldolgozás, a séma-független indexelő adatokat, és egy részletes SQL-lekérdezési felületet kínál.
+* [Az Azure Stream Analytics][lnk-asa]: valós idejű streamfeldolgozó, amely lehetővé teszi, hogy a gyors fejlesztésére és alacsony költségű analytics megoldást nyújt a valós idejű betekintést az eszközök, érzékelőket, infrastruktúra és alkalmazások telepítése a felhőben. A teljes körűen felügyelt szolgáltatás adatainak megőrzése mellett nagy átviteli sebességet, alacsony késéssel és rugalmasság méretezhető, azonosíthatja a kötettel.
+* [Az Azure App Services][lnk-appservices]: egy felhőalapú platform hozhat létre hatékony webes és mobilalkalmazások bárhol adatokat; a felhőben, vagy a helyszínen. Vonzó alkalmazások készítése iOS, Android és Windows rendszerre. A szoftver egy szolgáltatott szoftverként (SaaS) és a felhő alapú szolgáltatások több tucatnyi out-of-az-box kapcsolattal rendelkező vállalati alkalmazások és a vállalati alkalmazások integrálása. A kedvenc nyelvi és IDE (.NET, Node.js, PHP, Python vagy Java) hozhat létre webes alkalmazásokat és API-k minden eddiginél gyorsabban kódot.
+* [A Logic Apps][lnk-logicapps]: A Logic Apps szolgáltatás az Azure App Service segítségével integrálható a meglévő üzleti rendszereken az IoT-megoldásból és munkafolyamat-folyamatok automatizálása. A Logic Apps segítségével a fejlesztők olyan munkafolyamatokat alakíthatnak ki, amely egy és majd végrehajtanak bizonyos lépéseket – szabályok és műveleteit, amelyekkel az üzleti folyamatok integrálása hatékony összekötők. A Logic Apps kínál a túlnyomó ökoszisztémájának alkalmazásával az SaaS, a felhő alapú out-of-az-box kapcsolat és a helyszíni alkalmazások.
+* [Az Azure blob storage][lnk-blob]: az eszközök elküldik a felhőbe adatok megbízható, gazdaságos felhőalapú tárhelyre.
 
 ## <a name="conclusion"></a>Összegzés
-Ez a cikk áttekintést nyújt az megvalósítási tervezése és telepítése az IoT-infrastruktúrát használó Azure IoT szintű részleteit. Minden biztonságos összetevő toobe konfigurálása van a kulcs védelméhez hello általános IoT-infrastruktúra. hello tervezési döntések ütköznek azokkal elérhető Azure IoT biztosít bizonyos fokú rugalmasságot és a választott; minden kiválasztott azonban biztonsági hatásai lehetnek. Javasoljuk, hogy ezek mindegyikének lehet értékelni a kockázat/költsége értékelése.
+
+Ez a cikk áttekintést nyújt az megvalósítási tervezése és telepítése az IoT-infrastruktúrát használó Azure IoT szintű részleteit. Az általános IoT-infrastruktúra védelmének biztosítása a kulcs beállítása az egyes összetevők biztonságos. A tervezési döntések ütköznek azokkal elérhető Azure IoT biztosít bizonyos fokú rugalmasságot és a választott; minden kiválasztott azonban biztonsági hatásai lehetnek. Javasoljuk, hogy ezek mindegyikének lehet értékelni a kockázat/költsége értékelése.
 
 [img-overview]: media/iot-secure-your-deployment/overview.png
 
@@ -102,7 +94,7 @@ Ez a cikk áttekintést nyújt az megvalósítási tervezése és telepítése a
 [lnk-use-x509]: ../articles/iot-hub/iot-hub-devguide-security.md
 [lnk-tls12]: https://tools.ietf.org/html/rfc5246
 [lnk-service-tokens]: ../articles/iot-hub/iot-hub-devguide-security.md#use-security-tokens-from-service-components
-[lnk-docdb]: https://azure.microsoft.com/services/documentdb/
+[lnk-cosmosdb]: https://azure.microsoft.com/services/cosmos-db/
 [lnk-asa]: https://azure.microsoft.com/services/stream-analytics/
 [lnk-appservices]: https://azure.microsoft.com/services/app-service/
 [lnk-logicapps]: https://azure.microsoft.com/services/app-service/logic/

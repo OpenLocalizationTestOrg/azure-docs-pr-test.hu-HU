@@ -1,18 +1,16 @@
-Üzembe helyezési hitelesítő adatok létrehozása a hello [beállítva az az webalkalmazás üzembe helyező felhasználó](/cli/azure/webapp/deployment/user#set) parancsot.
+A Cloud Shellben hozza létre az üzembehelyezési hitelesítő adatokat az [az webapp deployment user set](/cli/azure/webapp/deployment/user?view=azure-cli-latest#az_webapp_deployment_user_set) paranccsal. Az FTP és a helyi Git webalkalmazásban történő üzembe helyezéséhez üzembe helyező felhasználóra van szükség. A felhasználónevek és a jelszavak megadása fiókszinten történik. _Ezek nem azonosak az Azure-előfizetés hitelesítő adataival._
 
-A központi telepítés felhasználóra szükség az FTP és a helyi Git telepítési tooa webalkalmazás. hello felhasználónév és jelszó fiókszinten. _Ezek nem azonosak az Azure-előfizetés hitelesítő adataival._
-
-Hello a következő parancsban cserélje le  *\<felhasználónév->* és  *\<jelszó >* új felhasználónevet és jelszót. hello felhasználó nevének egyedinek kell lennie. hello jelszó legalább 8 karakter hosszúságúnak kell lennie, és két a következő három elemek hello: betűket, számokat, szimbólumokat. 
+Az alábbi példában cserélje le  *\<felhasználónév >* és  *\<jelszó >* (beleértve a szögletes zárójel) új felhasználónevet és jelszót. A felhasználónévnek egyedinek kell lennie. A jelszónak legalább nyolc karakter hosszúságúnak kell lennie, és a következő három elem közül kettőnek szerepelnie kell benne: betűk, számok, szimbólumok. 
 
 ```azurecli-interactive
 az webapp deployment user set --user-name <username> --password <password>
 ```
 
-Ha egy ` 'Conflict'. Details: 409` hiba, a módosítás hello felhasználónév. ` 'Bad Request'. Details: 400` hibaüzenet esetén használjon erősebb jelszót.
+` 'Conflict'. Details: 409` hibaüzenet esetén változtassa meg a felhasználónevet. ` 'Bad Request'. Details: 400` hibaüzenet esetén használjon erősebb jelszót.
 
 Ezt az üzembe helyező felhasználót csak egyszer kell létrehoznia, és minden Azure-környezetben használhatja.
 
 > [!NOTE]
-> Rekord hello felhasználónevet és jelszót. Őket toodeploy hello webalkalmazás később szüksége.
+> Jegyezze fel a felhasználónevet és a jelszót. Szüksége lesz rájuk a webalkalmazás későbbi üzembe helyezésekor.
 >
 >

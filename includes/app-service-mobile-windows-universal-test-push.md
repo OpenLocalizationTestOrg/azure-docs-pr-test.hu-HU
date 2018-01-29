@@ -1,13 +1,13 @@
 
-1. Kattintson a jobb gombbal a hello Windows Áruházbeli projektjére, kattintson a **beállítás kezdőprojektként**, majd nyomja le az hello F5 kulcs toorun hello Windows áruház egy alkalmazásához.
+1. Kattintson a jobb gombbal a Windows Áruházbeli projektjére, kattintson a **beállítás kezdőprojektként**, majd nyomja le az F5 billentyűt a Windows Áruházbeli alkalmazás futtatásához.
    
-    Hello alkalmazás indítása után a hello eszköz regisztrálva van a leküldéses értesítések.
-2. Állítsa le a hello Windows Áruházbeli alkalmazást, és ismételje meg hello előző hello Windows Phone Áruházbeli alkalmazás.
+    Az alkalmazás indítása után a leküldéses értesítések regisztrálja az eszközt.
+2. Állítsa le a Windows Áruházbeli alkalmazást, és ismételje meg az előző lépést a Windows Phone Áruházbeli alkalmazás.
    
-    Ezen a ponton mindkét tartoznak regisztrált tooreceive leküldéses értesítéseket.
-3. Futtassa újból a hello Windows Áruházbeli alkalmazást, és írja be a szöveget **Insert a TodoItem**, és kattintson a **mentése**.
+    Ezen a ponton mindkét eszköz leküldéses értesítések fogadására regisztrált.
+3. Futtassa újra a Windows Áruházbeli alkalmazást, és írja be a szöveget **Insert a TodoItem**, és kattintson a **mentése**.
    
-       Note that after hello insert completes, both hello Windows Store and hello Windows Phone apps receive a push notification from WNS. hello notification is displayed on Windows Phone even when hello app isn't running.
+       Note that after the insert completes, both the Windows Store and the Windows Phone apps receive a push notification from WNS. The notification is displayed on Windows Phone even when the app isn't running.
    
-       ![](./media/app-service-mobile-windows-universal-test-push/mobile-quickstart-push5-wp8.png)
+![](./media/app-service-mobile-windows-universal-test-push/mobile-quickstart-push5-wp8.png)
 

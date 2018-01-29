@@ -1,17 +1,17 @@
-## <a name="add-function-apps-tooyour-portal-favorites"></a>Függvény alkalmazások tooyour portál Kedvencek hozzáadása 
+## <a name="favorite-functions-in-the-portal"></a>Kedvenc funkciók a portálon 
 
-Ha még nem tette meg, adja hozzá függvény alkalmazások tooyour Kedvencek hello Azure-portálon. Így könnyebben toofind függvény alkalmazásait. Ha már ezt, hagyja ki a toohello a következő szakaszban. 
+Ha még nem tette meg, vegyen fel függvényalkalmazásokat a kedvencek közé az Azure Portalon. Így könnyebben megtalálhatja a függvényalkalmazásait. Ha már megtette ezt, ugorjon a következő szakaszra. 
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
 
-2. Kattintson a hello alsó, bal oldali tooexpand hello nyílra a szolgáltatásokat, típus `Functions` hello a **szűrő** mezőben, majd kattintson a hello csillag mellett túl**függvény alkalmazások**.  
+2. A bal alsó sarokban található nyílra kattintva bontsa ki az összes szolgáltatást, írja be a `Functions` kifejezést a **Szűrő** mezőbe, majd kattintson a **Függvényalkalmazások** elem melletti csillagra.  
  
-    ![Függvény-alkalmazás létrehozása az Azure-portálon hello](./media/functions-portal-favorite-function-apps/functions-favorite-function-apps.png)
+    ![Függvényalkalmazás létrehozása az Azure Portalon](./media/functions-portal-favorite-function-apps/functions-favorite-function-apps.png)
 
-    Ez a gyorsjavítás hello funkciók toohello menüje hello portál hello bal oldalon.
+    Ezzel felveheti a Függvények ikont a portál bal oldali menüjébe.
 
-3. Zárja be a hello menüben, majd görgessen lefelé toohello alsó toosee hello funkciók ikonra. Kattintson az ikonra toosee függvény alkalmazások listáját. Kattintson a függvény app toowork funkcióinak ezt az alkalmazást. 
+3. Zárja be a menüt, majd a Függvények ikon megtekintéséhez görgessen le a képernyő aljára. Erre az ikonra kattintva megtekintheti a függvényalkalmazásainak listáját. Kattintson a függvényalkalmazásra az alkalmazásban található függvények használatához. 
  
-    ![](./media/functions-portal-favorite-function-apps/functions-function-apps-hub.png)
+    ![A Kedvencek függvény alkalmazások](./media/functions-portal-favorite-function-apps/functions-function-apps-hub.png)
  
      

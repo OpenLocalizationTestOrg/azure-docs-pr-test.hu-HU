@@ -2,7 +2,7 @@
 
 Ebben a cikkben megválaszolunk néhány Azure felügyelt lemezek és a prémium szintű Azure Storage kapcsolatos gyakori kérdésekre.
 
-## <a name="managed-disks"></a>Managed Disks
+## <a name="managed-disks"></a>Felügyelt lemezek
 
 **Mi az Azure Managed lemezek?**
 
@@ -54,7 +54,7 @@ Nem. A virtuális gépek rendelkezésre állási csoportba kell használnia, vag
 
 **Felügyelt lemezek van az alapértelmezett beállítás, az Azure-portálon?**
 
-Jelenleg nem de ez a jövőben lesz az alapértelmezett.
+Igen. 
 
 **Hozhat létre egy üres felügyelt lemezes?**
 
@@ -101,6 +101,10 @@ Azure-lemezeket felügyelt jelenleg csak a helyileg redundáns tárolás felügy
 
 Nem. Ez a funkció jelenleg nem támogatott. 
 
+**Is a címbérlet is megszakíthatja a lemezen?**
+
+Nem. Ez nem támogatott jelenleg, a címbérlet jelen, hogy véletlen törlésének megakadályozása, amikor a lemezt használja.
+
 **Módosítható a számítógép neve tulajdonság amikor egy speciális (nem hozta létre a rendszer-előkészítő eszközzel vagy általánosított) operációsrendszer-lemez a virtuális gép létrehozásához használt?**
 
 Nem. A számítógép name tulajdonság nem frissíthető. Az új virtuális gép örökli a szülő virtuális gép, amelyen az operációsrendszer-lemez létrehozásához használt. 
@@ -108,6 +112,40 @@ Nem. A számítógép name tulajdonság nem frissíthető. Az új virtuális gé
 **Hol találnak a minta Azure Resource Manager-sablonok felügyelt lemezzel rendelkező virtuális gépek létrehozásához?**
 * [Felügyelt lemezekkel sablonok listája](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)
 * https://github.com/chagarw/MDPP
+
+## <a name="migrate-to-managed-disks"></a>Migrálás felügyelt lemezekre 
+
+**Milyen kell módosítania a meglévő Azure Backup szolgáltatás konfigurációs előtt vagy után az áttelepítés lemezek felügyelt?**
+
+Nincs módosításokra szükség. 
+
+**Azure biztonsági mentési szolgáltatás az áttelepítés előtt létrehozott, a virtuális gép biztonsági másolatok továbbra is működnek majd?**
+
+Igen, biztonsági mentések zökkenőmentesen működjön.
+
+**Mit kell módosítania a már meglévő Azure-lemezeket titkosítási konfigurációs előtt vagy után az áttelepítés lemezek felügyelt?**
+
+Nincs módosításokra szükség. 
+
+**Nem felügyelt lemezekből rendszerről való automatikus áttelepítéshez, egy meglévő VM skálázási készletek (VMSS)-hoz támogatott felügyelt lemezek?**
+
+Nem. Létrehozhat egy új VMSS felügyelt lemezeket a régi VMSS a lemezkép használatával nem kezelt lemezek. 
+
+**Hozható létre egy felügyelt lemezt egy lap blob pillanatképből felügyelt lemezek áttelepítése előtt?**
+
+Nem. Lap blob pillanatkép oldalakra vonatkozó blob exportálni, és majd hozhat létre egy felügyelt lemezt az exportált oldalakra vonatkozó blob. 
+
+**Tudom a feladatátvétel a helyszíni gépeket felügyelt lemezzel rendelkező virtuális gép az Azure Site Recovery által védett?**
+
+Igen, ha szeretné felügyelt lemezzel rendelkező virtuális gép feladatátvétele.
+
+**Bármely Azure hely helyreállítás (ASR) által védett Azure az Azure-bA replikációval Azure virtuális gépeken az áttelepítés hatása van?**
+
+Igen. Az ASR Azure az Azure-bA védelme nem támogatott felügyelt lemezzel rendelkező virtuális gépekhez. Ugrás V1 CY2018 végén támogatnak. 
+
+**Áttelepíthetem a nem felügyelt a storage-fiókok vagy kezelt lemezek korábban titkosított lévő lemezzel rendelkező virtuális gépek?**
+
+Igen
 
 ## <a name="managed-disks-and-storage-service-encryption"></a>Lemezek és a Storage szolgáltatás titkosítási felügyelt 
 

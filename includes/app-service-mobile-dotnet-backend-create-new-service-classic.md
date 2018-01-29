@@ -1,19 +1,19 @@
-1. Jelentkezzen be hello [Azure Portal].
+1. Jelentkezzen be az [Azure Portalra].
 2. Kattintson az **+ÚJ** > **Web + mobil** > **Mobile App** elemre, majd adjon meg egy nevet a mobilalkalmazás háttérrendszerének.
-3. A hello **erőforráscsoport**, válasszon ki egy meglévő erőforráscsoportot, vagy hozzon létre egy újat (a neve megegyezik az alkalmazás használatával hello.) 
+3. Az **Erőforráscsoport** beállításánál válasszon ki egy létező erőforráscsoportot, vagy hozzon létre egy újat (az alkalmazás nevének használatával). 
    
-    Kiválaszthat egy másik App Service-csomagot, vagy újat is létrehozhat. További információk az App Service szolgáltatások terveket, és hogyan toocreate egy új csomagot egy másik tarifacsomagban réteg, majd a kívánt helyre, a következő látható: [Azure App Service-csomagok részletes áttekintése](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
-4. A hello **App Service-csomag**, hello alapértelmezett terv (a hello [Standard csomagra](https://azure.microsoft.com/pricing/details/app-service/)) van kiválasztva. Igény szerint kiválaszthatja egy másik csomagot, vagy [hozzon létre egy újat](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md#create-an-app-service-plan). hello App Service-csomag beállításai határozzák meg hello [helyet, szolgáltatásokat, költségeket és számítási erőforrásokat](https://azure.microsoft.com/pricing/details/app-service/) az alkalmazáshoz társított. 
+    Kiválaszthat egy másik App Service-csomagot, vagy újat is létrehozhat. Az App Service-csomagokkal, valamint az új csomagok egy másik tarifacsomagban és a kívánt helyen történő létrehozásával kapcsolatos további információk: [Azure App Service plans in-depth overview](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) (Az Azure App Service-csomagok részletes áttekintése).
+4. Az **App Service-csomag** elemnél az alapértelmezett ([standard szintbe](https://azure.microsoft.com/pricing/details/app-service/) tartozó) csomag van kiválasztva. Igény szerint kiválaszthatja egy másik csomagot, vagy [hozzon létre egy újat](../articles/app-service/app-service-plan-manage.md#create-an-app-service-plan). Az App Service-csomag beállításai határozzák meg az alkalmazáshoz társított [helyet, szolgáltatásokat, költségeket és számítási erőforrásokat](https://azure.microsoft.com/pricing/details/app-service/). 
    
-    A hello terv kiválasztása után kattintson **létrehozása**. Ez a Mobile Apps-háttéralkalmazás hello hoz létre. 
-5. A hello **beállítások** hello új mobil-háttéralkalmazást, paneljén kattintson **gyors üzembe helyezési** > saját ügyfélalkalmazás-platformjára > **adatbázis csatlakoztatása**. 
+    A csomag kiválasztása után kattintson a **Létrehozás** gombra. Létrejön a mobilalkalmazás háttérrendszere. 
+5. A mobilalkalmazás új háttérrendszerének **Beállítások** panelén kattintson az **Első lépések** lehetőségre, majd a saját ügyfélalkalmazás-platformjára, végül az **Adatbázis csatlakoztatása** lehetőségre. 
    
     ![](./media/app-service-mobile-dotnet-backend-create-new-service/dotnet-backend-create-data-connection.png)
-6. A hello **adatkapcsolat hozzáadása** panelen kattintson a **SQL-adatbázis** > **hozzon létre egy új adatbázist**, típus hello adatbázis **neve**, Válasszon egy tarifacsomagot, majd kattintson az **Server**.  Ezt az új adatbázist többször is felhasználhatja. Ha már rendelkezik adatbázissal hello ugyanazon a helyen, választhatja **meglévő adatbázis használata**. egy adatbázis egy másik helyen lévő hello használata toobandwidth költségekkel és nagyobb késleltetéssel járhat miatt nem ajánlott.
+6. Az **Adatkapcsolat hozzáadása** panelen kattintson az **SQL Database** > **Új adatbázis létrehozása** lehetőségre, adja meg az adatbázis nevét a **Név** mezőben, válassza ki a tarifacsomagot, majd kattintson a **Kiszolgáló** elemre.  Ezt az új adatbázist többször is felhasználhatja. Ha már rendelkezik adatbázissal ugyanazon a helyen, választhatja a **Meglévő adatbázis használata** lehetőséget is. Más helyen található adatbázis használata nem ajánlott, mert ez további, a sávszélességhez kötődő költségekkel és nagyobb késleltetéssel járhat.
    
     ![](./media/app-service-mobile-dotnet-backend-create-new-service/dotnet-backend-create-db.png)
-7. Hello a **új kiszolgáló** panelen írja be egy egyedi kiszolgálónevet hello **kiszolgálónév** mezőbe, adjon meg egy felhasználónevet és jelszót, ellenőrizze **engedélyezése az azure szolgáltatások tooaccess server**, és kattintson **OK**. Ez a hello új adatbázist hoz létre.
-8. Vissza a hello **adatkapcsolat hozzáadása** panelen kattintson a **kapcsolati karakterlánc**, írja be az adatbázis hello felhasználónevet és jelszót értékeket, és kattintson **OK**. Várjon néhány percig, hello adatbázis toobe sikeresen telepített, a folytatás előtt.
+7. Az **Új kiszolgáló** panelen írjon be egy egyedi kiszolgálónevet a **Kiszolgáló neve** mezőbe, adjon meg egy felhasználónevet és egy jelszót, jelölje be az **Azure-szolgáltatások kiszolgálói hozzáférésének engedélyezése** jelölőnégyzetet, majd kattintson az **OK** gombra. Létrejön az új adatbázis.
+8. Az **Adatkapcsolat hozzáadása** panelen kattintson a **Kapcsolati karakterlánc** elemre, írja be az adatbázishoz tartozó felhasználónevet és jelszót, majd kattintson az **OK** gombra. Várjon pár percet, amíg az adatbázis telepítése sikeresen befejeződik, mielőtt továbblépne.
 
 <!-- URLs. -->
-[Azure Portal]: https://portal.azure.com/
+[Azure Portalra]: https://portal.azure.com/

@@ -4,36 +4,43 @@ includes/sql-database-include-ip-address-22-v12portal.md
 
 Latest Freshness check:  2016-03-21 , daleche.
 
-As of circa 2015-09-04, hello following topics might include this include:
+As of circa 2015-09-04, the following topics might include this include:
 articles/sql-database/sql-database-configure-firewall-settings.md
 articles/sql-database/sql-database-connect-query.md
 
 
 ## Server-level firewall rules
 
-### Add a server-level firewall rule through hello new Azure portal
+### Add a server-level firewall rule through the new Azure portal
 -->
 
 
-1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/) , http://portal.azure.com/.
-2. Kattintson a bal oldali szalagcím hello, **összes TALLÓZÁSA**. Hello **Tallózás** panel jelenik meg.
-3. Görgetéssel **SQL Server-kiszolgálók**. Hello **SQL Server-kiszolgálók** panel jelenik meg.
+1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
+
+2. A bal oldali listában válassza ki a **Tallózás**. 
+
+3. Görgessen és válassza ki **SQL Server-kiszolgálók**. 
    
-    ![Az Azure SQL Database-kiszolgálóhoz az hello portálon található][b21-FindServerInPortal]
-4. Kényelmi okokból kattintson hello minimalizálása érdekében a korábbi hello levő **Tallózás** panelen.
-5. A hello szűrő szövegmezőbe írja be a kiszolgáló nevének hello elindításához. A sor jelenik meg.
-6. Kattintson a kiszolgáló hello sor. A kiszolgáló egy panel jelenik meg.
-7. A kiszolgáló paneljén kattintson **beállítások**. Hello **beállítások** panel jelenik meg.
-8. Kattintson a **tűzfal**. Hello **tűzfalbeállítások** panel jelenik meg.
+    ![Az Azure SQL adatbázis-kiszolgáló található a portálon][b21-FindServerInPortal]
+4. Az egyszerűség kedvéért minimalizálása érdekében a **Tallózás** panelen.
+
+5. A Szűrő mezőbe írja be annak a kiszolgálónak a nevét elindításához. A sor jelenik meg.
+
+6. Jelölje ki a kiszolgáló sort. A kiszolgáló egy panel jelenik meg.
+
+7. Válassza ki a kiszolgálójuk paneljéről **beállítások**. 
+
+8. Válassza ki **tűzfal**. 
    
-    ![Kattintson a beállítások > tűzfal][b31-SettingsFirewallNavig]
-9. Kattintson a **adja hozzá ügyfél IP**. Adjon meg egy nevet az új szabály hello első szövegmezőbe írja be.
-10. Hello alacsony és magas írja be az IP-cím kívánt hello tartomány értékeinek tooenable.
+    ![Válassza ki a beállítások > tűzfal][b31-SettingsFirewallNavig]
+9. Válassza ki **adja hozzá ügyfél IP**. Az első szövegmezőbe írja be az új szabály nevét.
+
+10. Adja meg a kis és nagy IP cím a tartomány értékeinek engedélyezni szeretné.
     
-    * Hasznos toohave hello alacsony értékre end azok **.0** és magas hello **.255**.
+    * Azok az alacsony érték end jöhet **.0** és a nagy értékű végződhet **.255**.
     
-    ![Az IP-cím tartomány tooallow hozzáadása][b41-AddRange]
-11. Kattintson a **Save** (Mentés) gombra.
+    ![Engedélyezi az IP-címtartomány hozzáadása][b41-AddRange]
+11. Kattintson a **Mentés** gombra.
 
 <!-- Image references. -->
 

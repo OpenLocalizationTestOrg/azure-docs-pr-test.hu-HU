@@ -1,0 +1,72 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: "Terraform az Azure-on – Dokumentáció"
+metadata:
+  title: "Terraform az Azure-on – Oktatóanyagok és referencia"
+  meta.description: Learn how to use Terraform to reliably provision virtual machines and other infrastructure on Azure.
+  services: terraform
+  author: rloutlaw
+  manager: justhe
+  ms.service: terraform
+  ms.tgt_pltfrm: na
+  ms.devlang: devops
+  ms.topic: landing-page
+  ms.date: 09/21/2017
+  ms.author: routlaw
+  ms.openlocfilehash: ee0dc6f351823347b1d0572c0a9fb392bbc6956e
+  ms.sourcegitcommit: 48fce90a4ec357d2fb89183141610789003993d2
+  ms.translationtype: HT
+  ms.contentlocale: hu-HU
+  ms.lasthandoff: 01/12/2018
+abstract:
+  description: "A Terraform segítségével megbízhatóan hozhat létre infrastruktúrákat az Azure-on, továbbá elvégezheti azok verziószámozását. Rövid útmutatóink és oktatóanyagaink segítségével megtudhatja, hogyan hozhat létre erőforrásokat, használhatja a Terraform moduljait és tarthatja karban az infrastruktúráját kód használatával."
+  aside:
+    image:
+      alt: Terraform logo.
+      height: 110
+      src: media/Terraform_VerticalLogo_FullColor.svg
+      width: 250
+sections:
+- title: "Gyors útmutatók"
+  items:
+  - type: paragraph
+    text: "A Terraform konfigurálása és felhasználása Linux rendszerű virtuális gépek Azure-ban való létrehozására."
+  - type: list
+    style: icon48
+    items:
+    - image:
+        src: https://docs.microsoft.com/azure/media/index/azure_dev-9.svg
+      text: "A Terraform telepítése és konfigurálása"
+      href: https://docs.microsoft.com/azure/virtual-machines/linux/terraform-install-configure
+    - image:
+        src: https://docs.microsoft.com/azure/media/index/VirtualMachine.svg
+      text: "Linux rendszerű virtuális gép létrehozása"
+      href: https://docs.microsoft.com/azure/virtual-machines/linux/terraform-create-complete-vm
+- title: "Részletes útmutatók"
+  items:
+  - type: paragraph
+    text: "Tudja meg, hogyan hozhat létre Azure számítási és hálózatkezelési infrastruktúrát kódból a Terraform használatával."
+  - type: list
+    style: unordered
+    items:
+    - html: "<a href=\"/azure/terraform/terraform-create-vm-cluster-module\">Elosztott terhelésű virtuálisgép-fürt létrehozása az Azure Terraform moduljaival</a>."
+    - html: "<a href=\"/azure/terraform/terraform-create-vm-cluster-with-infrastructure\">Elosztott terhelésű virtuálisgép-fürt létrehozása az Azure Cloud Shellben</a>."
+    - html: "<a href=\"/azure/terraform/terraform-create-vm-scaleset-network-disks-hcl\">Virtuálisgép-méretezési csoport konfigurálása hálózatkezeléssel és tárolással.</a>"
+    - html: "<a href=\"/azure/terraform/terraform-create-vm-scaleset-network-disks-using-packer-hcl\">VM-méretezési készlet kiépítése Packer egyéni rendszerképpel.</a>"
+- title: "Példák"
+  items:
+  - type: paragraph
+    text: "Példa konfigurációs sablonok általános üzembehelyezési feladatokhoz."
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="https://github.com/terraform-providers/terraform-provider-azurerm/tree/master/examples">GitHubon</a>
+- title: "Hivatkozás"
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: Az Azure Terraform moduljai
+      html: "<p><a href=\"https://registry.terraform.io/modules/Azure/database/azurerm\">Azure RM adatbázishoz</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/loadbalancer\">Azure RM a Load Balancerhez</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/computegroup\">Azure RM számítási csoport</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/network\">Azure RM-hálózat</a></p><p><a href=\"https://registry.terraform.io/modules/Azure/compute\">Azure RM-számítás</a></p>"

@@ -6,7 +6,7 @@
 | Fiókonkénti teljes pillanatkép-kapacitás |10 TB |
 | Fiókonkénti maximális sávszélesség (bejövő + kimenő forgalom<sup>1</sup>) |<=50 Gbps |
 
-<sup>1</sup>*érkező* tooall (kérelmek) küldött adatok mennyisége tooa tárfiók hivatkozik. *Kimenő forgalom* tárfiókból kapott tooall adatokat (válasz) hivatkozik.
+<sup>1</sup>*Bejövő forgalom* alatt egy tárfiók felé elküldött összes adatot (kérést) értjük. *Kimenő forgalom* alatt egy tárfiók felől fogadott összes adatot (választ) értjük.
 
 **Prémium nem felügyelt virtuálisgép-lemezek: lemezenkénti korlátok**
 
@@ -21,8 +21,6 @@
 
 | Erőforrás | Alapértelmezett korlát |
 | --- | --- |
-| Virtuális gépenkénti maximális IOPS |80 000 IOPS GS5 virtuális géppel<sup>1</sup> |
-| Virtuális gépenkénti maximális átviteli sebesség |2000 MB/s GS5 virtuális géppel<sup>1</sup> |
-
-<sup>1</sup>tekintse meg a túl[Virtuálisgép-méretet](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) a más Virtuálisgép-méretek vonatkozó korlátozások. 
+| Virtuális gépenkénti maximális IOPS |80000 IOPS a GS5 virtuális Géphez |
+| Virtuális gépenkénti maximális átviteli sebesség |A GS5 virtuális Géphez 2000 MB/s |
 

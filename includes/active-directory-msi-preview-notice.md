@@ -1,0 +1,4 @@
+|  |
+|--|
+|Felügyelt szolgáltatás identitásának (MSI) az Azure Active Directory nyilvános előzetes verziójú funkciók. Győződjön meg arról, hogy tekintse át a [ismert problémák](/azure/active-directory/msi-known-issues) megkezdése előtt. Ha azt szeretné, figyelembe kell venni a private Preview verziójára, a beléptetési [látogasson el az előfizetési oldalra](https://aka.ms/azuremsiprivatepreview). Az előzetes verziójú funkciók kapcsolatos további információkért lásd: [kiegészítő használati feltételek Microsoft Azure előzetes](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).|
+|  |

@@ -1,14 +1,21 @@
-Most már használhatja az adatkezelő toocreate egy tábla és adatok tooyour adatbázis hozzáadása. 
+Az Azure Portal Adatkezelő eszközét mostantól adatbázis és tábla létrehozására is használhatja. 
 
-1. A navigációs menü hello Azure-portálon hello kattintson **adatok kezelővel (előzetes verzió)**. 
-2. Hello adatkezelő paneljén kattintson **új tábla**, majd adja meg a hello lapot hello a következő információ használatával.
+1. Kattintson az **Adatkezelő** > **Új tábla** parancsra. 
+    
+    A jobb szélen megjelenik a **Táblázat hozzáadása** terület. Esetenként jobbra kell görgetnie, hogy lássa.
 
-    ![Az Azure-portálon hello adatkezelő](./media/cosmos-db-create-table/azure-cosmosdb-data-explorer.png)
+    ![Adatkezelő az Azure Portalon](./media/cosmos-db-create-table/azure-cosmosdb-data-explorer.png)
+
+2. A **Tábla hozzáadása** oldalon adja meg az új tábla beállításait.
 
     Beállítás|Ajánlott érték|Leírás
     ---|---|---
-    Táblaazonosító|minta tábla|az új tábla hello azonosítója. Táblanevek rendelkezik hello azonos követelmények karakter, adatbázis-azonosító. Az adatbázis neve 1–255 karakter hosszúságú lehet, és nem tartalmazhat `/ \ # ?` karaktereket vagy záró szóközt.
-    Tárkapacitás| 10 GB|Hagyja hello alapértelmezett értéket. Ez a hello tárolási kapacitás hello adatbázis.
-    Teljesítmény|400 kérelemegység|Hagyja hello alapértelmezett értéket. Hello költenie [átviteli](../articles/cosmos-db/request-units.md) később, ha azt szeretné, hogy tooreduce késés.
+    Táblaazonosító|minta tábla|Az új tábla azonosítója. A táblák nevére ugyanazok a korlátozások vonatkoznak, mint az adatbázis-azonosítókra. Az adatbázis neve 1–255 karakter hosszúságú lehet, és nem tartalmazhat `/ \ # ?` karaktereket vagy záró szóközt.
+    Tárkapacitás| Rögzített méretű (10 GB)|Módosítsa az értéket **Rögzített méretű (10 GB)** értékre. Ez az érték az adatbázis tárkapacitása.
+    Teljesítmény|400 kérelemegység|Módosítsa az átviteli sebességet másodpercenként 400 kérelemegységre (RU/s). Később lehetősége lesz növelni az átviteli sebességet a késés csökkentése érdekében.
 
-3. Amikor hello űrlap ki van töltve, kattintson a **OK**.
+    Kattintson az **OK** gombra.
+
+    Az Adatkezelő megjeleníti az új adatbázist és táblát.
+
+    ![Az Azure Portal Adatkezelője, az új adatbázissal és gyűjteménnyel](./media/cosmos-db-create-table/azure-cosmos-db-new-table.png)

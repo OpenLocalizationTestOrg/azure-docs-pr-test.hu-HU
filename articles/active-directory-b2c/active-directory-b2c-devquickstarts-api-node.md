@@ -4,7 +4,7 @@ description: "Node.js webes API létrehozása, amely fogadja a B2C-bérlők ált
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
-manager: mbaldwin
+manager: mtillman
 editor: 
 ms.assetid: fc2b9af8-fbda-44e0-962a-8b963449106a
 ms.service: active-directory-b2c
@@ -14,11 +14,11 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: xerners
-ms.openlocfilehash: 6480be75c314ede1b786e959a79c0385dd2edea8
-ms.sourcegitcommit: 73f159cdbc122ffe42f3e1f7a3de05f77b6a4725
-ms.translationtype: MT
+ms.openlocfilehash: 3a0249f2f7dfd76d89cbf497376f53fe06c250c3
+ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.translationtype: HT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/28/2017
+ms.lasthandoff: 12/18/2017
 ---
 # <a name="azure-ad-b2c-secure-a-web-api-by-using-nodejs"></a>Azure AD B2C: Védelem biztosítása webes API-k számára a Node.js segítségével
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
@@ -35,11 +35,11 @@ A **Passport** a Node.js-hez készült közbenső hitelesítési szoftver. A rug
 Ennek a mintának az elvégzéséhez először az alábbiakat kell elvégeznie:
 
 1. Alkalmazás regisztrálása az Azure AD-ben.
-2. Az alkalmazás beállítása a Passport `azure-ad-passport` bővítményének használatára.
+2. Az alkalmazás beállítása a Passport `passport-azure-ad` bővítményének használatára.
 3. Ügyfélalkalmazás konfigurálása a „feladatlista” webes API meghívására.
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>Az Azure AD B2C-címtár beszerzése
-Ahhoz, hogy használni tudja az Azure AD B2C-t, előbb létre kell hoznia egy címtárat vagy bérlőt.  A címtárban tárolhatja az összes felhasználót, alkalmazást, csoportot és más elemeket.  Ha még nem tette meg, [hozzon létre most egy B2C-címtárat](active-directory-b2c-get-started.md), mielőtt továbblépne.
+Az Azure AD B2C használatához létre kell hoznia egy címtárat vagy bérlőt.  A címtárban tárolhatja az összes felhasználót, alkalmazást, csoportot és más elemeket.  Ha még nem tette meg, [hozzon létre most egy B2C-címtárat](active-directory-b2c-get-started.md), mielőtt továbblépne.
 
 ## <a name="create-an-application"></a>Alkalmazás létrehozása
 Következő lépésként létre kell hoznia egy alkalmazást a B2C-címtárban, amely ellátja az Azure AD-t a biztonságos kommunikációhoz szükséges információkkal. Ebben az esetben az ügyfélalkalmazáshoz és a webes API-hoz egyetlen **alkalmazásazonosító** tartozik, mivel a két elem egyetlen logikai alkalmazás lesz. Az alkalmazást a következő [utasítások](active-directory-b2c-app-registration.md) alapján hozza létre. Ügyeljen arra, hogy:
@@ -49,10 +49,8 @@ Következő lépésként létre kell hoznia egy alkalmazást a B2C-címtárban, 
 * Hozzon létre egy **alkalmazástitkot** az alkalmazáshoz, majd másolja. Erre az adatra később még szükség lesz. Ne feledje, hogy az értékben használat előtt [az XML-nek megfelelő feloldójelekkel](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) kell megjelölni a vezérlőkaraktereket.
 * Másolja az alkalmazáshoz rendelt **alkalmazásazonosítót**. Erre az adatra később még szükség lesz.
 
-[!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
-
-## <a name="create-your-policies"></a>Szabályzatok létrehozása
-Az Azure AD B2C-ben a felhasználói élményeket [szabályzatok](active-directory-b2c-reference-policies.md) határozzák meg. Ez az alkalmazás két, identitással kapcsolatos műveletet tartalmaz: regisztráció és bejelentkezés. Mindkettőhöz létre kell hoznia egy szabályzatot a [szabályzatok áttekintésével foglalkozó cikkben](active-directory-b2c-reference-policies.md#create-a-sign-up-policy) leírtak szerint.  A három szabályzat létrehozásakor ügyeljen arra, hogy:
+## <a name="create-your-policies"></a>Házirendek létrehozása
+Az Azure AD B2C-ben minden felhasználói élményt [házirendek](active-directory-b2c-reference-policies.md) határoznak meg. Ez az alkalmazás két, identitással kapcsolatos műveletet tartalmaz: regisztráció és bejelentkezés. Mindkettőhöz létre kell hoznia egy szabályzatot a [szabályzatok áttekintésével foglalkozó cikkben](active-directory-b2c-reference-policies.md#create-a-sign-up-policy) leírtak szerint.  A három szabályzat létrehozásakor ügyeljen arra, hogy:
 
 * A regisztrációs szabályzatban adja meg a **Megjelenített név** értékét, illetve az egyéb regisztrációs attribútumokat.
 * Az összes szabályzatban válassza ki a **Megjelenített név** és az **Objektumazonosító** alkalmazási jogcímet.  Ezenfelül más jogcímeket is használhat.
@@ -756,7 +754,7 @@ A cél, hogy 401-es hiba jelenjen meg. Ez azt jelzi, hogy a Passport réteg megp
 ## <a name="you-now-have-a-rest-api-service-that-uses-oauth2"></a>Az OAuth2-t használó REST API-szolgáltatás ezzel elkészült
 A Restify és az OAuth használatával elkészítette a REST API-t! Most már rendelkezésre állnak a megfelelő kódrészletek, amelyek segítségével tovább fejlesztheti szolgáltatását. Megtettünk mindent, ami a kiszolgálón OAuth2-kompatibilis ügyfél nélkül lehetséges volt. A következő lépéshez használjon újabb útmutatókat, például a [Csatlakozás webes API-hoz az iOS rendszer és a B2C segítségével](active-directory-b2c-devquickstarts-ios.md) című témakört.
 
-## <a name="next-steps"></a>További lépések
+## <a name="next-steps"></a>Következő lépések
 Most már továbbléphet az összetettebb témákra, például:
 
 [Csatlakozás webes API-hoz az iOS rendszer és a B2C segítségével](active-directory-b2c-devquickstarts-ios.md)

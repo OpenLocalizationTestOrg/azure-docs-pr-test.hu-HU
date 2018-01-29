@@ -1,9 +1,9 @@
-1. Hello portálon keresse meg a legyen a virtuális hálózati átjáró toocreate toohello virtuális hálózat.
-2. A hello **beállítások** szakasz mutatja be a virtuális hálózatot, kattintson a **alhálózatok** tooexpand hello alhálózatok lap.
-3. A hello **alhálózatok** lapján kattintson **+ átjáróalhálózatot** : hello felső tooopen hello **alhálózat hozzáadása** lap.
+1. Keresse meg a portálon azt a virtuális hálózatot, amelyhez létre kíván hozni egy virtuális hálózati átjárót.
+2. A VNet lap **Beállítások** részén az **Alhálózatok** elemre kattintva bontsa ki az Alhálózatok oldalt.
+3. Az **Alhálózatok** lap tetején lévő **+Átjáró-alhálózat** elemre kattintva nyissa meg az **Alhálózat hozzáadása** lapot.
 
-  ![Hello átjáró alhálózatának hozzáadása](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/add-gw-subnet.png "hello átjáró alhálózatának hozzáadása")
-4. Hello **neve** az alhálózat hello automatikusan felveszi a "GatewaySubnet" értéket. hello GatewaySubnet érték ahhoz, hogy az Azure toorecognize hello alhálózati hello átjáró alhálózatának minimális. Állítsa be az automatikusan kitöltött hello **-címtartományt** értékek toomatch a konfigurációs követelmények.
+  ![Az átjáró alhálózatának hozzáadása](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/addgwsub.png "Az átjáró alhálózatának hozzáadása")
+4. Az alhálózat **nevénél** automatikusan megjelenik a „GatewaySubnet” érték. Az GatewaySubnet érték szükséges ahhoz, hogy az Azure felismerje, hogy az alhálózat egy átjáró alhálózata. Módosítsa úgy a **címtartomány** automatikusan kitöltött értékeit, hogy megfeleljenek a konfigurációs követelményeinek.
 
-  ![Hello átjáró alhálózatának hozzáadása](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/gwsubnetip.png "hello átjáró alhálózatának hozzáadása")
-5. toocreate hello alhálózati, kattintson a **OK** hello lap hello alján.
+  ![Az átjáró alhálózatának hozzáadása](./media/vpn-gateway-add-gwsubnet-s2s-rm-portal-include/addsub2.png "Az átjáró alhálózatának hozzáadása")
+5. Az alhálózat létrehozásához kattintson a lap alján található **OK** gombra.

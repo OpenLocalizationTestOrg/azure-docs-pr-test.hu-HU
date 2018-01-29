@@ -1,52 +1,73 @@
 <!--
 Used in:
-sql-database-performance-guidance.md  
-sql-database-resource-limits.md
-sql-database-service-tiers.md  
+sql-database-performance-guidance.md 
+sql-database-single-database-resources.md 
 -->
 
 ### <a name="basic-service-tier"></a>Alapszintű szolgáltatásszint
 | **Teljesítményszint szükséges** | **Basic** |
-| --- | :---: |
+| :--- | --: |
 | DTU-k maximális száma | 5 |
-| Adatbázisok maximális mérete* |2 GB|
-| Memóriában tárolt OLTP-k maximális tárterülete |N/A |
-| Maximális párhuzamos munkavállalók (kérelmek) |30 |
-| Egyidejű bejelentkezések maximális száma |30 |
-| Egyidejű munkamenetek maximális száma |300 |
+| Belefoglalt tárhely (GB) | 2 |
+| Maximális tárolási lehetőségek (GB) | 2 |
+| Memóriában tárolt OLTP-k maximális tárterülete (GB) |– |
+| Maximális párhuzamos munkavállalók (kérelmek) | 30 |
+| Egyidejű bejelentkezések maximális száma | 30 |
+| Egyidejű munkamenetek maximális száma | 300 |
 |||
 
 ### <a name="standard-service-tier"></a>Standard szolgáltatásszint
 | **Teljesítményszint szükséges** | **S0** | **S1** | **S2** | **S3** |
-| --- |---:| ---:|---:|---:|---:|
-| DTU-k maximális száma | 10 | 20 | 50 | 100 |
-| Adatbázisok maximális mérete* | 250 GB| 250 GB | 250 GB | 250 GB |
-| Memóriában tárolt OLTP-k maximális tárterülete | N/A | N/A | N/A | N/A |
+| :--- |---:| ---:|---:|---:|---:|
+| A maximális i ** | 10 | 20 | 50 | 100 |
+| Belefoglalt tárhely (GB) | 250 | 250 | 250 | 250 |
+| Maximális tárolási lehetőségek (GB) * | 250 | 250 | 250 | 250, 500, 750, 1024 |
+| Memóriában tárolt OLTP-k maximális tárterülete (GB) | – | – | – | – |
 | Maximális párhuzamos munkavállalók (kérelmek)| 60 | 90 | 120 | 200 |
 | Egyidejű bejelentkezések maximális száma | 60 | 90 | 120 | 200 |
 | Egyidejű munkamenetek maximális száma |600 | 900 | 1200 | 2400 |
 ||||||
 
+### <a name="standard-service-tier-continued"></a>Standard szintű szolgáltatási réteg (Folytatás)
+| **Teljesítményszint szükséges** | **S4** | **S6** | **S7** | **S9** | **S12** |
+| :--- |---:| ---:|---:|---:|---:|---:|
+| A maximális i ** | 200 | 400 | 800 | 1600 | 3000 |
+| Belefoglalt tárhely (GB) | 250 | 250 | 250 | 250 | 250 |
+| Maximális tárolási lehetőségek (GB) * | 250, 500, 750, 1024 | 250, 500, 750, 1024 | 250, 500, 750, 1024 | 250, 500, 750, 1024 | 250, 500, 750, 1024 |
+| Memóriában tárolt OLTP-k maximális tárterülete (GB) | – | – | – | – |– |
+| Maximális párhuzamos munkavállalók (kérelmek)| 400 | 800 | 1600 | 3200 |6000 |
+| Egyidejű bejelentkezések maximális száma | 400 | 800 | 1600 | 3200 |6000 |
+| Egyidejű munkamenetek maximális száma |4800 | 9600 | 19200 | 30000 |30000 |
+|||||||
+
 ### <a name="premium-service-tier"></a>Prémium szolgáltatásszint 
 | **Teljesítményszint szükséges** | **P1** | **P2** | **P4** | **P6** | **P11** | **P15** | 
-| --- |---:|---:|---:|---:|---:|---:|
+| :--- |---:|---:|---:|---:|---:|---:|
 | DTU-k maximális száma | 125 | 250 | 500 | 1000 | 1750 | 4000 |
-| Adatbázisok maximális mérete* | 500 GB | 500 GB | 500 GB | 500 GB | 4 TB | 4 TB |
-| Memóriában tárolt OLTP-k maximális tárterülete | 1 GB | 2 GB | 4 GB | 8 GB | 14 GB | 32 GB |
+| Belefoglalt tárhely (GB) | 500 | 500 | 500 | 500 | 4096 | 4096 |
+| Maximális tárolási lehetőségek (GB) * | 500, 750, 1024 | 500, 750, 1024 | 500, 750, 1024 | 500, 750, 1024 | 4096 | 4096 |
+| Memóriában tárolt OLTP-k maximális tárterülete (GB) | 1 | 2 | 4 | 8 | 14 | 32 |
 | Maximális párhuzamos munkavállalók (kérelmek)| 200 | 400 | 800 | 1600 | 2400 | 6400 |
-| Egyidejű bejelentkezések maximális száma | 200 | 400| 800| 1600| 2400| 6400 |
-| Egyidejű munkamenetek maximális száma | 30000| 30000| 30000| 30000| 30000| 30000 |
+| Egyidejű bejelentkezések maximális száma | 200 | 400 | 800 | 1600 | 2400 | 6400 |
+| Egyidejű munkamenetek maximális száma | 30000 | 30000 | 30000 | 30000 | 30000 | 30000 |
 |||||||
 
 ### <a name="premium-rs-service-tier"></a>Prémium szintű RS szolgáltatási rétegben 
 | **Teljesítményszint szükséges** | **PRS1** | **PRS2** | **PRS4** | **PRS6** |
-| --- |---:|---:|---:|---:|---:|---:|
+| :--- |---:|---:|---:|---:|---:|---:|
 | DTU-k maximális száma | 125 | 250 | 500 | 1000 |
-| Adatbázisok maximális mérete* | 500 GB | 500 GB | 500 GB | 500 GB |
-| Memóriában tárolt OLTP-k maximális tárterülete | 1 GB | 2 GB | 4 GB | 8 GB |
+| Belefoglalt tárhely (GB) | 500 | 500 | 500 | 500 |
+| Maximális tárolási lehetőségek (GB) * | 500, 750, 1024 | 500, 750, 1024 | 500, 750, 1024 | 500, 750, 1024 |
+| Memóriában tárolt OLTP-k maximális tárterülete (GB) | 1 | 2 | 4 | 8 |
 | Maximális párhuzamos munkavállalók (kérelmek)| 200 | 400 | 800 | 1600 |
-| Egyidejű bejelentkezések maximális száma | 200 | 400| 800| 1600|
-| Egyidejű munkamenetek maximális száma | 30000| 30000| 30000| 30000|
+| Egyidejű bejelentkezések maximális száma | 200 | 400 | 800 | 1600 |
+| Egyidejű munkamenetek maximális száma | 30000 | 30000 | 30000 | 30000 |
 |||||||
 
-\*Maximális adatbázis mérete toohello hello adatok hello adatbázis maximális méretét jelenti. 
+> [!IMPORTANT]
+> \* A szolgáltatási keretbe foglaltnál nagyobb tárterületek előzetes verzióban érhetők el, és extra költségek vonatkoznak rájuk. Részletes információ: [SQL Database – Díjszabás](https://azure.microsoft.com/pricing/details/sql-database/). 
+>
+>\*Prémium szint több, mint 1 TB-nyi tárhelyre érhető el jelenleg a következő régiókban: Kelet-Ausztrália, Ausztrália délkeleti, Kanada központi, Kanada keleti, Franciaország központi, Németország központi kelet-Japánban, Korea központi déli középső régiója VELÜNK, Dél Kelet-Ázsia, Velünk East2 , USA nyugati régiója, USA – (kormányzati) Virginia és Nyugat-Európában. Lásd: [P11–P15 – Aktuális korlátozások](../articles/sql-database/sql-database-resource-limits.md#single-database-limitations-of-p11-and-p15-when-the-maximum-size-greater-than-1-tb).  
+> 
+>\*\*Maximális Dtu adatbázisonkénti indítása, 200 dtu-inak száma és az annál magasabb a Standard még csak előzetes verziójúak.
+>
