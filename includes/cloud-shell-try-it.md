@@ -1,21 +1,12 @@
 
-## <a name="launch-azure-cloud-shell"></a><span data-ttu-id="03670-101">Az Azure Cloud Shell indítása</span><span class="sxs-lookup"><span data-stu-id="03670-101">Launch Azure Cloud Shell</span></span>
+## <a name="launch-azure-cloud-shell"></a><span data-ttu-id="d6732-101">Az Azure Cloud Shell indítása</span><span class="sxs-lookup"><span data-stu-id="d6732-101">Launch Azure Cloud Shell</span></span>
 
-<span data-ttu-id="03670-102">hello Azure Cloud rendszerhéj a szabad rendszerhéjakba futtatható közvetlenül hello Azure-portálon belül.</span><span class="sxs-lookup"><span data-stu-id="03670-102">hello Azure Cloud Shell is a free Bash shell that you can run directly within hello Azure portal.</span></span> <span data-ttu-id="03670-103">Hello Azure CLI előtelepített és konfigurált toouse-fiókjához van.</span><span class="sxs-lookup"><span data-stu-id="03670-103">It has hello Azure CLI preinstalled and configured toouse with your account.</span></span> <span data-ttu-id="03670-104">Kattintson a hello **felhő rendszerhéj** hello jobb felső részén hello hello menü gombjára [Azure-portálon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="03670-104">Click hello **Cloud Shell** button on hello menu in hello upper-right of hello [Azure portal](https://portal.azure.com).</span></span>
+<span data-ttu-id="d6732-102">Az Azure Cloud Shell egy olyan ingyenes interaktív kezelőfelület, amelyet a jelen cikkben található lépések futtatására használhat.</span><span class="sxs-lookup"><span data-stu-id="d6732-102">The Azure Cloud Shell is a free interactive shell that you can use to run the steps in this article.</span></span> <span data-ttu-id="d6732-103">A fiókjával való használat érdekében a gyakran használt Azure-eszközök már előre telepítve és konfigurálva vannak rajta.</span><span class="sxs-lookup"><span data-stu-id="d6732-103">It has common Azure tools preinstalled and configured to use with your account.</span></span> <span data-ttu-id="d6732-104">A **Másolás** gombra kattintva másolja és illessze be a kódot a Cloud Shellbe, majd nyomja le az Enter billentyűt a futtatáshoz.</span><span class="sxs-lookup"><span data-stu-id="d6732-104">Just click the **Copy** to copy the code, paste it into the Cloud Shell, and then press enter to run it.</span></span>  <span data-ttu-id="d6732-105">Néhány módszer a Cloud Shell indításához:</span><span class="sxs-lookup"><span data-stu-id="d6732-105">There are a few ways to launch the Cloud Shell:</span></span>
 
-<span data-ttu-id="03670-105">[![Cloud Shell](./media/cloud-shell-try-it/cloud-shell-menu.png)](https://portal.azure.com)</span><span class="sxs-lookup"><span data-stu-id="03670-105">[![Cloud Shell](./media/cloud-shell-try-it/cloud-shell-menu.png)](https://portal.azure.com)</span></span>
-
-<span data-ttu-id="03670-106">hello gomb elindítja egy interaktív rendszerhéj összes hello ebben a témakörben ismertetett visszaállítási lépésekkel toorun használható:</span><span class="sxs-lookup"><span data-stu-id="03670-106">hello button launches an interactive shell that you can use toorun all of hello steps in this topic:</span></span>
-
-<span data-ttu-id="03670-107">[![Képernyőkép ábrázoló hello felhő rendszerhéj ablakát hello portálon](./media/cloud-shell-try-it/cloud-shell-safari.png)](https://portal.azure.com)</span><span class="sxs-lookup"><span data-stu-id="03670-107">[![Screenshot showing hello Cloud Shell window in hello portal](./media/cloud-shell-try-it/cloud-shell-safari.png)](https://portal.azure.com)</span></span>
-
-
-
-
-
-
-
-
-
-
+|  |   |
+|-----------------------------------------------|---|
+| <span data-ttu-id="d6732-106">Kattintson a **Try It** (Kipróbálás) lehetőségre a kódblokk jobb felső sarkában.</span><span class="sxs-lookup"><span data-stu-id="d6732-106">Click **Try It** in the upper right corner of a code block.</span></span> | ![A Cloud Shell ebben a cikkben](./media/cloud-shell-try-it/cli-try-it.png) |
+| <span data-ttu-id="d6732-108">Nyissa meg a Cloud Shellt a böngészőben.</span><span class="sxs-lookup"><span data-stu-id="d6732-108">Open Cloud Shell in your browser.</span></span> | <span data-ttu-id="d6732-109">[![https://shell.azure.com/bash](./media/cloud-shell-try-it/launchcloudshell.png)](https://shell.azure.com/bash)</span><span class="sxs-lookup"><span data-stu-id="d6732-109">[![https://shell.azure.com/bash](./media/cloud-shell-try-it/launchcloudshell.png)](https://shell.azure.com/bash)</span></span> |
+| <span data-ttu-id="d6732-110">Az [Azure Portal](https://portal.azure.com) jobb felső sarkában található menüben kattintson a **Cloud Shell** gombra.</span><span class="sxs-lookup"><span data-stu-id="d6732-110">Click the **Cloud Shell** button on the menu in the upper right of the [Azure portal](https://portal.azure.com).</span></span> |    ![A Cloud Shell a portálon](./media/cloud-shell-try-it/cloud-shell-menu.png) |
+|  |  |
 
