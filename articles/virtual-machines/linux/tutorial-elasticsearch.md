@@ -1,6 +1,6 @@
 ---
-title: "Az ElasticSearch telepítése egy fejlesztési virtuális gépre Azure-ban"
-description: "Oktatóanyag – Az Elastic Stack telepítése egy fejlesztési célú linuxos virtuális gépre az Azure-ban"
+title: Az ElasticSearch telepítése egy fejlesztési virtuális gépre Azure-ban
+description: Oktatóanyag – Az Elastic Stack telepítése egy fejlesztési célú linuxos virtuális gépre az Azure-ban
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: rloutlaw
