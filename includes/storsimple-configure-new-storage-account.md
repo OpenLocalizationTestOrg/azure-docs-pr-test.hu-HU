@@ -1,16 +1,16 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="tooadd-a-new-storage-account-in-storsimple-release-version-ga"></a>tooadd egy új tárfiókot, a StorSimple Release verzióban (GA)
-1. A hello StorSimple Manager szolgáltatás kezdőlapján válasza ki a szolgáltatást, és kattintson rá duplán. A rendszer ekkor toohello **gyors üzembe helyezés** lap. Jelölje be hello **konfigurálása** lap.
+#### <a name="to-add-a-new-storage-account-in-storsimple-release-version-ga"></a>Új tárfiók hozzáadása a StorSimple Release verzióban (GA)
+1. A StorSimple Manager szolgáltatás kezdőlapján válasza ki a szolgáltatást, és kattintson rá duplán. Ekkor a **Gyors üzembe helyezés** oldalra kerül. Válassza a **Konfigurálás** lapot.
 2. Kattintson a **Tárfiók hozzáadása/szerkesztése** elemre.
-3. A hello **Tárfiók hozzáadása/szerkesztése** párbeszédpanel mezőbe hello a következő:
+3. A **Tárfiók hozzáadása/szerkesztése** párbeszédpanelen tegye a következőket:
    
    1. Kattintson az **Új hozzáadása** parancsra.
    2. Adja meg a tárfiók nevét.
-   3. Adjon meg hello elsődleges **hozzáférési kulcs** a Microsoft Azure-tárfiók.
-   4. Válassza ki **SSL-mód engedélyezése** toocreate biztonságos csatornát a eszköz- és hello felhő közötti hálózati kommunikációhoz. Törölje a jelet hello **SSL-mód engedélyezése** jelölőnégyzet csak akkor, ha magánfelhőben tevékenykedik.
-   5. Kattintson a pipa ikonra hello ![pipa ikon](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png). Értesítést fog kapni hello tárfiók sikeres létrehozása után.
+   3. Adja meg a Microsoft Azure-tárfiók elsődleges **elérési kulcsát**.
+   4. Válassza az **SSL-mód engedélyezése** lehetőséget, ha egy biztonságos csatornát szeretne létrehozni az eszköz és a felhő közötti hálózati kommunikációhoz. Csak akkor törölje a jelölést az **SSL-mód engedélyezése** jelölőnégyzetből, ha magánfelhőben tevékenykedik.
+   5. Kattintson a pipa ikonra ![pipa ikon](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png). Értesítést kap, ha a tárfiók sikeresen létrejött.
       
       ![Tárfiók hozzáadása](./media/storsimple-configure-new-storage-account/HCS_AddStorageAccount-include.png)
-4. az újonnan létrehozott tárfiók hello jelenik meg a hello **konfigurálása** lapon az **tárfiókok**. Kattintson a **mentése** toosave hello újonnan létrehozott tárfiók. Ha a rendszer megerősítést kér, kattintson az **OK** gombra.
+4. Az újonnan létrehozott tárfiók megjelenik a **Tárfiókok** terület **Konfigurálás** lapján. Az újonnan létrehozott tárfiók mentéséhez kattintson a **Mentés** gombra. Ha a rendszer megerősítést kér, kattintson az **OK** gombra.
 

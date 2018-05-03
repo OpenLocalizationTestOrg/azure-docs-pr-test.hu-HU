@@ -1,19 +1,19 @@
 <!--author=SharS last changed: 9/17/15-->
 
 
-#### <a name="tooget-hello-storsimple-service-registration-key"></a>tooget hello StorSimple szolgáltatás regisztrációs kulcsának
-1. A hello **StorSimple Manager szolgáltatás** lapján kattintson a létrehozott hello szolgáltatást. A rendszer ekkor toohello **gyors üzembe helyezés** lap. (Hello gyors üzembe helyezési ikonra ![StorSimple gyors üzembe helyezési ikon ](./media/storsimple-get-service-registration-key-gov/HCS_QuickStartIcon-include.png) tooaccess hello **gyors üzembe helyezés** oldalra bármikor.)
+#### <a name="to-get-the-storsimple-service-registration-key"></a>A StorSimple szolgáltatás regisztrációs kulcsának lekérése
+1. A **StorSimple Manager Szolgáltatás** oldalon kattintson a létrehozott szolgáltatásra. Ekkor a **Gyors üzembe helyezés** oldalra kerül. (A ![Gyors üzembe helyezés](./media/storsimple-get-service-registration-key-gov/HCS_QuickStartIcon-include.png) oldalra bármikor eljuthat, ha a gyors üzembe helyezési ikonra **StorSimple Gyors üzembe helyezési ikon** kattint.)
    
      ![StorSimple gyors üzembe helyezési oldal](./media/storsimple-get-service-registration-key-gov/HCS_ServiceQuickStart-gov-include.png)
-2. Kattintson a **Szolgáltatásregisztrációs kulcs lekérése** lehetőségre. Is **regisztrációs kulcs** hello lap hello alján. Akkor toowait néhány percig, amíg hello kulcs lekérése. Hello **Szolgáltatásregisztrációs kulcs** párbeszédpanel jelenik meg.
+2. Kattintson a **Szolgáltatásregisztrációs kulcs lekérése** lehetőségre. A **Regisztrációs kulcs** lehetőségre is kattinthat. A kulcs lekérése néhány percet vehet igénybe. Megjelenik a **Szolgáltatásregisztrációs kulcs** párbeszédablak.
    
      ![Szolgáltatásregisztrációs kulcs párbeszédablak](./media/storsimple-get-service-registration-key-gov/HCS_ServiceRegistrationKey-gov-include.png)
-3. Keresse meg a hello szolgáltatás regisztrációs kulcsának.
-4. Hello másolás ikonra ![StorSimple másolás ikon](./media/storsimple-get-service-registration-key-gov/HCS_CopyIcon-include.png) toocopy hello kulcs, és mentheti későbbi használatra.
-5. Kattintson a pipa ikonra hello ![StorSimple pipa ikon](./media/storsimple-get-service-registration-key-gov/HCS_CheckIcon-include.png) tooclose a párbeszédpanel bezárásához és a visszatérési toohello **gyors üzembe helyezés** lap.
+3. Keresse meg a szolgáltatás regisztrációs kulcsát.
+4. A másolás ikonra ![StorSimple másolás ikon](./media/storsimple-get-service-registration-key-gov/HCS_CopyIcon-include.png) kattintva másolhatja a kulcsot, és mentheti későbbi használatra.
+5. Kattintson a pipa ikonra ![StorSimple pipa ikon](./media/storsimple-get-service-registration-key-gov/HCS_CheckIcon-include.png) a párbeszédablak bezárásához és a **Gyors üzembe helyezés** oldalra való visszatéréshez.
 
 > [!NOTE]
-> hello Szolgáltatásregisztrációs kulcs használt tooregister összes hello tooregister a StorSimple Manager szolgáltatással igénylő eszközök.
+> A szolgáltatás regisztrációs kulcsával regisztrálható az összes olyan eszköz, amelyet regisztrálni kell a StorSimple Manager szolgáltatásban.
 > 
 > 
 

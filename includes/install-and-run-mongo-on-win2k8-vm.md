@@ -1,27 +1,27 @@
-Kövesse az alábbi lépéseket tooinstall, és futtassa a MongoDB Windows Server rendszerű virtuális gépen.
+Kövesse az alábbi lépéseket, telepítése és futtatása a MongoDB Windows Server rendszerű virtuális gépen.
 
 > [!IMPORTANT]
-> Alapértelmezés szerint nem engedélyezettek a MongoDB biztonsági funkciók, például hitelesítés és az IP-cím kötés. Biztonsági funkciókat engedélyezni kell a MongoDB tooa éles környezetben üzembe helyezése előtt.  További információkért lásd: [biztonsági és hitelesítési](http://www.mongodb.org/display/DOCS/Security+and+Authentication).
+> Alapértelmezés szerint nem engedélyezettek a MongoDB biztonsági funkciók, például hitelesítés és az IP-cím kötés. Biztonsági szolgáltatások éles környezetben MongoDB telepítése előtt engedélyezni kell.  További információkért lásd: [biztonsági és hitelesítési](http://www.mongodb.org/display/DOCS/Security+and+Authentication).
 >
 >
 
-1. A távoli asztal toohello virtuális gép csatlakoztatása után nyissa meg az Internet Explorer hello **Start** menü hello virtuális gépen.
-2. Jelölje be hello **eszközök** hello jobb felső sarkában található gombra.  A **Internetbeállítások**, jelölje be hello **biztonsági** lapra, majd válassza ki a hello **megbízható helyek** ikonra, végül kattintson a hello **helyek** jelölt gombra. Adja hozzá *https://\*. mongodb.org* toohello a megbízható helyek listájához.
-3. Nyissa meg túl[letölti – MongoDB](https://www.mongodb.com/download-center#community).
-4. Hello található **jelenlegi stabil kiadásban** a **közösségi Server**, jelölje be legújabb hello **64 bites** változatban a Windows hello. Töltse le, majd futtassa a hello MSI telepítő.
-5. MongoDB telepítése általában a C:\Program Files\MongoDB. Keresse meg a környezeti változók hello asztalán, és hello MongoDB bináris fájlok elérési útja toohello ELÉRÉSI változó hozzáadása. Például előfordulhat hello bináris fájljai a C:\Program Files\MongoDB\Server\3.4\bin a számítógépen.
-6. MongoDB adatainak és naplókönyvtárainak könyvtárak létrehozása a hello adatlemez (például meghajtó **F:**) hello előző lépésekben létrehozott. A **Start**, jelölje be **parancssor** tooopen egy parancssori ablakot.  Típus:
+1. Miután csatlakozott a virtuális géphez a távoli asztal használatával, nyissa meg az Internet Explorer hozzáférését a **Start** menü a virtuális gépen.
+2. Válassza ki a **eszközök** gombra a jobb felső sarokban.  A **Internetbeállítások**, jelölje be a **biztonsági** lapra, majd válassza ki a **megbízható helyek** ikonra, végül kattintson a **helyek** gombra. Adja hozzá *https://\*. mongodb.org* a megbízható helyek listájához.
+3. Ugrás a [letölti – MongoDB](https://www.mongodb.com/download-center#community).
+4. Található a **jelenlegi stabil kiadásban** a **közösségi Server**, válassza ki a legújabb **64 bites** verziója a Windows oszlopban. Töltse le, majd futtassa az MSI telepítő.
+5. MongoDB telepítése általában a C:\Program Files\MongoDB. Keresse meg a környezeti változók az asztalon, és vegye fel a MongoDB bináris fájlok elérési útját a PATH változóban. Például bizonyára hasznosnak találja a bináris fájljai a C:\Program Files\MongoDB\Server\3.4\bin a számítógépen.
+6. Az adatlemez MongoDB adatainak és naplókönyvtárainak könyvtárak létrehozása (például meghajtó **F:**) az előző lépésekben létrehozott. A **Start**, jelölje be **parancssor** való nyisson meg egy parancssori ablakot.  Típus:
 
         C:\> F:
         F:\> mkdir \MongoData
         F:\> mkdir \MongoLogs
-7. toorun hello adatbázis futtatásához:
+7. Futtassa az adatbázis futtatásához:
 
         F:\> C:
         C:\> mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log
 
-    Összes naplózási üzenetek irányított toohello *F:\MongoLogs\mongolog.log* mongod.exe server elindul, és Adatbázisnapló-fájlok preallocates fájlt. Ez hello Adatbázisnapló-fájlok a MongoDB toopreallocate néhány percet igénybe vehet, és indítsa el a kapcsolatfigyelést. hello parancssor marad összpontosítanak ezt a feladatot, a MongoDB-példány futtatása közben.
-8. toostart hello MongoDB felügyeleti rendszerhéjat, nyisson meg egy másik parancs ablakot a **Start** és hello típus a következő parancsokat:
+    Összes naplózási üzenetek vannak átirányítva a *F:\MongoLogs\mongolog.log* mongod.exe server elindul, és Adatbázisnapló-fájlok preallocates fájlt. A napló fájlok készletméret, és elindítja a kapcsolatfigyelést mongodb több percig is eltarthat. A parancssor marad összpontosítanak ezt a feladatot, a MongoDB-példány futtatása közben.
+8. A MongoDB felügyeleti rendszerhéj elindításához nyisson meg egy másik parancs ablakot az **Start** és írja be a következő parancsokat:
 
         C:\> cd \my_mongo_dir\bin  
         C:\my_mongo_dir\bin> mongo  
@@ -36,30 +36,30 @@ Kövesse az alábbi lépéseket tooinstall, és futtassa a MongoDB Windows Serve
         ...  
         > help  
 
-    hello adatbázist hello insert hozta létre.
+    Az adatbázist a beszúrást hozta létre.
 9. Másik lehetőségként telepítése mongod.exe szolgáltatásként:
 
         C:\> mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log --logappend  --install
 
-    A szolgáltatást, MongoDB nevű "Mongo DB" leírását. Hello `--logpath` beállítás kell használt toospecify naplófájl, óta hello szolgáltatást futtató nem rendelkezik egy toodisplay parancs kimenetét.  Hello `--logappend` beállítás megadja, hogy hello szolgáltatás újraindítását okozza-e a kimeneti tooappend toohello naplófájlokat.  Hello `--dbpath` beállítás hello adatkönyvtára hello helyét adja meg. A szolgáltatással kapcsolatos további parancssori kapcsolókat lásd: [parancssori kapcsolók szolgáltatással kapcsolatos][MongoWindowsSvcOptions].
+    A szolgáltatást, MongoDB nevű "Mongo DB" leírását. A `--logpath` egy naplófájlba, azóta a futó szolgáltatás nem rendelkezik egy parancsablakot kimenet megjelenítése a beállítást kell használni.  A `--logappend` beállítás megadja, hogy a szolgáltatás újraindítását okozza-e a kimeneti hozzáfűzése a meglévő naplófájl.  A `--dbpath` lehetőséget a data könyvtárának helyét adja meg. A szolgáltatással kapcsolatos további parancssori kapcsolókat lásd: [parancssori kapcsolók szolgáltatással kapcsolatos][MongoWindowsSvcOptions].
 
-    toostart hello szolgáltatást, futtassa a parancsot:
+    A szolgáltatás elindításához futtassa ezt a parancsot:
 
         C:\> net start MongoDB
-10. Most, hogy a MongoDB telepítve van és fut, a Windows tűzfal port tooopen kell tehát távolról csatlakozhat tooMongoDB.  A hello **Start** menü **felügyeleti eszközök** , majd **fokozott biztonságú Windows tűzfal**.
-11. a) hello bal oldali ablaktáblában jelöljön ki **bejövő szabályok**.  A hello **műveletek** ablaktáblán a jobb oldali hello válassza **új szabály létrehozása...** .
+10. Most, hogy a MongoDB telepítve van és fut, meg kell nyitnia egy portot a Windows tűzfal, távolról csatlakozhat MongoDB.  Az a **Start** menü **felügyeleti eszközök** , majd **fokozott biztonságú Windows tűzfal**.
+11. a) a bal oldali ablaktáblában jelölje ki **bejövő szabályok**.  Az a **műveletek** ablaktáblán a jobb oldali select **új szabály létrehozása...** .
 
     ![A Windows tűzfal][Image1]
 
-    b) a hello **új bejövő szabály varázsló**, jelölje be **Port** majd **következő**.
+    b) a a **új bejövő szabály varázsló**, jelölje be **Port** majd **következő**.
 
     ![A Windows tűzfal][Image2]
 
-    c) válassza **TCP** , majd **adott helyi portok**.  Adjon meg egy portot az "27017" (hello alapértelmezett portot figyel MongoDB), és kattintson a **következő**.
+    c) válassza **TCP** , majd **adott helyi portok**.  Adjon meg egy portot az "27017" (az alapértelmezett porton figyel MongoDB), és kattintson a **következő**.
 
     ![A Windows tűzfal][Image3]
 
-    d) válassza **hello csatlakozás engedélyezése** kattintson **következő**.
+    d) válassza **a kapcsolat engedélyezéséhez** kattintson **következő**.
 
     ![A Windows tűzfal][Image4]
 
@@ -67,24 +67,24 @@ Kövesse az alábbi lépéseket tooinstall, és futtassa a MongoDB Windows Serve
 
     ![A Windows tűzfal][Image5]
 
-    f) adjon meg egy nevet hello szabályhoz, például "MongoPort", és kattintson a **Befejezés**.
+    f) adja meg, például a "MongoPort", a szabály nevét, és kattintson a **Befejezés**.
 
     ![A Windows tűzfal][Image6]
 
-12. Ha nem konfigurál egy olyan végpont mongodb hello virtuális gép létrehozása után, most is elvégezhető. Távolról kell hello tűzfalszabály és hello végpont toobe képes tooconnect tooMongoDB is.
+12. A virtuális gép létrehozása után nem konfigurálta a végpont mongodb, most is elvégezhető. A tűzfalszabály és a MongoDB távolról csatlakozni tudjanak a végpont van szüksége.
 
-  Hello Azure-portálon, kattintson **virtuális gépek (klasszikus)**, kattintson az új virtuális gép hello neve, majd **végpontok**.
+  Az Azure portálon kattintson **virtuális gépek (klasszikus)**, kattintson az új virtuális gép nevét, majd **végpontok**.
 
     ![Végpontok][Image7]
 
 13. Kattintson az **Add** (Hozzáadás) parancsra.
 
-14. "Mongo" protokoll nevű végpont hozzáadása **TCP**, és mindkét **nyilvános** és **titkos** portok készlet túl "27017". Ez a port megnyitása lehetővé teszi, hogy a MongoDB toobe érhető el távolról.
+14. "Mongo" protokoll nevű végpont hozzáadása **TCP**, és mindkét **nyilvános** és **titkos** portok "27017" értékre. Ez a port megnyitása lehetővé teszi, hogy a MongoDB távoli elérését.
 
     ![Végpontok][Image9]
 
 > [!NOTE]
-> hello port 27017 hello alapértelmezett portot használják a MongoDB. Hello megadásával módosíthatja az alapértelmezett port `--port` paraméter hello mongod.exe kiszolgáló indításakor. Győződjön meg arról, hogy toogive hello ugyanazt a portszámot a hello tűzfal és az előző utasítások hello "Mongo" végpont hello.
+> A MongoDB által használt alapértelmezett port az 27017 portot használja. Az alapértelmezett port megadásával módosíthatja a `--port` paraméter a mongod.exe kiszolgáló indításakor. Ügyeljen arra, hogy ugyanazt a portszámot a tűzfal és a "Mongo" végpont az előző utasítások.
 >
 >
 

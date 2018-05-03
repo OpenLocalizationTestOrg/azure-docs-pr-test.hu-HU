@@ -1,41 +1,41 @@
 
 
-Egy webalkalmazás projekthez az Azure-ba való létrehozásakor megadhat egy virtuális gép az Azure-ban. Ezután hello virtuális gépeket konfigurálhatja egy másik szoftver, vagy hello virtuális gép használni hibakereséshez vagy diagnosztikai célokra.
+Egy webalkalmazás projekthez az Azure-ba való létrehozásakor megadhat egy virtuális gép az Azure-ban. Ezután konfigurálja a virtuális gép egy másik szoftver, vagy a virtuális gép hibakereséshez vagy diagnosztikai célokra használja.
 
-a virtuális gép egy webalkalmazás létrehozásakor toocreate kövesse az alábbi lépéseket:
+Egy webalkalmazás létrehozásakor egy virtuális gép létrehozásához kövesse az alábbi lépéseket:
 
-1. A Visual Studióban kattintson **fájl** > **új** > **projekt** > **webes**, és válassza a **ASP.NET Web Application** (alatt hello **Visual C#** vagy **Visual Basic** csomópontok).
-2. A hello **új ASP.NET projekt** párbeszédpanelen jelölje be hello írja be, és hello Azure hello párbeszédpanelen (a hello jobb alsó sarokban) szakaszában, győződjön meg arról, hogy hello webalkalmazás **hellofelhőbenlévőgazdagéphez**jelölőnégyzet be van jelölve (Ez a jelölőnégyzet be van jelölve **távoli erőforrások létrehozása** néhány telepítések esetén).
+1. A Visual Studióban kattintson **fájl** > **új** > **projekt** > **webes**, és válassza a **ASP.NET Web Application** (alatt a **Visual C#** vagy **Visual Basic** csomópontok).
+2. Az a **új ASP.NET projekt** párbeszédpanelen válassza ki a kívánt webes alkalmazás, és a párbeszédpanel (a jobb alsó sarokban) Azure szakaszában, győződjön meg arról, hogy a **a felhőben lévő gazdagéphez** jelölőnégyzet kijelölt (Ez a jelölőnégyzet be van jelölve **távoli erőforrások létrehozása** néhány telepítések esetén).
    
     ![][0]
-3. Ebben a példában a Microsoft Azure-ban hello legördülő listában válasszon **virtuális gép (v1)**, és kattintson a hello **OK** gombra.
-4. Jelentkezzen be tooAzure, ha a számítógép. Hello **virtuális gép létrehozása** párbeszédpanel jelenik meg.
+3. Ebben a példában a Microsoft Azure-ban a legördülő listában válasszon **virtuális gép (v1)**, majd kattintson a **OK** gomb.
+4. Ha a számítógép, jelentkezzen be Azure. A **virtuális gép létrehozása** párbeszédpanel jelenik meg.
    
     ![][2]
-5. A hello **DNS-név** hello virtuális gép nevét adja meg. hello DNS-neve az Azure-ban egyedinek kell lennie. Hello megadott név nem érhető el, ha egy piros felkiáltójel jelenik meg.
-6. A hello **kép** menüben válassza ki a toobase hello virtuális gép kívánt hello kép. Bármely szabványos Azure virtuálisgép-rendszerképek hello vagy az, hogy tooAzure feltöltött lemezkép választhat.
-7. Hagyja hello **engedélyezése az IIS és a Web Deploy** jelölőnégyzet be van jelölve, kivéve, ha azt tervezi, hogy egy másik webkiszolgálónak tooinstall. Ha letiltja a Web Deploy, nem fogja tudni toopublish a Visual Studio. Az IIS és a Web Deploy tooany csomagolt hello Windows Server képek, beleértve a saját egyéni rendszerképét is hozzáadhat.
-8. A hello **mérete** menüben válassza ki a hello hello virtuális gép méretét.
-9. Hello bejelentkezési hitelesítő adatok megadása a virtuális gép számára. Jegyezze fel a őket, mert lesz szüksége tooaccess hello számítógép távoli asztalon keresztül.
-10. A hello **hely** menüben válassza ki a hello régió toohost hello virtuális gépet.
-11. Kattintson a hello **OK** gomb toostart hello virtuális gépet hoz létre. Hajtsa végre az hello hello művelet előrehaladását hello **kimeneti** ablak.
+5. Az a **DNS-név** adjon meg egy nevet a virtuális gép. A DNS-neve az Azure-ban egyedinek kell lennie. Ha a megadott név nem érhető el, egy piros felkiáltójel jelenik meg.
+6. Az a **kép** menüben válassza ki a virtuális gép alapjául kívánt lemezképet. A szabványos Azure virtuálisgép-lemezképeket vagy a kép, amelyet az Azure-bA feltöltött választhat.
+7. Hagyja a **engedélyezése az IIS és a Web Deploy** jelölőnégyzet be van jelölve, kivéve, ha egy másik webkiszolgálón telepíteni szeretné. Ön nem fog tudni közzé a Visual Studio eszközből, ha letiltja a Web Deploy keretrendszert. Az IIS és a Web Deploy adhat hozzá a csomagolt Windows Server-lemezképek, beleértve a saját egyéni lemezképek egyikének sem.
+8. Az a **mérete** menüben válassza ki a virtuális gép méretét.
+9. Adja meg a bejelentkezési hitelesítő adatait a virtuális gép számára. Jegyezze fel, mert szüksége, hogy hozzáférjenek a számítógép távoli asztalon keresztül.
+10. Az a **hely** menüben válassza ki a régiót, a virtuális gép működtetéséhez.
+11. Kattintson a **OK** gombra kattintva indítsa el a virtuális gép létrehozása. A műveletnek az előrehaladását követheti a **kimeneti** ablak.
     
     ![][3]
-12. Amikor hello virtuális gép ki van építve, közzétett parancsfájlok jön létre egy **PublishScripts** csomópont a megoldásban. hello közzétette a parancsfájl futtatása és kiosztja a virtuális gép az Azure-ban. Hello **kimeneti** ablak hello állapotát jeleníti meg. hello parancsfájl hajtja végre a következő műveletek tooset hello virtuális gép hello:
+12. Amikor a virtuális gép ki van építve, közzétett parancsfájlok jön létre egy **PublishScripts** csomópont a megoldásban. A közzétett parancsfájl fut, és az Azure virtuális gép kiépítését. A **kimeneti** ablak állapotát jeleníti meg. A parancsfájl a virtuális gép beállítása a következő műveleteket hajtja végre:
     
-    * Hello virtuális gépet hoz létre, ha még nem létezik.
-    * Tárfiók létrehozása kezdődő nevű `devtest`, de csak akkor, ha még nem ilyen tárfiók hello megadott régión belül.
-    * Hello virtuális gép elhelyezése egy felhőalapú szolgáltatás létrehozása, és létrehoz egy webes szerepkör hello webalkalmazáshoz.
-    * Konfigurálja a Web Deploy hello virtuális gépen.
-    * Konfigurálja az IIS és ASP.NET hello virtuális gépen.
+    * A virtuális gépet hoz létre, ha még nem létezik.
+    * Tárfiók létrehozása kezdődő nevű `devtest`, de csak akkor, ha még nem ilyen a storage-fiók a megadott régión belül.
+    * A virtuális gép elhelyezése egy felhőalapú szolgáltatás létrehozása, és létrehoz egy webes szerepkör, a webes alkalmazás.
+    * A Web Deploy konfigurálja a virtuális gépen.
+    * Konfigurálja az IIS és ASP.NET a virtuális gépen.
     
     ![][4]
-13. (Választható) Új virtuális gép toohello is elérheti. A **Server Explorer**, bontsa ki a hello **virtuális gépek** csomópont, választhat hello csomópont hello virtuális gép hozott létre, és a helyi menüben, **csatlakozás a távoli asztal**. Alternatív megoldásként a **Cloud Explorer** választhat **nyissa meg a portál** a helyi menü hello és toohello virtuális gép nincs csatlakozás.
+13. (Választható) Kapcsolódás az új virtuális gépet. A **Server Explorer**, bontsa ki a **virtuális gépek** csomópont, a csomópont a létrehozott virtuális gép, és a helyi menü választhat, **csatlakozás a távoli asztal**. Alternatív megoldásként a **Cloud Explorer** dönthet úgy **nyissa meg a portál** a helyi menüben, és csatlakozzon a virtuális gép van.
     
     ![][5]
 
 ## <a name="next-steps"></a>Következő lépések
-Ha azt szeretné, toocustomize hello közzétett parancsfájlok hozott létre, olvassa el a következő részletesebb információt [Windows PowerShell-parancsfájlok használatával tooPublish tooDev és a tesztkörnyezetek](http://msdn.microsoft.com/library/dn642480.aspx).
+Ha szeretné testre szabni a közzétett parancsfájlok, olvassa el részletesebb információt: [Windows PowerShell parancsfájlok használata a közzététel a fejlesztési és tesztkörnyezetek](http://msdn.microsoft.com/library/dn642480.aspx).
 
 [0]: ./media/virtual-machines-common-classic-web-app-visual-studio/CreateVM_NewProject.PNG
 [1]: ./media/dotnet-visual-studio-create-virtual-machine/CreateVM_SignIn.PNG

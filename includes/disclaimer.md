@@ -1,2 +1,2 @@
-toouse Ez a szolgáltatás és az új Azure egyéb funkcióit, iratkozzon fel hello [ingyenes kiadásra](https://account.windowsazure.com/PreviewFeatures).
+Ez a szolgáltatás és az új Azure egyéb funkcióit szeretné használni, Regisztráljon a [ingyenes kiadásra](https://account.windowsazure.com/PreviewFeatures).
 
