@@ -1,2 +1,0 @@
-<span data-ttu-id="f39cf-101">További tudnivalók az Azure Functions egyéb kötéseivel és triggereivel kapcsolatban: [Azure Functions: triggerek és kötések – fejlesztői referencia](../articles/azure-functions/functions-triggers-bindings.md).</span><span class="sxs-lookup"><span data-stu-id="f39cf-101">For information about other bindings and triggers for Azure Functions, see [Azure Functions triggers and bindings developer reference](../articles/azure-functions/functions-triggers-bindings.md).</span></span>
-

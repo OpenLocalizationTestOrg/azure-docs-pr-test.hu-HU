@@ -1,6 +1,0 @@
-## <a name="displaying-hello-azure-explorer-tool-window"></a><span data-ttu-id="09e7d-101">Hello Azure eszköz ablak megjelenítése</span><span class="sxs-lookup"><span data-stu-id="09e7d-101">Displaying hello Azure Explorer Tool Window</span></span>
-
-<span data-ttu-id="09e7d-102">Ha hello **Azure Explorer** eszköz ablak nem látható az intellij-t, kattintson a **nézet**, majd kattintson a **eszköz Windows**, és kattintson a **Azure Explorer**.</span><span class="sxs-lookup"><span data-stu-id="09e7d-102">If hello **Azure Explorer** tool window is not visible in IntelliJ, click **View**, then click **Tool Windows**, and then click **Azure Explorer**.</span></span>
-
-![Az Azure Explorer eszköz ablak megjelenítése](./media/azure-toolkit-for-intellij-show-azure-explorer/show-az-exp-01.png)
-
